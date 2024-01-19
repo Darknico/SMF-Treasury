@@ -9,14 +9,15 @@
 		<modification type="file">install.xml</modification>
 		<modification type="file">profile.xml</modification>
 		<require-file name="DonationBlock.php" destination="$sourcedir" />
+		<require-file name="CustomDonationBlock.php" destination="$sourcedir" />
 		<require-file name="Treasury.php" destination="$sourcedir" />
 		<require-file name="TreasuryAdmin.php" destination="$sourcedir" />
 		<require-file name="TreasuryUpdate.php" destination="$sourcedir" />
 		<require-file name="TreasuryReadme.php" destination="$sourcedir" />
 		<require-file name="Treasury.english.php" destination="$languagedir" />
-		<require-file name="Treasury.english-utf8.php" destination="$languagedir" />
+		<require-file name="Treasury.italian.php" destination="$languagedir" />
 		<require-file name="TreasuryHelp.english.php" destination="$languagedir" />
-		<require-file name="TreasuryHelp.english-utf8.php" destination="$languagedir" />
+		<require-file name="TreasuryHelp.italian.php" destination="$languagedir" />
 		<require-file name="Treasury.template.php" destination="$themedir" />
 		<require-file name="TreasuryAdmin.template.php" destination="$themedir" />
 		<require-file name="ts_picker.js" destination="$themedir/scripts" />
@@ -38,14 +39,15 @@
 		<modification type="file" reverse="true">install.xml</modification>
 		<modification type="file" reverse="true">profile.xml</modification>
 		<remove-file name="$sourcedir/DonationBlock.php" />
+		<remove-file name="$sourcedir/CustomDonationBlock.php" />
 		<remove-file name="$sourcedir/Treasury.php" />
 		<remove-file name="$sourcedir/TreasuryAdmin.php" />
 		<remove-file name="$sourcedir/TreasuryUpdate.php" />
 		<remove-file name="$sourcedir/TreasuryReadme.php" />
 		<remove-file name="$languagedir/Treasury.english.php" />
-		<remove-file name="$languagedir/Treasury.english-utf8.php" />
+		<remove-file name="$languagedir/Treasury.italian.php" />
 		<remove-file name="$languagedir/TreasuryHelp.english.php" />
-		<remove-file name="$languagedir/TreasuryHelp.english-utf8.php" />
+		<remove-file name="$languagedir/TreasuryHelp.italian.php" />
 		<remove-file name="$themedir/Treasury.template.php" />
 		<remove-file name="$themedir/TreasuryAdmin.template.php" />
 		<remove-file name="$themedir/scripts/ts_picker.js" />

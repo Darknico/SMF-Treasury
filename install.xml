@@ -2,7 +2,7 @@
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Resourcez:TreasurySMF</id>
-<version>2.12</version>
+<version>2.12.1</version>
 
 <file name="$languagedir/Modifications.english.php">
 	<operation>
@@ -17,13 +17,13 @@ $txt['treasury_admin'] = 'Treasury';
 	</operation>
 </file>
 
-<file name="$languagedir/Modifications.english-utf8.php" error="skip">
+<file name="$languagedir/Modifications.italian.php" error="skip">
 	<operation>
 		<search position="after"><![CDATA[
 ?>]]></search>
 		<add><![CDATA[
 //Begin SMF Treasury Text
-$txt['treasury_menu'] = 'Donations';
+$txt['treasury_menu'] = 'Donazioni';
 $txt['treasury_admin'] = 'Treasury';
 //End SMF Treasury Text			
 ]]></add>
@@ -42,13 +42,13 @@ $txt['whoall_treasury'] = 'Viewing <a href="' . $scripturl . '?action=treasury">
 	</operation>
 </file>
 
-<file name="$languagedir/Who.english-utf8.php" error="skip">
+<file name="$languagedir/Who.italian.php" error="skip">
 	<operation>
 		<search position="after"><![CDATA[
 ?>]]></search>
 		<add><![CDATA[
 //Begin SMF Treasury Strings
-$txt['whoall_treasury'] = 'Viewing <a href="' . $scripturl . '?action=treasury">Treasury</a>';
+$txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl . '?action=treasury">Donazioni</a>';
 //END SMF Treasury Strings			
 ]]></add>
 	</operation>
@@ -76,8 +76,7 @@ $txt['whoall_treasury'] = 'Viewing <a href="' . $scripturl . '?action=treasury">
 
 <file name="$sourcedir/ManagePermissions.php">
 	<operation>
-		<search position="before"><![CDATA[			'karma_edit' => array(false, 'general', 'moderate_general'),
-]]></search>
+		<search position="before"><![CDATA[			'post_attachment' => array(false, 'attachment'),]]></search>
 		<add><![CDATA[			'view_treasury' => array(false, 'treasury', 'view_basic_info'),
 			'admin_treasury' => array(false, 'treasury', 'administrate'),
 ]]></add>
@@ -85,6 +84,7 @@ $txt['whoall_treasury'] = 'Viewing <a href="' . $scripturl . '?action=treasury">
 </file>
 
 <file name="$sourcedir/Subs.php">
+<!-- hide in this moment
 	<operation>
 		<search position="after"><![CDATA[			'login' => array(
 				'title' => $txt['login'],
@@ -104,8 +104,9 @@ $txt['whoall_treasury'] = 'Viewing <a href="' . $scripturl . '?action=treasury">
 			),
 		]]></add>
 	</operation>
+-->	
 	<operation>
-		<search position="before"><![CDATA[$context['allow_calendar'] = allowedTo('calendar_view') && !empty($modSettings['cal_enabled']);]]></search>
+		<search position="before"><![CDATA[	$context['allow_pm'] = allowedTo('pm_read');]]></search>
 		<add><![CDATA[
 		$context['allow_view_treasury'] = allowedTo('view_treasury');
 		$context['allow_admin'] .= allowedTo('admin_treasury');
@@ -116,25 +117,24 @@ $txt['whoall_treasury'] = 'Viewing <a href="' . $scripturl . '?action=treasury">
 
 <file name="$sourcedir/Admin.php">
 	<operation>
-		<search position="before"><![CDATA[	loadLanguage('Admin');]]></search>
-	<add><![CDATA[	
-		loadLanguage('Treasury');]]></add>
+		<search position="before"><![CDATA[	loadLanguage('Admin');]></search>
+	<add><![CDATA[ 
+	loadLanguage('Treasury');]]></add>
 	</operation>
 	<operation>
 		<search position="before"><![CDATA[				'theme' => array(
 					'label' => $txt['theme_admin'],
 					'file' => 'Themes.php',
 					'function' => 'ThemesMain',
-					'custom_url' => $scripturl . '?action=admin;area=theme;sa=admin',
-					'icon' => 'themes.gif',
+					'custom_url' => $scripturl . '?action=admin;area=theme',
+					'icon' => 'themes',
 					'subsections' => array(
 						'admin' => array($txt['themeadmin_admin_title']),
 						'list' => array($txt['themeadmin_list_title']),
 						'reset' => array($txt['themeadmin_reset_title']),
 						'edit' => array($txt['themeadmin_edit_title']),
 					),
-				),
-]]></search>
+				),]]></search>
 		<add><![CDATA[				'treasury' => array(
 					'label' => $txt['treasury_admin'],
 					'file' => 'TreasuryAdmin.php',

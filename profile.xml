@@ -2,33 +2,27 @@
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Resourcez:TreasurySMF</id>
-<version>2.12</version>
+<version>2.12.1</version>
 
 <file name="$sourcedir/Profile.php">
 	<operation>
-		<search position="before"><![CDATA[	loadLanguage('Profile');]]></search>
-	<add><![CDATA[	
-		loadLanguage('Treasury');]]></add>
+		<search position="before"><![CDATA[	loadTemplate('Profile');]]></search>
+	<add><![CDATA[ 
+	loadLanguage('Treasury');]]></add>
 	</operation>
 	<operation>
-		<search position="before"><![CDATA[
-				'showposts' => array(
-					'label' => $txt['showPosts'],
+		<search position="before"><![CDATA[				'viewwarning' => array(
+					'label' => $txt['profile_view_warnings'],
+					'enabled' => $modSettings['warning_settings'][0] == 1 && $cur_profile['warning'],
 					'file' => 'Profile-View.php',
-					'function' => 'showPosts',
-					'subsections' => array(
-						'messages' => array($txt['showMessages'], array('profile_view_own', 'profile_view_any')),
-						'topics' => array($txt['showTopics'], array('profile_view_own', 'profile_view_any')),
-						'attach' => array($txt['showAttachments'], array('profile_view_own', 'profile_view_any')),
-					),
+					'function' => 'viewWarning',
+					'icon' => 'warning',
 					'permission' => array(
-						'own' => 'profile_view_own',
-						'any' => 'profile_view_any',
+						'own' => array('view_warning_own', 'view_warning_any', 'issue_warning', 'moderate_forum'),
+						'any' => array('view_warning_any', 'issue_warning', 'moderate_forum'),
 					),
-				),
-]]></search>
-		<add><![CDATA[
-				'showdonations' => array(
+				),]]></search>
+		<add><![CDATA['showdonations' => array(
 					'label' => $txt['showDonations'],
 					'file' => 'Profile.php',
 					'function' => 'showDonations',
