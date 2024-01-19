@@ -117,9 +117,9 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 
 <file name="$sourcedir/Admin.php">
 	<operation>
-		<search position="before"><![CDATA[	loadLanguage('Admin');]></search>
-	<add><![CDATA[ 
-	loadLanguage('Treasury');]]></add>
+		<search position="before"><![CDATA[	loadLanguage('Admin');]]></search>
+	<add><![CDATA[
+		loadLanguage('Treasury');]]></add>
 	</operation>
 	<operation>
 		<search position="before"><![CDATA[				'theme' => array(
@@ -135,7 +135,8 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 						'edit' => array($txt['themeadmin_edit_title']),
 					),
 				),]]></search>
-		<add><![CDATA[				'treasury' => array(
+		<add><![CDATA[
+						'treasury' => array(
 					'label' => $txt['treasury_admin'],
 					'file' => 'TreasuryAdmin.php',
 					'function' => 'treasuryAdmin',
