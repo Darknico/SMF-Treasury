@@ -15,32 +15,7 @@ global $scripturl, $boardurl, $modSettings;
 
 echo '
 <div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">Information Menu</div>
-<div  style="text-align:center; text-decoration:blink;"><a href="http://resourcez.biz /index.php?action=treasury">You can support Treasury development here</a>.</div>
-';
-if (!$resopen = @fsockopen ('tcp://resourcez.donationspro.com', 80, $errno, $errstr, 2))
-{
-	echo '<div class="tborder">Sorry, Resourcez site not available.</div>';
-}
-else
-{
-	$treasinfo = file_get_contents('http://resourcez.donationspro.com/treasnews2.php');
-	if ($treasinfo)
-	{
-		$update_version = substr($treasinfo, 0, 4);
-		echo '<div style="padding:3px;">';
-		echo 'Your version is ', $modSettings['treasury_version'], '&nbsp;-&nbsp; the latest version ', $update_version, ' is <a href="http://custom.simplemachines.org/mods/index.php?mod=916"><b>Available Here</b></a>';
-		echo '</div>';
-		echo '<div style="border:1px solid pink; padding:3px; height:150px; overflow:auto; font-size:10px;">';
-		echo $treasinfo;
-		echo '</div>';
-	}
-	else
-	{
-		echo '<div class="tborder">Sorry, update info not available.</div>';
-	}
-	@fclose ($resopen);
-}
+<div style="text-align:center; padding:5px;" class="titlebg">Information Menu</div>';
 $smf_treas = substr($modSettings['smfVersion'], 0, 1);
 $admin_treas = ($smf_treas == 1) ? '?action=treasuryadmin;' : '?action=admin;area=treasury;';
 echo'
