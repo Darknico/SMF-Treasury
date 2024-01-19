@@ -69,7 +69,7 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 	<operation>
 		<search position="before"><![CDATA['trackip' => array('Profile-View.php', 'trackIP'),]]></search>
 		<add><![CDATA[
-		'treasury' => array('Treasury.php', 'treasuryMain'),
+		//'treasury' => array('Treasury.php', 'treasuryMain'),
 		'treasuryadmin' => array('TreasuryAdmin.php', 'treasuryAdmin'),]]></add>
 	</operation>
 </file>
