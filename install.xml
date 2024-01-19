@@ -58,7 +58,7 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 	<operation>
 		<search position="after"><![CDATA[// Is the forum in maintenance mode? (doesn't apply to administrators.)]]></search>
 		<add><![CDATA[
-	if ( !empty($modSettings['treasury_groupcheck']) && $modSettings['treasury_groupcheck'] < gmmktime() )
+	if ( !empty($modSettings['treasury_groupcheck']) && $modSettings['treasury_groupcheck'] < time() )
 	{
 		require_once($sourcedir . '/TreasuryUpdate.php');
 		treasuryGroupCheck();

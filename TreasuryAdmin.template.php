@@ -125,7 +125,7 @@ function template_treasuryregister()
 	."return true;\" />&nbsp;"
 	.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" />';
 	echo '</td></tr></table></form>';
-	echo '<div><b>Note date format -</b> ', timeformat(gmmktime(), treasdate()), '</div>';
+	echo '<div><b>Note date format -</b> ', timeformat(time(), treasdate()), '</div>';
     echo '<br />';
 }
 
@@ -273,7 +273,7 @@ function template_treasury_donations()
 <tr><td><b>Gross:</b></td><td> the donation amount, in that currency.</td></tr>
 <tr><td><b>Fee:</b></td><td> the paypal fee for that donation, in that currency.</td></tr>
 <tr><td><b>Settle:</b></td><td> the Gross less Fee, <b>converted</b> to your site (primary) currency.</td></tr>
-<tr><td><b>Date:</b></td><td> the format ', timeformat(gmmktime(), treasdate()), ' - <b>must</b> match this format.</td></tr>
+<tr><td><b>Date:</b></td><td> the format ', timeformat(time(), treasdate()), ' - <b>must</b> match this format.</td></tr>
 <tr><td><b>Rate:</b></td><td> the exchange rate (1.00 if donation currency same as site currency)</td></tr>
 <tr><td><b>Event:</b></td><td> the ID value for any events you may have used, default 0)</td></tr>
 </table>';

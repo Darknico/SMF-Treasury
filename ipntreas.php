@@ -410,7 +410,7 @@ if ($log)
 		VALUES 
 		(DEFAULT, {int:gm_time}, {int:pay_date}, {string:log_me})', 
 		array(
-			'gm_time' => gmmktime(),
+			'gm_time' => time(),
 			'pay_date' => $pay_date,
 			'log_me' => $log,
 		)

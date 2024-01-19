@@ -299,7 +299,7 @@ else
 		array('name' => 'option_seleczion1', 'type' => 'varchar', 'size' => 127, 'null' => false, 'default' => 0),
 		array('name' => 'option_name2', 'type' => 'varchar', 'size' => 60, 'null' => false, 'default' => 0),
 		array('name' => 'option_seleczion2', 'type' => 'varchar', 'size' => 127, 'null' => false, 'default' => 0),
-		array('name' => 'memo', 'type' => 'text', 'null' => false),
+		array('name' => 'memo', 'type' => 'text', 'null' => false, 'default' => ''),
 		array('name' => 'payment_status', 'type' => 'varchar', 'size' => 15, 'null' => false, 'default' => 0),
 		array('name' => 'payment_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time()),
 		array('name' => 'txn_type', 'type' => 'varchar', 'size' => 15, 'null' => false, 'default' => 0),

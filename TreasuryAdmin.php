@@ -373,7 +373,7 @@ function treasuryTotals()
 	FROM {db_prefix}treas_donations 
 	WHERE $search_query 
 		AND (payment_status = 'Completed' OR payment_status = 'Refunded') 
-	GROUP BY user_id";
+	GROUP BY user_id, custom, mc_currency";
 	$query_limit_Recordset1 = $query_Recordset1 . ' ORDER BY ' . $order_by;
 
 	$Recordset1 = $smcFunc['db_query']('', $query_limit_Recordset1, array());

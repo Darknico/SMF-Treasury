@@ -20,7 +20,7 @@ function treasuryGroupCheck()
 		WHERE group_end <= {int:groupend} 
 		',
 		array(
-			'groupend' => gmmktime(),
+			'groupend' => time(),
 		)
 	);
 
