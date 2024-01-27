@@ -60,7 +60,7 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 		<add><![CDATA[
 	if ( !empty($modSettings['treasury_groupcheck']) && $modSettings['treasury_groupcheck'] < time() )
 	{
-		require_once($sourcedir . '/TreasuryUpdate.php');
+		require_once($sourcedir . '/Treasury/TreasuryUpdate.php');
 		treasuryGroupCheck();
 	}
 
@@ -69,8 +69,8 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 	<operation>
 		<search position="before"><![CDATA['trackip' => array('Profile-View.php', 'trackIP'),]]></search>
 		<add><![CDATA[
-		//'treasury' => array('Treasury.php', 'treasuryMain'),
-		'treasuryadmin' => array('TreasuryAdmin.php', 'treasuryAdmin'),]]></add>
+		//'treasury' => array('Treasury/Treasury.php', 'treasuryMain'),
+		'treasuryadmin' => array('Treasury/TreasuryAdmin.php', 'treasuryAdmin'),]]></add>
 	</operation>
 </file>
 
@@ -119,7 +119,7 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 	<operation>
 		<search position="before"><![CDATA[	loadLanguage('Admin');]]></search>
 	<add><![CDATA[
-		loadLanguage('Treasury');]]></add>
+		loadLanguage('Treasury/Treasury');]]></add>
 	</operation>
 	<operation>
 		<search position="before"><![CDATA[				'theme' => array(
@@ -138,7 +138,7 @@ $txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl .
 		<add><![CDATA[
 						'treasury' => array(
 					'label' => $txt['treasury_admin'],
-					'file' => 'TreasuryAdmin.php',
+					'file' => '/Treasury/TreasuryAdmin.php',
 					'function' => 'treasuryAdmin',
 					'permission' => 'admin_treasury',
 					'icon' => 'treasury.gif',

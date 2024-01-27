@@ -8,7 +8,7 @@
 	<operation>
 		<search position="before"><![CDATA[	loadTemplate('Profile');]]></search>
 	<add><![CDATA[ 
-	loadLanguage('Treasury');]]></add>
+	loadLanguage('Treasury/Treasury');]]></add>
 	</operation>
 	<operation>
 		<search position="before"><![CDATA[				'viewwarning' => array(
@@ -44,8 +44,8 @@ function showDonations($memID)
 	global $donor_result, $site_total, $ttotal, $tr_config;
 
 	// Load treasury template and language.
-	loadTemplate('Treasury');
-	loadLanguage('Treasury');
+	loadTemplate('Treasury/Treasury');
+	loadLanguage('Treasury/Treasury');
 
 	$context['page_title'] = $txt['showDonations'] . ' ' . $user_profile[$memID]['real_name'];
 	$context['sub_template'] = 'treasury_profile';

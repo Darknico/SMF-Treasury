@@ -81,7 +81,7 @@ function template_main()
 	}
 
 	if ($tr_config['don_show_button_top']) {
-		echo '<div style="text-align:center;"><a href="index.php?action=treasury#MakeDonation"><img src="', $settings['default_images_url'], '/', $tr_config['don_button_top'], '" alt="" style="margin:5px 0px 0px 0px; border:0;', $don_top_image_dims, '" /></a></div>';
+		echo '<div style="text-align:center;"><a href="index.php?action=treasury#MakeDonation"><img src="', $settings['default_images_url'], '/Treasury//', $tr_config['don_button_top'], '" alt="" style="margin:5px 0px 0px 0px; border:0;', $don_top_image_dims, '" /></a></div>';
 	}
 	echo '<hr />
 	  ', $context['don_text'], '
@@ -176,13 +176,13 @@ function template_main()
 	echo	  '</p>
 				<input type="hidden" name="no_shipping" value="1" />
 				<input type="hidden" name="cn" value="Comments" />
-				<input type="hidden" name="image_url" value="', $settings['default_images_url'], '/', $tr_config['pp_image_url'], '" />
+				<input type="hidden" name="image_url" value="', $settings['default_images_url'], '/Treasury//', $tr_config['pp_image_url'], '" />
 				<input type="hidden" name="notify_url" value="', $boardurl, '/', $tr_config['pp_notify_url'], '" />
 				<input type="hidden" name="cancel_return" value="', $boardurl, '/', $tr_config['pp_cancel_url'], '" />
 				<input type="hidden" name="return" value="', $boardurl, '/', $tr_config['pp_ty_url'], '&u=', $userid, '&area=showdonations" />
 				<input type="hidden" name="rm" value="2" />
               <p style="text-align:center;"> 
-                <input type="image" src="', $settings['default_images_url'], '/', $tr_config['don_button_submit'], '" name="I1"  style="border:0;', $don_sub_image_dims, '" />
+                <input type="image" src="', $settings['default_images_url'], '/Treasury//', $tr_config['don_button_submit'], '" name="I1"  style="border:0;', $don_sub_image_dims, '" />
               </p>
             </form>
 	      </td>

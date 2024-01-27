@@ -20,8 +20,8 @@ function treasuryAdmin()
 	$context['treas_link'] = '?action=admin;area=treasury';
 	$context['treas_smf'] = 2;
 
-	loadLanguage('Treasury');
-	loadTemplate('TreasuryAdmin');
+	loadLanguage('Treasury/Treasury');
+	loadTemplate('Treasury/TreasuryAdmin');
 
 	# Treasury actions
 	$subActions = array(
@@ -1501,7 +1501,7 @@ function donorGroup ($user_id, $custom, $payment_date, $option_seleczion1)
 function treasuryHelp() {
 	global $txt, $helptxt, $context, $scripturl;
 	isAllowedTo('admin_treasury');
-	loadLanguage('TreasuryHelp');
+	loadLanguage('Treasury/TreasuryHelp');
 
 	# hmmm, don't want to affect core, so borrow SMF code - thank you :)
 	$context['page_title'] = 'Treasury ' . $txt['help'];

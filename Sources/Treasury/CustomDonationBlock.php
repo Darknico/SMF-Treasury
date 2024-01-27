@@ -13,7 +13,7 @@ if (!defined('SMF'))
 	die('Hacking attempt...');
 
 global $db_prefix, $txt, $context, $boarddir, $scripturl, $smcFunc, $settings;
-loadLanguage('Treasury');
+loadLanguage('Treasury/Treasury');
 
 $cfgset = $smcFunc['db_query']('', 'SELECT * 
 	FROM {db_prefix}treas_config',
@@ -120,8 +120,8 @@ $dm_button_dims .= is_numeric($tr_config['dm_img_height']) ? 'height:'.$tr_confi
 echo '<div style="text-align:center;text-decoration:blink;">', $tr_config['dm_title'], '<br /></div>
 	<div style="text-align:center;">
 	', ($tr_config['dm_comments'] ? '<br />'.$tr_config['dm_comments'].'<br />' : ''), '
-	<a href="', $scripturl, '?action=treasury">
-	<img src="', $settings['default_images_url'], '/', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
+	<a href="', $scripturl, '?page=donazioni">
+	<img src="', $settings['default_images_url'], '/Treasury//', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
 	</div>';
 
 if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
@@ -130,9 +130,9 @@ if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
 	$pp_fees = sprintf('%.02f', $row_Recordset2['receipts'] - $row_Recordset2['net']);
 	$donatometer = ($tr_period[3] > 0) ? round((100 * ($tr_config['don_show_gross'] ? $row_Recordset2['receipts'] : $row_Recordset2['net']) / $tr_period[3]), 0) : '0';
 
-	$donormeter = '<div style="width:100%; height:12px; background-color:#FFFFFF; border:1px solid green;">'.($donatometer < 15 ? '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"></div><div style="font-size:8px; margin-top:-11px; text-indent:'.$donatometer.'%; color:green;">&nbsp;'.$donatometer.'%</div>' : ($donatometer > 99 ? '<div style="width:98%; height:10px; margin:1px; background-color:blue;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>' : '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>')).'</div>';
+	$donormeter = '<div style="width:100%; height:23px; background-color:#FFFFFF; border:1px solid green;">'.($donatometer < 15 ? '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"></div><div style="font-size:8px; margin-top:-11px; text-indent:'.$donatometer.'%; color:green;">&nbsp;'.$donatometer.'%</div>' : ($donatometer > 99 ? '<div style="width:98%; height:10px; margin:1px; background-color:blue;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>' : '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>')).'</div>';
 
-	echo '<div style="width:145px;margin:auto;">';
+	echo '<div style="width:170px;margin:auto;">';
 	if ($tr_config['dm_show_targets']) {
 		echo '<span style="width:95px;font-size:10px;float:left;">', $tr_period[2], ' ', $txt['treas_goal'], ':</span>
 	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $tr_period[3]), '</span><br />
@@ -140,7 +140,7 @@ if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
 	    <span style="float:right;font-size:10px;">', $row_Recordset2['due_by'], '</span><br />
 	    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_total_receipts'], ':</span>
 	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['receipts']), '</span><br />';
-		if ($tr_config['don_show_gross'] == 0) {
+		if ($tr_config['don_show_gross'] == "era 0") {
 			echo '<span style="width:95px;font-size:10px;float:left;">PayPal Fees:</span>
 		    <span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br />
 		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_net_balance'], ':</span>
@@ -164,7 +164,16 @@ if (is_numeric($tr_config['dm_num_don']) && $tr_config['dm_num_don'] >= 0) {
 		FROM {db_prefix}treas_donations
 		WHERE $where 
 			AND (payment_status = 'Completed' OR payment_status = 'Refunded') 
-		GROUP BY txn_id 
+		GROUP BY
+			user_id,
+			name,
+			showname,
+			currency,
+			symbol,
+			settled,
+			date,
+			txn_id,
+			payment_date
 		ORDER BY payment_date DESC";
 	$Recordset4 = $smcFunc['db_query']('', $query_Recordset4,
 		array(
@@ -186,7 +195,7 @@ if (is_numeric($tr_config['dm_num_don']) && $tr_config['dm_num_don'] >= 0) {
 				} else {
 					$dname = $txt['treas_anonymous'];
 				}
-				$dname = (($row_Recordset4['name'] == $context['user']['name'] || allowedTo('admin_treasury')) && $row_Recordset4['user_id'] > 0 ) ? '<a href="'.$scripturl.'?action=profile;u='.$row_Recordset4['user_id'].';area=showdonations" style="text-decoration:underline;">'.$dname.'</a>' : $dname;
+				$dname = (($row_Recordset4['name'] == $context['user']['name'] || allowedTo('admin_treasury')) && $row_Recordset4['user_id'] > 0 ) ? '<a href="'.$scripturl.'?action=profile;u='.$row_Recordset4['user_id'].'" style="text-decoration:underline;">'.$dname.'</a>' : $dname;
 
 				if ( !$tr_config['dm_show_amt'] && !$tr_config['dm_show_date'] ) {
 					echo '<div>';

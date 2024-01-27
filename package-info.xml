@@ -8,27 +8,8 @@
 	<install for="2.1-2.1.99">
 		<modification type="file">install.xml</modification>
 		<modification type="file">profile.xml</modification>
-		<require-file name="DonationBlock.php" destination="$sourcedir" />
-		<require-file name="CustomDonationBlock.php" destination="$sourcedir" />
-		<require-file name="Treasury.php" destination="$sourcedir" />
-		<require-file name="TreasuryAdmin.php" destination="$sourcedir" />
-		<require-file name="TreasuryUpdate.php" destination="$sourcedir" />
-		<require-file name="TreasuryReadme.php" destination="$sourcedir" />
-		<require-file name="Treasury.english.php" destination="$languagedir" />
-		<require-file name="Treasury.italian.php" destination="$languagedir" />
-		<require-file name="TreasuryHelp.english.php" destination="$languagedir" />
-		<require-file name="TreasuryHelp.italian.php" destination="$languagedir" />
-		<require-file name="Treasury.template.php" destination="$themedir" />
-		<require-file name="TreasuryAdmin.template.php" destination="$themedir" />
-		<require-file name="ts_picker.js" destination="$themedir/scripts" />
-		<require-file name="calnext.gif" destination="$imagesdir" />
-		<require-file name="calprev.gif" destination="$imagesdir" />
-		<require-file name="cal.gif" destination="$imagesdir" />
-		<require-file name="x-click-but04.gif" destination="$imagesdir" />
-		<require-file name="x-click-but21.gif" destination="$imagesdir" />
-		<require-file name="drop.png" destination="$imagesdir" />
-		<require-file name="edit.png" destination="$imagesdir" />
-		<require-file name="treasury.gif" destination="$imagesdir/admin" />
+		<require-dir name="Sources/Treasury" destination="$sourcedir" />
+		<require-dir name="Themes/default" destination="$themes_dir" />		
 		<require-file name="ipntreas.php" destination="$boarddir" />
 		<code>install.php</code>
 		<readme type="file" parsebbc="true">readme.txt</readme>
@@ -38,27 +19,9 @@
 		<readme type="file" parsebbc="true">emdaer.txt</readme>
 		<modification type="file" reverse="true">install.xml</modification>
 		<modification type="file" reverse="true">profile.xml</modification>
-		<remove-file name="$sourcedir/DonationBlock.php" />
-		<remove-file name="$sourcedir/CustomDonationBlock.php" />
-		<remove-file name="$sourcedir/Treasury.php" />
-		<remove-file name="$sourcedir/TreasuryAdmin.php" />
-		<remove-file name="$sourcedir/TreasuryUpdate.php" />
-		<remove-file name="$sourcedir/TreasuryReadme.php" />
-		<remove-file name="$languagedir/Treasury.english.php" />
-		<remove-file name="$languagedir/Treasury.italian.php" />
-		<remove-file name="$languagedir/TreasuryHelp.english.php" />
-		<remove-file name="$languagedir/TreasuryHelp.italian.php" />
-		<remove-file name="$themedir/Treasury.template.php" />
-		<remove-file name="$themedir/TreasuryAdmin.template.php" />
-		<remove-file name="$themedir/scripts/ts_picker.js" />
-		<remove-file name="$imagesdir/calnext.gif" />
-		<remove-file name="$imagesdir/calprev.gif" />
-		<remove-file name="$imagesdir/cal.gif" />
-		<remove-file name="$imagesdir/x-click-but04.gif" />
-		<remove-file name="$imagesdir/x-click-but21.gif" />
-		<remove-file name="$imagesdir/drop.png" />
-		<remove-file name="$imagesdir/edit.png" />
-		<remove-file name="$imagesdir/admin/treasury.gif" />
+		<remove-dir name="$sourcedir/Treasury" />
+		<remove-dir name="$themedir/Treasury" />
+		<remove-dir name="$languagedir/Treasury" />
 		<remove-file name="$boarddir/ipntreas.php" />
 	</uninstall>
 

@@ -10,7 +10,7 @@
 *******************************************************************************/
 if (!defined('SMF'))
 	die('Hacking attempt...');
-loadLanguage('Treasury');
+loadLanguage('Treasury/Treasury');
 global $scripturl, $boardurl, $modSettings;
 
 echo '
@@ -89,7 +89,7 @@ You WILL have to manually edit all Treasury transactions for currencies you rece
 <li>Treasury will look at varying time periods, depending on the option you choose - monthly, quarterly, half yearly and yearly.  Alternatively, you can choose to manage donations on an event basis, with set targets for each donation campaign.<br /><br /></li>
 <li>Users can view their personal donation summary through their <a href="', $scripturl, '?action=profile;u=1;sa=showDonations" style="text-decoration:underline;"><b>Profile</b></a> - viewable only by the user or admin.<br /><br /></li>
 <li>Treasury will also account for any refunds that you process - they will automatically cancel out the original donation and a record will be saved in the Transaction Log.  The donor\'s profile will show the original donation as well as the refund.<br /><br /></li>
-<li>Got an Internal Server <b>Error 500</b> when PayPal returns to your site?<br />Check file permissions for ', $boardurl, '/ipntreas.php are 644 or 755 (CHMOD to 644 if they are 777 or 666).<br />Similarly if you are using ', $boardurl, '/Sources/DonationBlock.php under a Portal.<br /><br /></li>
+<li>Got an Internal Server <b>Error 500</b> when PayPal returns to your site?<br />Check file permissions for ', $boardurl, '/ipntreas.php are 644 or 755 (CHMOD to 644 if they are 777 or 666).<br />Similarly if you are using ', $boardurl, '/Sources/Treasury/DonationBlock.php under a Portal.<br /><br /></li>
 <li>You can verify that your site will respond to PayPal by <a href="', $boardurl, '/ipntreas.php?dbg=1" style="text-decoration:underline;" target="_blank"><b>clicking here</b></a>.<br />
 &#8226; This will also place an entry in your <a href="', $scripturl.$admin_treas, 'sa=translog" style="text-decoration:underline;"><b>transaction log</b></a>.<br /><br /></li>
 <li>If you are having problems with transactions not appearing, check the <a href="', $scripturl.$admin_treas, 'sa=translog" style="text-decoration:underline;"><b>Transaction Log</b></a> for any clues to problems.<br />
