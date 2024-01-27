@@ -21,6 +21,7 @@
 		<modification type="file" reverse="true">profile.xml</modification>
 		<remove-dir name="$sourcedir/Treasury" />
 		<remove-dir name="$themedir/Treasury" />
+		<remove-dir name="$themedir/images/Treasury" />
 		<remove-dir name="$languagedir/Treasury" />
 		<remove-file name="$boarddir/ipntreas.php" />
 	</uninstall>

@@ -338,7 +338,7 @@ function template_treasury_totals() {
 	</tr>
 	<tr class="windowbg"><td colspan="2"><span style="float:left;">', $pagination, '</span>';
 	echo '<span style="float:right;">
-	<b>&raquo;</b> From <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> <a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="Choose Start Date"><img src="', $settings['default_images_url'], '/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a>&nbsp;to&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> <a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="Choose End Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_choose_period" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']), '" align="top" /></a> <b>&laquo;</b>&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b>&raquo;</b> From <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> <a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="Choose Start Date"><img src="', $settings['default_images_url'], '/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a>&nbsp;to&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> <a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="Choose End Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_choose_period" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']), '" align="top" /></a> <b>&laquo;</b>&nbsp;&nbsp;&nbsp;&nbsp; 
 	<input type="hidden" name="sc" value="', $context['session_id'], '" />
 	<input type="hidden" name="start" value="', $start, '" />
 	<input type="submit" name="submit" value="', $txt['treas_change'], '" style="margin:0;" />&nbsp;</span>
@@ -443,7 +443,7 @@ function template_config()
 
 	echo '<div class="catbg">', $txt['treas_donation_goals'], '</div>';
     echo '<table class="tborder" width="100%">';
-	$row1 = '<tr><td class="titlebg"><a href="' . $scripturl.$context['treas_link'] . ';sa=treashelp;help=treas_goal" onclick="return reqWin(this.href);" class="help"><img src="' . $settings['images_url'] . '/helptopics.gif" alt="' . ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']) . '" align="top" /></a></td>';
+	$row1 = '<tr><td class="titlebg"><a href="' . $scripturl.$context['treas_link'] . ';sa=treashelp;help=treas_goal" onclick="return reqWin(this.href);" class="help"><img src="' . $settings['images_url'] . '/helptopics_hd.png" alt="' . ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']) . '" align="top" /></a></td>';
 	$row2 = '<tr><td class="titlebg" align="left">' . $txt['treas_goal'] . '</td>';
 	foreach ($tr_targets['goal'] as $block_month => $block_goal)
 	{
@@ -457,7 +457,7 @@ function template_config()
 
 	echo '<div class="catbg">', $txt['treas_donation_amounts'], '</div>';
     echo '<table class="tborder">';
-	$row1 = '<tr><td class="titlebg"><a href="' . $scripturl.$context['treas_link'] . ';sa=treashelp;help=treas_don_amount" onclick="return reqWin(this.href);" class="help"><img src="' . $settings['images_url'] . '/helptopics.gif" alt="' . ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']) . '" align="top" /></a></td>';
+	$row1 = '<tr><td class="titlebg"><a href="' . $scripturl.$context['treas_link'] . ';sa=treashelp;help=treas_don_amount" onclick="return reqWin(this.href);" class="help"><img src="' . $settings['images_url'] . '/helptopics_hd.png" alt="' . ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']) . '" align="top" /></a></td>';
 	$row2 = '<tr><td class="titlebg">' . $txt['treas_amount'] . '</td>';
 	foreach ($tr_targets['don_amount'] AS $amountn => $amounts)
 	{
@@ -615,12 +615,12 @@ function template_config_events()
 	$txt_help = $context['treas_smf'] == 1 ? $txt['119'] : $txt['help'];
 	echo '<table width="100%" class="tborder">'
 	.'<tr><td class="catbg2" align="center"><b>&nbsp;</b></td>'
-	.'<td class="catbg2" width="120" align="center">', $txt['treas_event_title'], ' <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_title" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center">', $txt['treas_event_descr'], ' <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_descr" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="70">', $txt['treas_event_target'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_target" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="70">', $txt['treas_event_actual'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_actual" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="90">', $txt['treas_event_start'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_start" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="90">', $txt['treas_event_end'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_end" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics.gif" alt="', $txt_help, '" align="top" /></a></td>'
+	.'<td class="catbg2" width="120" align="center">', $txt['treas_event_title'], ' <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_title" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
+	.'<td class="catbg2" align="center">', $txt['treas_event_descr'], ' <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_descr" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
+	.'<td class="catbg2" align="center" width="70">', $txt['treas_event_target'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_target" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
+	.'<td class="catbg2" align="center" width="70">', $txt['treas_event_actual'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_actual" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
+	.'<td class="catbg2" align="center" width="90">', $txt['treas_event_start'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_start" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
+	.'<td class="catbg2" align="center" width="90">', $txt['treas_event_end'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_end" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
 	.'</tr>';
 
 	if (isset($context['treas_events']))

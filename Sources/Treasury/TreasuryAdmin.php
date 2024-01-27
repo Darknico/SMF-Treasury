@@ -142,7 +142,7 @@ function treasdate() {
 
 function treasuryRegister()
 {
-    global $smcFunc, $scripturl, $context, $txt, $num_ipn, $ipn_tot, $total;
+    global $smcFunc, $scripturl, $context, $txt, $tr_config, $tr_targets, $num_ipn, $ipn_tot, $total;
 	global $pageNum_Recordset1, $totalRows_Recordset1, $totalPages_Recordset1;
 	$context['sub_template'] = 'treasuryregister';
 
@@ -716,7 +716,7 @@ function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 		. '<option selected="selected" value="0">No</option>';
 	}
 	echo '</select></td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
+	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics_hd.png" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
 	</tr>';
 }
 
@@ -729,7 +729,7 @@ function showTextBox($name, $desc, $tdWidth, $inpSize, $useHelp)
     .'<td style="width:', $tdWidth, 'px; font-size:10px;">', $desc, '</td>'
     .'<td align="left">'
 	.'<input size="', $inpSize, '" name="var_', $name, '" type="text" value="', $tr_config[$name], '" /></td>'
-	.'<td align="center" style="width:16px;">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>'
+	.'<td align="center" style="width:16px;">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics_hd.png" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>'
 	.'</tr>';
 }
 
@@ -742,7 +742,7 @@ function showTextArea($name, $desc, $tcols, $trows, $useHelp)
     .'<td style="font-size:11px;">', $desc, '</td>'
     .'<td align="left">'
 	.'<textarea name="var_'.$name.'" cols="'.$tcols.'" rows="'.$trows.'">'.$tr_config[$name].'</textarea>'
-	.'<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>'
+	.'<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics_hd.png" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>'
 	.'</tr>';
 }
 
@@ -758,7 +758,7 @@ function showImgXYBox($xnm, $ynm, $desc, $inpSize, $useHelp)
 	echo ' Height '
 	."<input size=\"$inpSize\" name=\"var_$ynm\" type=\"text\" value=\"$tr_config[$ynm]\" />";
 	echo '</td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $xnm. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
+	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $xnm. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics_hd.png" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
 	</tr>';
 }
 
@@ -774,7 +774,7 @@ function selectBox($name, $desc, $default, $options, $useHelp) {
 		$select .= "<option value=\"$value\"" . (($value == $default)?' selected="selected"':'') . ">$opname</option>\n";
 	}
 	echo $select, '</select></td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
+	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics_hd.png" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
 	</tr>';
 }
 
@@ -790,7 +790,7 @@ function selectOption($name, $desc, $default, $options, $useHelp) {
 		$select .= "<option " . (($opname == $default)?' selected="selected"':'') . ">$opname</option>\n";
 	}
 	echo $select, '</select></td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
+	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics_hd.png" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
 	</tr>';
 }
 
