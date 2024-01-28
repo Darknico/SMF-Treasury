@@ -9,6 +9,11 @@
 * SMF2 Treasury Version 2.11 by Resourcez at resourcez.biz               *
 *************************************************************************/
 global $mbname;
+
+$txt['treasury_menu'] = 'Donazioni';
+$txt['treasury_admin'] = 'Treasury';
+$txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl . '?action=treasury">Donazioni</a>';
+
 // ipntreas.php
 $txt['treas_appreciate_donation'] = 'Lo staff di '.$mbname.' apprezza molto la tua generosità';
 $txt['treas_thanks'] = 'La tua donazione sarà di grande aiuto per lo sviluppo del sito.';
