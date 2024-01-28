@@ -19,11 +19,12 @@ function template_treasuryregister()
 
 	# Output the page
 	echo '<form action="', $scripturl.$context['treas_link'], ';sa=ipnrec" method="post">';
-    echo '<table class="tborder" width="100%">';
-    echo '<tr class="catbg2"><td align="center">';
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_fin_register'] . '</h3></div>';
+    	echo '<div class="windowbg noup"><table class="tborder" width="100%">';
+	echo '<tr class="catbg2"><td align="center">';
 	echo 'Number of new IPN records: ', $num_ipn, ' - ', $txt['treas_totalling'], ' ', $tr_targets['currency'][$tr_config['pp_currency']].sprintf('%0.2f',  $ipn_tot);
 	echo '</td></tr>';
-    echo '<tr class="windowbg"><td align="center">';
+    	echo '<tr class="windowbg"><td align="center">';
 	echo '<input type="submit" value="PayPal IPN reconcile" onclick="return confirm(\'This action will total up all recent PayPal IPN' . '\n' . 'transactions and post them here in the register.' . '\n\n' . 'Are you sure you want to do this now?\')" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
 	echo '</td></tr></table>';
@@ -118,13 +119,13 @@ function template_treasuryregister()
 	.'<td align="right"><input name="Amount" type="text" size="8" /></td></tr>';
 	echo '<tr><td align="right" colspan="5">'
 	.'<input type="hidden" name="sc" value="', $context['session_id'], '" />'
-	.'<input type="hidden" name="sa" value="finregadd" />'
+	.'<input type="hidden" name="sa" value="finreg" />'
 	."<input name=\"\" type=\"reset\" value=\"Reset\" onclick=\""
 	."document.recedit.Submit.value = 'Add'; "
 	."document.recedit.sa.value = 'finregadd'; "
 	."return true;\" />&nbsp;"
-	.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" />';
-	echo '</td></tr></table></form>';
+	.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" class="button" />';
+	echo '</td></tr></table></div></form>';
 	echo '<div><b>Note date format -</b> ', timeformat(time(), treasdate()), '</div>';
     echo '<br />';
 }
@@ -138,7 +139,8 @@ function template_treasury_donations()
 	$pagination = treasuryPages($context['treas_link'] . ';sa=donations;mode=' . $mode . ';order=' . $sort_order, $totalRows, $maxRows, $start) . '&nbsp;';
 
 	echo '<form method="post" action="', $scripturl.$context['treas_link'], ';sa=donations">
-	<table width="100%" cellspacing="2" cellpadding="2" style="border:1px solid;" class="windowbg">
+	<div class="cat_bar"><h3 class="catbg">' . $txt['treas_donations'] . '</h3></div>
+	<div class="windowbg noup"><table width="100%" cellspacing="2" cellpadding="2" style="border:1px solid;" class="windowbg">
 	<tr>
 	<td align="left">', sprintf($txt['treas_page_of'], ( floor( $start / $maxRows ) + 1 ), ceil( $totalRows / $maxRows )), '</td>
 	  <td align="right" style="white-space:nowrap;">', $txt['treas_select_sort'], ':&nbsp;';
@@ -276,7 +278,7 @@ function template_treasury_donations()
 <tr><td><b>Date:</b></td><td> the format ', timeformat(time(), treasdate()), ' - <b>must</b> match this format.</td></tr>
 <tr><td><b>Rate:</b></td><td> the exchange rate (1.00 if donation currency same as site currency)</td></tr>
 <tr><td><b>Event:</b></td><td> the ID value for any events you may have used, default 0)</td></tr>
-</table>';
+</table></div>';
 }
 
 function template_treasury_totals() {
@@ -291,6 +293,8 @@ function template_treasury_totals() {
 	//Visit http://javascriptkit.com for this script
 	</script>';
 	echo '<form name="treas" method="post" action="', $scripturl.$context['treas_link'], ';sa=donortotals">
+	<div class="cat_bar"><h3 class="catbg">' . $txt['treas_donor_totals'] . '</h3></div>
+	<div class="windowbg noup">
 	<table width="100%" cellspacing="2" cellpadding="2" style="border:1px solid;" class="windowbg">
 	<tr>
 	<td align="left">', sprintf($txt['treas_page_of'], ( floor( $start / $maxRows ) + 1 ), ceil( $totalRows / $maxRows )), '</td>
@@ -386,7 +390,7 @@ function template_treasury_totals() {
 	.'<td class="windowbg"><b>', $txt['treas_amount'], '</b></td><td align="right" class="windowbg2">', $num, '</td><td align="right" class="windowbg2">', $settled, '</td>'
 	.'<td align="right" class="windowbg2">', $total, '</td><td align="right" class="windowbg2">', $fees, '</td><td align="right" class="windowbg2">', $net, '</td>'
 	.'</tr>'
-	.'</table>';
+	.'</table></div>';
 
 }
 
@@ -395,56 +399,65 @@ function template_config()
 	global $db_prefix, $context, $settings, $options, $scripturl, $txt, $tr_config, $tr_targets;
 
 	echo '<form name="tr_configs" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
-    echo '<table class="tborder" width="100%" cellspacing="0" cellpadding="0">';
-	echo '<tr><td width="50%"><table width="100%">';
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_main_config'] . '</h3></div>';
+	echo '<div class="windowbg noup">';
+	echo '<dl class="settings">';
 
 	$date_types = array('0' => 'yyyy-mm-dd hh:mm:ss', '1' => 'yyyy/mm/dd hh:mm:ss', 
 	'2' => 'dd-mm-yyyy hh:mm:ss', '3' => 'dd/mm/yyyy hh:mm:ss');
-	selectBox('date_format', '<b>' . $txt['treas_date_format'] . '</b>', $tr_config['date_format'], $date_types, '1');
-	ShowYNBox('dm_show_targets', '<b>' . $txt['treas_display_goals'] . '</b>', '', '', '1');
-	ShowYNBox('dm_show_meter', '<b>' . $txt['treas_display_meter'] . '</b>', '', '', '1');
-	showYNBox('don_show_gross', '<b>' . $txt['treas_show_gross'] . '</b>', '', '', '1');
-	showYNBox('don_show_date', '<b>' . $txt['treas_reveal_dates'] . '</b>', '', '', '1');
-	showYNBox('don_show_amt', '<b>' . $txt['treas_reveal_amounts'] . '</b>', '', '', '1');
-#	ShowYNBox('don_show_info_center', '<b>' . $txt['treas_show_info'] . '</b>', '', '4', '1');
-	showYNBox('don_show_button_top', '<b>' . $txt['treas_top_button_show'] . '</b>', '', '', '1');
-	showTextBox('don_button_top', '<b>' . $txt['treas_top_button'] . '</b>', '', '25', '1');
-	showImgXYBox('don_top_img_width', 'don_top_img_height', '<b>' . $txt['treas_image_dims']. '</b>', '2', '1');
+	selectBox('date_format',  $txt['treas_date_format'] , $tr_config['date_format'], $date_types, '1');
+	ShowYNBox('dm_show_targets', $txt['treas_display_goals'] , '', '', '1');
+	ShowYNBox('dm_show_meter', $txt['treas_display_meter'] , '', '', '1');
+	showYNBox('don_show_gross', $txt['treas_show_gross'] , '', '', '1');
+	showYNBox('don_show_date', $txt['treas_reveal_dates'] , '', '', '1');
+	showYNBox('don_show_amt', $txt['treas_reveal_amounts'] , '', '', '1');
+#	ShowYNBox('don_show_info_center', $txt['treas_show_info'] , '', '4', '1');
+	showYNBox('don_show_button_top' , $txt['treas_top_button_show'] , '', '', '1');
+	showTextBox('don_button_top', $txt['treas_top_button'] , '', '25', '1');
+	showImgXYBox('don_top_img_width', 'don_top_img_height', $txt['treas_image_dims'] , '2', '1');
 
-	echo '</table></td><td width="50%"><table width="100%">';
+	echo '</dl><hr><dl class="settings">';
+	
 	$time_durations = array('0' => $txt['treas_monthly'], '1' => $txt['treas_quarterly'], '2' => $txt['treas_half_yearly'], '3' => $txt['treas_yearly']);
-	selectBox('duration', '<b>' . $txt['treas_duration'] . '</b>', $tr_config['duration'], $time_durations, '1');
-	ShowYNBox('group_use', '<b>' . $txt['treas_group_use'] . '</b>', '', '', '1');
+	selectBox('duration', $txt['treas_duration'] , $tr_config['duration'], $time_durations, '1');
+	ShowYNBox('group_use', $txt['treas_group_use'] , '', '', '1');
 	$donor_groups = array();
 	$donor_groups[0] = 'None Selected';
 	foreach($context['groups'] AS $gid => $gname) {
 		$donor_groups[$gid] = $gname;
 	}
-	selectBox('group_id', '<b>' . $txt['treas_group_select'] . '</b>', $tr_config['group_id'], $donor_groups, '1');
-	showYNBox('group_duration', '<b>' . $txt['treas_group_duration'] . '</b>', '', '', '1');
-	showYNBox('group_anonymous', '<b>' . $txt['treas_group_anonymous'] . '</b>', '', '', '1');
-#	showTextBox('group_minimum', '<b>' . $txt['treas_group_min'] . '</b>', '', '10', '1');
-	showYNBox('show_registry', '<b>' . $txt['treas_show_registry'] . '</b>', '', '', '1');
-	ShowTextBox('don_num_don', '<b>' . $txt['treas_num_donors'] . '</b>', '', '4', '1');
-	showTextBox('don_button_submit', '<b>'.$txt['treas_submit_button'].'</b>', '', '25', '1');
-	showImgXYBox('don_sub_img_width', 'don_sub_img_height', '<b>' . $txt['treas_image_dims'] . '</b>', '2', '1');
+	selectBox('group_id', $txt['treas_group_select'] , $tr_config['group_id'], $donor_groups, '1');
+	showYNBox('group_duration', $txt['treas_group_duration'] , '', '', '1');
+	showYNBox('group_anonymous', $txt['treas_group_anonymous'] , '', '', '1');
+#	showTextBox('group_minimum', $txt['treas_group_min'] , '', '10', '1');
+	showYNBox('show_registry', $txt['treas_show_registry'] , '', '', '1');
+	ShowTextBox('don_num_don', $txt['treas_num_donors'] , '', '4', '1');
+	showTextBox('don_button_submit', $txt['treas_submit_button'] , '', '25', '1');
+	showImgXYBox('don_sub_img_width', 'don_sub_img_height', $txt['treas_image_dims'] , '2', '1');
 
-	echo '</table></td></tr></table>';
-    echo '<table class="tborder" width="100%">';
-	showTextBox('don_name_prompt', '<b>' . $txt['treas_username_prompt'] . '</b>', '', '60', '1');
-	showTextBox('don_name_yes', '<b>' . $txt['treas_username_yes'] . '</b>', '', '60', '1');
-	showTextBox('don_name_no', '<b>' . $txt['treas_username_no'] . '</b>', '', '60', '1');
+	echo '</dl><hr><dl class="settings">';
+
+	showTextBox('don_name_prompt', $txt['treas_username_prompt'] , '', '60', '1');
+	showTextBox('don_name_yes', $txt['treas_username_yes'] , '', '60', '1');
+	showTextBox('don_name_no', $txt['treas_username_no'] , '', '60', '1');
 	if ($tr_config['event_active']) {
 		echo '<tr><td colspan="3" align="center"><span style="color:red;">BEWARE: you have an active event, so the following Title, Text and Monthly Goals are inoperative!</span></td></tr>';
 	}
-	ShowTextBox('don_text_title', '<b>' . $txt['treas_donation_title'] . '</b>', '', '60', '1');
-	showTextArea('don_text', '<b>' . $txt['treas_donation_text'] . '</b>', '50', '10', '1');
-	echo '</table><br />';
+	ShowTextBox('don_text_title', $txt['treas_donation_title'] , '', '60', '1');
+	showTextArea('don_text', $txt['treas_donation_text'] , '50', '10', '1');
 
-	echo '<div class="catbg">', $txt['treas_donation_goals'], '</div>';
-    echo '<table class="tborder" width="100%">';
-	$row1 = '<tr><td class="titlebg"><a href="' . $scripturl.$context['treas_link'] . ';sa=treashelp;help=treas_goal" onclick="return reqWin(this.href);" class="help"><img src="' . $settings['images_url'] . '/helptopics_hd.png" alt="' . ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']) . '" align="top" /></a></td>';
+	echo '</dl><hr><dl class="settings">';
+
+	
+    	echo '
+	<dt>
+		', addDescriptionHelp("goal") ,'
+		<span>', $txt['treas_donation_goals'], '<span>
+	</dt>';	
+    	echo '<dt><table class="tborder" width="100%">';
+	$row1 = '<tr><td class="titlebg"> </td>';
 	$row2 = '<tr><td class="titlebg" align="left">' . $txt['treas_goal'] . '</td>';
+	ksort($tr_targets['goal']);
 	foreach ($tr_targets['goal'] as $block_month => $block_goal)
 	{
 		$row1 .= '<td class="titlebg">' . timeformat(mktime(0, 0, 0, $block_month, 2, 0), '%b') . '</td>';
@@ -453,12 +466,17 @@ function template_config()
 	$row1 .= '</tr>';
 	$row2 .= '</tr>';
 	echo $row1, ' ', $row2;
-	echo '</table><br />';
+	echo '</table></dt><dd></dd>';
 
-	echo '<div class="catbg">', $txt['treas_donation_amounts'], '</div>';
-    echo '<table class="tborder">';
-	$row1 = '<tr><td class="titlebg"><a href="' . $scripturl.$context['treas_link'] . ';sa=treashelp;help=treas_don_amount" onclick="return reqWin(this.href);" class="help"><img src="' . $settings['images_url'] . '/helptopics_hd.png" alt="' . ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']) . '" align="top" /></a></td>';
+    	echo '
+	<dt>
+		', addDescriptionHelp("don_amount") ,'
+		<span>', $txt['treas_donation_amounts'], '<span>
+	</dt>';		
+    	echo '<dt><table class="tborder">';
+	$row1 = '<tr><td class="titlebg"> </td>';
 	$row2 = '<tr><td class="titlebg">' . $txt['treas_amount'] . '</td>';
+	ksort($tr_targets['don_amount']);
 	foreach ($tr_targets['don_amount'] AS $amountn => $amounts)
 	{
 		$row1 .= "<td class=\"titlebg\">$amountn</td>";
@@ -467,17 +485,15 @@ function template_config()
 	$row1 .= '</tr>';
 	$row2 .= '</tr>';
 	echo $row1, ' ', $row2;
-	echo '</table>';
-    echo '<table class="tborder" width="100%">';
-	echo '<tr><td width="50%"><table width="100%">';
-	showTextBox('don_amt_checked', '<b>' . $txt['treas_donation_default'] . '</b>', '300', '4', '1');
-	echo '</table></td><td width="50%"><table width="100%">';
-	showYNBox('don_amt_other', '<b>User can specify "Other" Amount?</b>', '', '', '1');
-	echo '<table></td></tr></table></table><br />';
-
+	echo '</table></dt><dd></dd>';
+	
+	showTextBox('don_amt_checked', $txt['treas_donation_default'] , '300', '4', '1');
+	showYNBox('don_amt_other', 'User can specify "Other" Amount?', '', '', '1');
+	
+	echo '</dl></div>';
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=config" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
-	echo '<input type="submit" value="', $txt['treas_submit'], '" />';
+	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button" />';
 	echo '</form>';
 }
 
@@ -485,40 +501,38 @@ function template_config_paypal()
 {
 	global $context, $txt, $scripturl, $boardurl, $tr_config, $tr_targets;
 
-	echo '<form action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post"><table class="tborder" cellspacing="4" width="100%">';
-	showTextBox('receiver_email', '<b>' . $txt['treas_pp_email'] . '</b>', '', '50', '1');
-	ShowTextBox('pp_notify_url', '<b>' . $txt['treas_pp_notify_file'] . '</b><br /><a href="' . $boardurl . '/ipntreas.php?dbg=1" target="_blank"><b><i>' . $txt['treas_pp_test_ipn'] . '</i></b></a> ipntreas.php ', '', '50', '1');
-	showTextBox('pp_ty_url', '<b>' . $txt['treas_pp_return_file'] . '</b><br />index.php?action=profile ', '', '50', '1');
-	showTextBox('pp_cancel_url', '<b>' . $txt['treas_pp_cancel_file'] . '</b><br />index.php?action=treasury ', '', '50', '1');
-	showTextBox('pp_image_url', '<b>' . $txt['treas_pp_image'] . '</b>', '', '50', '1');
-	echo '</table>';
-	echo '<table class="tborder" width="100%" cellspacing="0" cellpadding="0">';
-	echo '<tr><td width="50%"><table width="100%">';
-	selectBox('use_curl', '<b>' . $txt['treas_use_curl'] . '</b>', $tr_config['use_curl'], array('0' => 'fsockopen', '1' => 'cURL',), '1');
-	showTextBox('pp_itemname', '<b>' . $txt['treas_pp_item_name'] . '</b>', '', '15', '1');
+	echo '<form action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_paypal_config'] . '</h3></div>
+	<div class="windowbg noup"><dl class="settings">';
+	showTextBox('receiver_email', $txt['treas_pp_email'] , '', '50', '1');
+	ShowTextBox('pp_notify_url', $txt['treas_pp_notify_file'] . '<br /><a href="' . $boardurl . '/ipntreas.php?dbg=1" target="_blank"><b><i>' . $txt['treas_pp_test_ipn'] . '</i></b></a> ipntreas.php ', '', '50', '1');
+	showTextBox('pp_ty_url', $txt['treas_pp_return_file'] . '<br />index.php?action=profile ', '', '50', '1');
+	showTextBox('pp_cancel_url', $txt['treas_pp_cancel_file'] . '<br />index.php?action=treasury ', '', '50', '1');
+	showTextBox('pp_image_url', $txt['treas_pp_image'] , '', '50', '1');
+
+	echo '</dl><hr><dl class="settings">';
+	
+	selectBox('use_curl', $txt['treas_use_curl'] , $tr_config['use_curl'], array('0' => 'fsockopen', '1' => 'cURL',), '1');
+	showTextBox('pp_itemname', $txt['treas_pp_item_name'] , '', '15', '1');
 	$currencies = array();
 	foreach($tr_targets['currency'] AS $subtype => $value) {
 		$currencies[] = $subtype;
 	}
-	selectOption('pp_currency', '<b>' . $txt['treas_pp_currency'] . '</b>', $tr_config['pp_currency'], $currencies, '1');
-	showYNBox('pp_sandbox', '<b>' . $txt['treas_pp_use_sandbox'] . '</b>', '', '', '1');
-	echo '</table></td><td width="50%" valign="top"><table width="100%">';
-	selectBox('pp_language', '<b>' . $txt['treas_pp_language'] . '</b>', $tr_config['pp_language'], array('DE' => 'Deutsch', 'NL' => 'Dutch', 'US' => 'English', 'ES' => 'Espa&ntilde;ol', 'FR' => 'Fran&ccedil;ais', 'IT' => 'Italiano',), 1);
-	showTextBox('pp_item_num', '<b>' . $txt['treas_pp_item_number'] . '</b>', '', '15', '1');
-	showYNBox('pp_currency2', '<b>' . $txt['treas_pp_other_currency'] . '</b>', '', '', '1');
-	echo '</table></td></tr></table><br />';
+	selectOption('pp_currency', $txt['treas_pp_currency'] , $tr_config['pp_currency'], $currencies, '1');
+	showYNBox('pp_sandbox', $txt['treas_pp_use_sandbox'] , '', '', '1');
+	selectBox('pp_language', $txt['treas_pp_language'] , $tr_config['pp_language'], array('DE' => 'Deutsch', 'NL' => 'Dutch', 'US' => 'English', 'ES' => 'Espa&ntilde;ol', 'FR' => 'Fran&ccedil;ais', 'IT' => 'Italiano',), 1);
+	showTextBox('pp_item_num', $txt['treas_pp_item_number'] , '', '15', '1');
+	showYNBox('pp_currency2', $txt['treas_pp_other_currency'] , '', '', '1');
 
-	echo '<div style="text-align:center;" class="catbg">'.$txt['treas_pp_log_options'].'</div>';
-	echo '<table class="tborder" width="100%" cellspacing="0" cellpadding="0">';
-	echo '<tr><td width="50%"><table width="100%">';
-	selectBox('ipn_dbg_lvl', '<b>' . $txt['treas_pp_log_level'] . '</b>', $tr_config['ipn_dbg_lvl'], array('0' => 'Off', '1' => 'Log errors only', '2' => 'Log everything'), '1');
-	echo '</table></td><td width="50%"><table width="100%">';
-	showTextBox('ipn_log_entries', '<b>' . $txt['treas_pp_log_number'] . '</b>', '', '4', '1');
-	echo '</table></td></tr></table><br />';
+	echo '</dl><hr><dl class="settings">';
+	
+	selectBox('ipn_dbg_lvl', $txt['treas_pp_log_level'] , $tr_config['ipn_dbg_lvl'], array('0' => 'Off', '1' => 'Log errors only', '2' => 'Log everything'), '1');
+	showTextBox('ipn_log_entries', $txt['treas_pp_log_number'] , '', '4', '1');
+	echo '</dl></div>';
 
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=configpaypal" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
-	echo '<input type="submit" value="', $txt['treas_submit'], '" />';
+	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button" />';
 	echo '</form>';
 }
 
@@ -527,24 +541,27 @@ function template_config_block()
 	global $context, $scripturl, $txt, $tr_config, $tr_targets;
 
 	echo '<form name="tr_configs" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
-    echo '<table class="tborder" width="100%" cellspacing="0" cellpadding="0">';
-	echo '<tr><td width="50%"><table width="100%">';
-	ShowTextBox('dm_name_length', '<b>' . $txt['treas_block_username'] . '</b>', '', '4', '1');
-	showTextBox('dm_num_don', '<b>' . $txt['treas_block_number'] . '</b>', '', '4', '1');
-	showTextBox('dm_button', '<b>' . $txt['treas_block_image'] . '</b>', '', '25', '1');
-	echo '</table></td><td width="50%"><table width="100%">';
-	showYNBox('dm_show_date', '<b>' . $txt['treas_block_dates'] . '</b>', '', '', '1');
-	showYNBox('dm_show_amt', '<b>' . $txt['treas_block_amounts'] . '</b>', '', '', '1');
-	showImgXYBox('dm_img_width', 'dm_img_height', '<b>' . $txt['treas_block_image_size'] . '</b>', '4', '1');
-	echo '</table></td></tr></table>';
-    echo '<table class="tborder" width="100%">';
-	showTextBox('dm_title', '<b>' . $txt['treas_block_title'] . '</b>', '', '40', '1');
-	showTextArea('dm_comments', '<b>' . $txt['treas_block_comment'] . '</b>', '40', '2', '1');
-	echo '</table><br />';
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_paypal_config'] . '</h3></div>
+	<div class="windowbg noup"><dl class="settings">';
+	ShowTextBox('dm_name_length', $txt['treas_block_username'] , '', '4', '1');
+	showTextBox('dm_num_don', $txt['treas_block_number'] ,  '', '4', '1');
+	showTextBox('dm_button', $txt['treas_block_image'] , '', '25', '1');
+
+	echo '</dl><hr><dl class="settings">';
+
+	showYNBox('dm_show_date', $txt['treas_block_dates'] , '', '', '1');
+	showYNBox('dm_show_amt', $txt['treas_block_amounts'] , '', '', '1');
+	showImgXYBox('dm_img_width', 'dm_img_height',  $txt['treas_block_image_size'] , '4', '1');
+
+	echo '</dl><hr><dl class="settings">';
+	
+	showTextBox('dm_title', $txt['treas_block_title'] , '', '40', '1');
+	showTextArea('dm_comments', $txt['treas_block_comment'] , '40', '2', '1');
+	echo '</dl></div>';
 
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=configblock" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
-	echo '<input type="submit" value="', $txt['treas_submit'], '" />';
+	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button" />';
 	echo '</form>';
 }
 
@@ -557,9 +574,12 @@ function template_config_events()
 	//Submitted to JavaScript Kit (http://javascriptkit.com)
 	//Visit http://javascriptkit.com for this script
 	</script>';
+	
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_events'] . '</h3></div>
+		<div class="windowbg noup"><dl class="settings">';
 
 	echo '<form name="tr_events" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
-	echo '<table class="tborder" width="100%">';
+
 	$event_id = array();
 	$event_id[0] = $txt['treas_event_inactive'];
 	if (isset($context['eventid']))
@@ -568,17 +588,15 @@ function template_config_events()
 			$event_id[$eid] = $etitle;
 		}
 	}
-	selectBox('event_active', '<b>' . $txt['treas_event_active'] . '</b>', $tr_config['event_active'], $event_id, '1');
+	selectBox('event_active', $txt['treas_event_active'] , $tr_config['event_active'], $event_id, '1');
 	echo '<tr class="windowbg"><td colspan="3" align="center">';
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=configevents" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
-	echo '<input type="submit" value="', $txt['treas_submit'], '" />';
+	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button"  />';
 	if ($tr_config['event_active']) {
 		echo '<br /><span style="color:red;">BEWARE: you activated an event - this will change your Treasury display!</span>';
 	}
-	echo '</td></tr>';
-	echo '</table><br />';
-	echo '</form>';
+	echo '</form></dl>';
 
 	# Events paging
 	$pagination = treasuryPages($context['treas_link'] . ';sa=configevents;mode=' . $mode . ';order=' . $sort_order, $totalRows, $maxRows, $start) . '&nbsp;';
@@ -614,14 +632,33 @@ function template_config_events()
 
 	$txt_help = $context['treas_smf'] == 1 ? $txt['119'] : $txt['help'];
 	echo '<table width="100%" class="tborder">'
-	.'<tr><td class="catbg2" align="center"><b>&nbsp;</b></td>'
-	.'<td class="catbg2" width="120" align="center">', $txt['treas_event_title'], ' <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_title" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center">', $txt['treas_event_descr'], ' <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_descr" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="70">', $txt['treas_event_target'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_target" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="70">', $txt['treas_event_actual'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_actual" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="90">', $txt['treas_event_start'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_start" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
-	.'<td class="catbg2" align="center" width="90">', $txt['treas_event_end'], '<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_events_end" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', $txt_help, '" align="top" /></a></td>'
-	.'</tr>';
+	.'<tr>
+		<td class="catbg2" align="center"> </td>'.'
+		<td class="catbg2" width="120">
+				', addDescriptionHelp("events_title") ,'
+			<span>', $txt['treas_event_title'], '<span>
+		</td>
+		<td class="catbg2">
+				', addDescriptionHelp("events_descr") ,'
+			<span>', $txt['treas_event_descr'], '<span>
+		</td>
+		<td class="catbg2" width="70" align="center">
+				', addDescriptionHelp("events_target") ,'
+			<span>', $txt['treas_event_target'], '<span>
+		</td>
+		<td class="catbg2" width="70" align="center">
+				', addDescriptionHelp("events_actual") ,'
+			<span>', $txt['treas_event_actual'], '<span>
+		</td>
+		<td class="catbg2" width="90">
+				', addDescriptionHelp("events_start") ,'
+			<span>', $txt['treas_event_start'], '<span>
+		</td>				
+		<td class="catbg2" width="90">
+				', addDescriptionHelp("events_end") ,'
+			<span>', $txt['treas_event_end'], '<span>
+		</td>			
+	</tr>';
 
 	if (isset($context['treas_events']))
 	{
@@ -698,11 +735,11 @@ function template_config_events()
 	} else {
 		echo '
 		<input type="hidden" name="sa" value="eventsadd" />
-		<input type="submit" name="save" style="width:100px;" value="Add an Event" /></td>
+		<input type="submit" name="save" style="width:100px;" value="Add an Event" class="button" /></td>
 		</tr>';
 	}
 	echo '</td></tr>';
-	echo '</table></form>';
+	echo '</table></form></div>';
 }
 
 function template_trans_log()
@@ -712,6 +749,9 @@ function template_trans_log()
 
 	# Transaction log paging
 	$pagination = treasuryPages($context['treas_link'] . ';sa=translog;order=' . $sort_order, $totalRows, $maxRows, $start). '&nbsp;';
+	
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_transaction_log'] . '</h3></div>
+		<div class="windowbg noup">';	
 
 	echo '<form method="post" action="', $scripturl.$context['treas_link'], ';sa=translog">
 	<table width="100%" cellspacing="2" cellpadding="2" style="border:1px solid;" class="windowbg">
@@ -759,7 +799,7 @@ function template_trans_log()
 	{
 		echo '<tr><td colspan="3">No data.</td></tr>';
 	}
-    echo '</table>';
+    echo '</table></div>';
 
 }
 
@@ -798,34 +838,27 @@ function template_read_me()
 
 function template_treasuryhelp()
 {
-	global $context, $settings, $options, $txt;
-	# hmmm, don't want to affect core, so borrow SMF code - thank you :)
-	# Since this is a popup of its own we need to start the html, etc.
-	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"', $context['right_to_left'] ? ' dir="rtl"' : '', '>
+	# TODO Remove - check how use native popup
+	global $context, $settings, $txt, $modSettings;
+
+	echo '<!DOCTYPE html>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', '>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=', $context['character_set'], '" />
+		<meta charset="', $context['character_set'], '">
+		<meta name="robots" content="noindex">
 		<title>', $context['page_title'], '</title>
-		<link rel="stylesheet" type="text/css" href="', $settings['theme_url'], '/style.css" />
-		<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/script.js"></script>
-		<style type="text/css">';
-
-	# Internet Explorer 4/5 and Opera 6 just don't do font sizes properly. (they are bigger...)
-	if ($context['browser']['needs_size_fix'])
-		echo '
-			@import(', $settings['default_theme_url'], '/css/fonts-compat.css);';
-
-	# Just show the help text and a "close window" link.
-	echo '
-		</style>
+		', template_css(), '
+		<script src="', $settings['default_theme_url'], '/scripts/script.js', $context['browser_cache'], '"></script>
 	</head>
-	<body style="margin: 1ex;">
-		<div class="popuptext">
-			', $context['help_text'], '<br />
-			<br />
-			<div align="center"><a href="javascript:self.close();">Close Window</a></div>
+	<body id="help_popup">
+		<div class="windowbg description">
+			', $context['help_text'], '<br>
+			<br>
+			<a href="javascript:self.close();">Close</a>
 		</div>
 	</body>
 </html>';
 }
+
+
 ?>

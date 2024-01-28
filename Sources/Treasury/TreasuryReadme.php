@@ -13,9 +13,10 @@ if (!defined('SMF'))
 loadLanguage('Treasury/Treasury');
 global $scripturl, $boardurl, $modSettings;
 
+echo '<div class="cat_bar"><h3 class="catbg">Information Menu</h3></div>';
+
 echo '
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">Information Menu</div>';
+<div class="windowbg noup">';
 $smf_treas = substr($modSettings['smfVersion'], 0, 1);
 $admin_treas = ($smf_treas == 1) ? '?action=treasuryadmin;' : '?action=admin;area=treasury;';
 echo'
@@ -24,14 +25,14 @@ echo'
 <li><a href="index.php', $admin_treas, 'sa=readme#PaypalSetup">PayPal Account Setup</a></li>
 <li><a href="index.php', $admin_treas, 'sa=readme#OpNotes">Operational Notes</a></li>
 <li><a href="index.php', $admin_treas, 'sa=readme#UnInstall">Un-Install Notes</a></li>
-<li><a href="index.php', $admin_treas, 'sa=readme#ToDo">To Do</a></li>
-<li><a href="index.php', $admin_treas, 'sa=readme#Support">Support</a><br /><br /></li>
 </ol>
 </div>
 <br />
 <a id="ModuleSetup"></a>
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">Treasury Module Setup</div>
+
+<div class="cat_bar"><h3 class="catbg">Treasury Module Setup</h3></div>
+
+<div class="windowbg noup">
 <ol>
 <li>Since you are here, I presume you have installed successfully, and followed the instructions provided in the package notes.<br /><br /></li>
 <li>In the <a href="', $scripturl.$admin_treas, 'sa=configpaypal" style="text-decoration:underline;"><b>PayPal Config</b></a> tab, ensure you enter your own PayPal email ID (and your PayPal primary currency) - it simply will not work with the default email ID from install.<br /><br /></li>
@@ -48,8 +49,10 @@ if ($smf_treas == 1) {
 echo '</ol></div>
 <br />
 <a id="PaypalSetup"></a>
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">PayPal Account Setup</div>
+
+<div class="cat_bar"><h3 class="catbg">PayPal Account Setup</h3></div>
+
+<div class="windowbg noup">
 <br />If you choose to ignore this advice, ask PayPal - they get paid to answer your questions.
 I don\'t mean to be rude, but the info is provided for a good reason - so you can help yourself.<br /><br />
 If you have problems and do not have full access to the PayPal account profile, do not contact us - it is impossible to problem solve when you cannot directly verify account settings or changes.<br /><br />
@@ -80,8 +83,10 @@ You WILL have to manually edit all Treasury transactions for currencies you rece
 </div>
 <br />
 <a id="OpNotes"></a>
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">Operational Notes</div>
+
+<div class="cat_bar"><h3 class="catbg">Operational Notes</h3></div>
+
+<div class="windowbg noup">
 <ol>
 <li>The <a href="', $scripturl.$admin_treas, 'sa=registry" style="text-decoration:underline;"><b>Registry</b></a> tab allows you to manage your site\'s <b>receipts &amp; expenses</b> with basic entries to record them.  You can also total your most recent user contributions as a single entry in the register by <a href="', $scripturl.$admin_treas, 'sa=registry" style="text-decoration:underline;"><b>Reconciling</b></a> your paypal receipts.  Should you wish to provide full disclosure to your donors, you can elect to display a summary of your Income &amp; Expenses to them.<br /><br /></li>
 <li>The <a href="', $scripturl.$admin_treas, 'sa=configblock" style="text-decoration:underline;"><b>Block</b></a> is provided for Portal installations where you can have a side-block.  It allows you to display your current monthly donation goal and what funds have been received towards that goal. Display of Goals and/or Donormeter is now selectable. It also lists the users who have contributed in the current month.<br />The Treasury main page already provides all of this information.<br /><br /></li>
@@ -108,8 +113,10 @@ Same donor contributes again on 27th Feb, so the expiry is extended to 27th Marc
 </ol></div>
 <br />
 <a id="UnInstall"></a>
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">Un-Install Notes</div>
+
+<div class="cat_bar"><h3 class="catbg">Un-Install Notes</h3></div>
+
+<div class="windowbg noup">
 <ol>
 <li>Points 2, 3 &amp; 4 apply to <b>most</b> mods, not just Treasury.</li>
 <li>You must run Uninstall before upgrading so that all existing Treasury changes and files can be removed.<br />
@@ -130,27 +137,6 @@ For permanent Uninstall you will need to manually <b>DROP</b> these tables from 
 - smf_treas_subscribers<br />
 - smf_treas_targets<br />
 (assumes you used smf_ for your prefix)<br /><br /></li>
-</ol></div>
-<br />
-<a id="ToDo"></a>
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">To Do</div>
-<ol>
-<li>Should they occur, bug/security fixes only.</li>
-<li>Further enhancements will be released in DonationsPro only.<br /><br /></li>
-</ol></div>
-<br />
-<a id="Support"></a>
-<div class="windowbg">
-<div style="text-align:center; padding:5px;" class="titlebg">Support</div>
-<ol>
-<li>Bugs must be reported through the <a href="http://resourcez.biz /index.php?action=bugger" style="text-decoration:underline;"><b>Bugger</b></a> system.<br /><br /></li>
-<li>Any other support is <a href="http://resourcez.biz /index.php?board=7.0" style="text-decoration:underline;"><b>Available Here</b></a>, provided you provide a website link, have full access to your PayPal account, and are prepared to provide screenshots if and when requested - we cannot work in a vacuum.<br /><br /></li>
-<li>Before requesting support, make sure you check <a href="http://resourcez.biz /index.php?board=9.0" style="text-decoration:underline;"><b>Treasury FAQ</b></a>, especially if you have installation issues, most of which have absolutely nothing to do with Treasury itself.<br /><br /></li>
-<li>PayPal support is from the <a href="https://www.paypal.com/IntegrationCenter/ic_home.html" target="_blank" style="text-decoration:underline;"><b>PayPal</b></a> site - there are some things you simply must learn yourself.<br /><br /></li>
-</ol>
-AFAIK, all SMF security requirements are met, and all bugs resolved, so please enjoy!
-<br /><br />
-</div>';
+</ol></div>';
 
 ?>
