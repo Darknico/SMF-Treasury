@@ -4,56 +4,61 @@
 * it under the terms of the GNU General Public License as published by   *
 * the Free Software Foundation; either version 2 of the License.         *
 * $Source: /0cvs/TreasurySMF/Treasury.english.php,v $                    *
-* $Revision: 1.37 $                                                      *
-* $Date: 2013/07/21 03:06:49 $                                           *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz               *
+* $Revision: 1.36 $                                                      *
+* $Date: 2012/12/02 00:04:48 $                                           *
+* SMF2 Treasury Version 2.11 by Resourcez at resourcez.biz               *
 *************************************************************************/
 global $mbname;
+
+$txt['treasury_menu'] = 'Donazioni';
+$txt['treasury_admin'] = 'Treasury';
+$txt['whoall_treasury'] = 'Sta visualizzando la pagina <a href="' . $scripturl . '?action=treasury">Donazioni</a>';
+
 // ipntreas.php
-$txt['treas_appreciate_donation'] = 'The '.$mbname.' Team greatly appreciates your generous donation';
-$txt['treas_thanks'] = 'Your donation will assist the ongoing development of this site.';
-$txt['treas_continue'] = 'Continue to Treasury Summary';
-$txt['treas_pay_details'] = 'Payment Details';
-$txt['treas_name'] = 'Name';
-$txt['treas_show'] = 'Show';
+$txt['treas_appreciate_donation'] = 'Lo staff di '.$mbname.' apprezza molto la tua generosità';
+$txt['treas_thanks'] = 'La tua donazione sarà di grande aiuto per lo sviluppo del sito.';
+$txt['treas_continue'] = 'Continua al sommario';
+$txt['treas_pay_details'] = 'Dettagli pagamenti';
+$txt['treas_name'] = 'Nome';
+$txt['treas_show'] = 'Visualizza';
 $txt['treas_item'] = 'Item';
-$txt['treas_date'] = 'Date';
-$txt['treas_amount'] = 'Amount';
-$txt['treas_total_amount'] = 'Total Amount';
-$txt['treas_total'] = 'Total';
+$txt['treas_date'] = 'Data';
+$txt['treas_amount'] = 'Importo';
+$txt['treas_total_amount'] = 'Importo Totale';
+$txt['treas_total'] = 'Totale';
 
 // block
-$txt['treas_goal'] = 'Goal';
-$txt['treas_due_date'] = 'Due Date';
-$txt['treas_gross_amount'] = 'Gross Amount';
-$txt['treas_total_receipts'] = 'Total Receipts';
-$txt['treas_net_balance'] = 'Net Balance';
-$txt['treas_paypal_fees'] = 'PayPal Fees';
-$txt['treas_above_goal'] = 'Above Goal';
-$txt['treas_below_goal'] = 'Below Goal';
+$txt['treas_goal'] = 'Obiettivo';
+$txt['treas_due_date'] = 'Scadenza';
+$txt['treas_gross_amount'] = 'Importo Lordo';
+$txt['treas_total_receipts'] = 'Totale ricevute';
+$txt['treas_net_balance'] = 'Saldo Netto';
+$txt['treas_paypal_fees'] = 'Tasse PayPal';
+$txt['treas_above_goal'] = 'Sopra l\'obiettivo';
+$txt['treas_below_goal'] = 'Sotto l\'obiettivo';
 
 // mod
-$txt['treas_anonymous'] = 'Anonymous';
-$txt['treas_thanks_donated'] = 'Many thanks to those who have donated this period.';
-$txt['treas_site_currency'] = 'Site Currency';
-$txt['treas_choose_currency'] = 'And choose your currency';
-$txt['treas_select_amount'] = 'Please select an amount';
-$txt['treas_show_donations'] = 'Show Donations';
-$txt['treas_no_donations'] = 'We don\'t appear to have any donations recorded for';
-$txt['treas_total_site_currency'] = 'Total Site Currency';
-$txt['treas_thank_you'] = 'Thank You';
-$txt['treas_last_ten_donations'] = 'Last 10 Donations for';
-$txt['treas_paypal_confirm'] = 'If you have recently made a donation and it isn\'t shown here, we may be waiting on confirmation from PayPal.  A receipt for your transaction should have been emailed to you. You may log into your account at <a href="https://www.paypal.com/" target="_blank" style="text-decoration:underline;"><b>PayPal</b></a> to view details of that transaction.<br /><br />If you have any other concerns, please contact the <a href="index.php?action=pm;sa=send;u=1" style="text-decoration:underline;"><b>Site Admin</b></a> with your details.';
-$txt['treas_paypal_lang'] = 'Choose your PayPal language';
-$txt['treas_not_logged'] = 'Since you are either a Guest, or not logged in,';
-$txt['treas_other'] = 'Other';
+$txt['treas_anonymous'] = 'Anonimo';
+$txt['treas_thanks_donated'] = 'Un grandissimo GRAZIE a chi ha donato in questo periodo';
+$txt['treas_site_currency'] = 'Valuta del sito';
+$txt['treas_choose_currency'] = 'Seleziona valuta';
+$txt['treas_select_amount'] = 'Per favore, specifica quando vuoi donare';
+$txt['treas_show_donations'] = 'visualizza Donazioni';
+$txt['treas_no_donations'] = 'Non sembra ci siano Donazioni registrate per';
+$txt['treas_total_site_currency'] = 'Valuta del sito Totale';
+$txt['treas_thank_you'] = 'Grazie';
+$txt['treas_last_ten_donations'] = 'Ultime 10 Donazioni';
+$txt['treas_paypal_confirm'] = 'Se avete recentemente fatto una donazione e non è mostrato qui, potremmo essere in attesa di conferma da parte di PayPal. Una ricevuta per la transazione dovrebbe essere stata inviato per email. Si può accedere al tuo account all\'indirizzo <a href="https://www.paypal.com/" target="_blank" style="text-decoration:underline;"><b>PayPal</b></a> per visualizzare le transazioni.<br /><br />In caso di problemi, contattare l\'<a href="index.php?action=pm;sa=send;u=1" style="text-decoration:underline;"><b>Amministratore</b></a> del sito.';
+$txt['treas_paypal_lang'] = 'Scegli lingua PayPal';
+$txt['treas_not_logged'] = 'Dal momento che non sei loggato o sei un visitatore';
+$txt['treas_other'] = 'Altro';
 $txt['treas_username'] = 'Username';
 $txt['treas_income_expend'] = 'Registry - Income &amp; Expenditure';
-$txt['treas_number'] = 'Number';
-$txt['treas_net_balance'] = 'Net Balance';
+$txt['treas_number'] = 'Numero';
+$txt['treas_net_balance'] = 'Saldo netto';
 
 // admin
-$txt['treasury_menu'] = 'Donations';
+$txt['treasury_menu'] = 'Donazioni';
 $txt['treasury_admin'] = 'Treasury';
 $txt['permissiongroup_treasury'] = 'Treasury';
 $txt['permissionname_view_treasury'] = 'View Treasury';
@@ -67,7 +72,7 @@ $txt['treas_fees'] = 'Fees';
 $txt['treas_add'] = 'Add';
 $txt['treas_administration'] = 'Administration';
 $txt['treas_all_donations'] = 'All Donations';
-$txt['treas_amount'] = 'Amount';
+$txt['treas_amount'] = 'Importo';
 $txt['treas_block_amounts'] = 'Reveal Amounts in Block';
 $txt['treas_block_comment'] = 'Donations Block comment';
 $txt['treas_block_config'] = 'Block';
@@ -93,7 +98,7 @@ $txt['treas_donation_goals'] = 'Donation Goals by Month';
 $txt['treas_donation_amount'] = 'Donation Amount';
 $txt['treas_donation_amounts'] = 'Suggested Donation Amounts';
 $txt['treas_donation_default'] = 'Which Donation Amount is default?';
-$txt['treas_donations'] = 'Donations';
+$txt['treas_donations'] = 'Donazioni';
 $txt['treas_donations_descr'] = 'All payments can be edited or deleted, or you can add a payment.';
 $txt['treas_donor_totals'] = 'Totals';
 $txt['treas_donor_totals_descr'] = 'You can select various time periods to display total donations during that time, or choose an event.';
@@ -202,6 +207,6 @@ $txt['treas_use_curl'] = 'Post back to PayPal for IPN';
 $txt['treas_username_prompt'] = 'Prompt to use username';
 $txt['treas_username_yes'] = 'Username request: YES Response';
 $txt['treas_username_no'] = 'Username request: NO Response';
-$txt['treas_year'] = 'Year';
+$txt['treas_year'] = 'Anno';
 $txt['treas_yearly'] = 'Yearly';
 ?>

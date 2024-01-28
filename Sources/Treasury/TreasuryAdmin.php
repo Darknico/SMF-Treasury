@@ -20,8 +20,8 @@ function treasuryAdmin()
 	$context['treas_link'] = '?action=admin;area=treasury';
 	$context['treas_smf'] = 2;
 
-	loadLanguage('Treasury');
-	loadTemplate('TreasuryAdmin');
+	loadLanguage('Treasury/Treasury');
+	loadTemplate('Treasury/TreasuryAdmin');
 
 	# Treasury actions
 	$subActions = array(
@@ -142,7 +142,7 @@ function treasdate() {
 
 function treasuryRegister()
 {
-    global $smcFunc, $scripturl, $context, $txt, $num_ipn, $ipn_tot, $total;
+    global $smcFunc, $scripturl, $context, $txt, $tr_config, $tr_targets, $num_ipn, $ipn_tot, $total;
 	global $pageNum_Recordset1, $totalRows_Recordset1, $totalPages_Recordset1;
 	$context['sub_template'] = 'treasuryregister';
 
@@ -373,7 +373,7 @@ function treasuryTotals()
 	FROM {db_prefix}treas_donations 
 	WHERE $search_query 
 		AND (payment_status = 'Completed' OR payment_status = 'Refunded') 
-	GROUP BY user_id";
+	GROUP BY user_id, custom, mc_currency";
 	$query_limit_Recordset1 = $query_Recordset1 . ' ORDER BY ' . $order_by;
 
 	$Recordset1 = $smcFunc['db_query']('', $query_limit_Recordset1, array());
@@ -683,6 +683,15 @@ function financialRegEdit()
 	}
 }
 
+
+function addDescriptionHelp($name) {
+	global $scripturl, $settings, $txt;
+	echo 
+	 '<a id="setting_treas_'. $name. '"
+		href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" 
+		onclick="return reqOverlayDiv(this.href);"><span class="main_icons help" title="'. $txt['help']. '"></span></a>';
+}
+
 function selectYN($nm, $val)
 {
 	global $tr_config, $tr_targets;
@@ -702,11 +711,13 @@ function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 {
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
 	isAllowedTo('admin_treasury');
-
-    echo '<tr class="windowbg">'
-    .'<td style="font-size:10px;">', $desc, '</td>'
-    .'<td align="left">';
-	echo '<select size="1" name="var_', $name, '">';
+	
+    echo '
+	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>';
+	echo '<dd><select size="1" name="var_', $name, '">';
 	if ( $tr_config[$name] )
 	{
 		echo '<option selected="selected" value="1">Yes</option>'
@@ -715,9 +726,7 @@ function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 		echo '<option value="1">Yes</option>'
 		. '<option selected="selected" value="0">No</option>';
 	}
-	echo '</select></td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
-	</tr>';
+	echo '</select></dd>';
 }
 
 function showTextBox($name, $desc, $tdWidth, $inpSize, $useHelp)
@@ -725,12 +734,14 @@ function showTextBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
 	isAllowedTo('admin_treasury');
 
-    echo '<tr class="windowbg">'
-    .'<td style="width:', $tdWidth, 'px; font-size:10px;">', $desc, '</td>'
-    .'<td align="left">'
-	.'<input size="', $inpSize, '" name="var_', $name, '" type="text" value="', $tr_config[$name], '" /></td>'
-	.'<td align="center" style="width:16px;">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>'
-	.'</tr>';
+    echo '
+	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>
+    	<dd>
+		<input size="', $inpSize, '" name="var_', $name, '" type="text" value="', $tr_config[$name], '" />
+	</dd>';
 }
 
 function showTextArea($name, $desc, $tcols, $trows, $useHelp)
@@ -738,12 +749,14 @@ function showTextArea($name, $desc, $tcols, $trows, $useHelp)
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
 	isAllowedTo('admin_treasury');
 
-    echo '<tr class="windowbg">'
-    .'<td style="font-size:11px;">', $desc, '</td>'
-    .'<td align="left">'
-	.'<textarea name="var_'.$name.'" cols="'.$tcols.'" rows="'.$trows.'">'.$tr_config[$name].'</textarea>'
-	.'<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>'
-	.'</tr>';
+    echo '
+	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>
+        <dd>
+		<textarea name="var_'.$name.'" cols="'.$tcols.'" rows="'.$trows.'">'.$tr_config[$name].'</textarea>
+	</dd>';
 }
 
 function showImgXYBox($xnm, $ynm, $desc, $inpSize, $useHelp)
@@ -751,47 +764,53 @@ function showImgXYBox($xnm, $ynm, $desc, $inpSize, $useHelp)
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
 	isAllowedTo('admin_treasury');
 
-	echo '<tr class="windowbg">'
-	.'<td style="font-size:10px;">', $desc, '</td><td align="left" style="white-space:nowrap;">';
-	echo 'Width '
+    echo '
+	<dt>
+		', addDescriptionHelp($xnm) ,'
+		<span>', $desc, '<span>
+	</dt>';
+	echo '<dd>Width '
 	."<input size=\"$inpSize\" name=\"var_$xnm\" type=\"text\" value=\"$tr_config[$xnm]\" />";
 	echo ' Height '
 	."<input size=\"$inpSize\" name=\"var_$ynm\" type=\"text\" value=\"$tr_config[$ynm]\" />";
-	echo '</td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $xnm. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
-	</tr>';
+	echo '</dd>';
 }
 
 function selectBox($name, $desc, $default, $options, $useHelp) {
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
 	isAllowedTo('admin_treasury');
 
-    echo '<tr class="windowbg">'
-    .'<td style="font-size:10px;">', $desc, '</td>'
-    .'<td align="left">';
-	$select = '<select name="var_' . $name . '" id="var_' . $name . '">';
-	foreach($options as $value => $opname) {
-		$select .= "<option value=\"$value\"" . (($value == $default)?' selected="selected"':'') . ">$opname</option>\n";
-	}
-	echo $select, '</select></td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
-	</tr>';
+    echo '
+	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>
+    	<dd>';
+		$select = '<select name="var_' . $name . '" id="var_' . $name . '">';
+		foreach($options as $value => $opname) {
+			$select .= "<option value=\"$value\"" . (($value == $default)?' selected="selected"':'') . ">$opname</option>\n";
+		}
+		echo $select, '</select>
+	</dd>';
 }
+
 
 function selectOption($name, $desc, $default, $options, $useHelp) {
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
 	isAllowedTo('admin_treasury');
 
-    echo '<tr class="windowbg">'
-    .'<td style="font-size:10px;">', $desc, '</td>'
-    .'<td align="left">';
-	$select = '<select name="var_' . $name . '" id="var_' . $name . '">';
-	foreach($options as $opname) {
-		$select .= "<option " . (($opname == $default)?' selected="selected"':'') . ">$opname</option>\n";
-	}
-	echo $select, '</select></td>
-	<td align="center">', ($useHelp ? '<a href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" onclick="return reqWin(this.href);" class="help"><img src="'. $settings['images_url']. '/helptopics.gif" alt="'. $txt['help']. '" align="top" /></a>' : ''), '</td>
-	</tr>';
+    echo '
+    	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>
+	<dd>';
+		$select = '<select name="var_' . $name . '" id="var_' . $name . '">';
+		foreach($options as $opname) {
+			$select .= "<option " . (($opname == $default)?' selected="selected"':'') . ">$opname</option>\n";
+		}
+		echo $select, '</select>
+	</dd>';
 }
 
 function config()
@@ -1501,7 +1520,7 @@ function donorGroup ($user_id, $custom, $payment_date, $option_seleczion1)
 function treasuryHelp() {
 	global $txt, $helptxt, $context, $scripturl;
 	isAllowedTo('admin_treasury');
-	loadLanguage('TreasuryHelp');
+	loadLanguage('Treasury/TreasuryHelp');
 
 	# hmmm, don't want to affect core, so borrow SMF code - thank you :)
 	$context['page_title'] = 'Treasury ' . $txt['help'];

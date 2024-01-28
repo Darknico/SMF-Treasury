@@ -168,7 +168,7 @@ $fin_exists = $smcFunc['db_list_tables'](false, $db_prefix . 'treas_finance');
 if (!empty($fin_exists))
 {
 	// We'll do this the safest way and avoid potential issues
-	$date_temp = array('name' => 'date_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime());
+	$date_temp = array('name' => 'date_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time());
 	$smcFunc['db_add_column']('treas_finance', $date_temp);
 
 	$fin_fix = $smcFunc['db_query']('','
@@ -196,7 +196,7 @@ if (!empty($fin_exists))
 	$smcFunc['db_remove_column']('treas_finance', 'date');
 
 	$smcFunc['db_change_column']('treas_finance', 'date_temp', 
-		array('name' => 'date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => gmmktime())
+		array('name' => 'date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => time())
 	);
 
 	$smcFunc['db_query']('', '
@@ -213,7 +213,7 @@ else
 *******************************************************************************/
 	$reg_columns = array(
 		array('name' => 'id', 'type' => 'int', 'size' => 11, 'null' => false, 'auto' => true),
-		array('name' => 'date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime()),
+		array('name' => 'date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time()),
 		array('name' => 'num', 'type' => 'varchar', 'size' => 16, 'null' => false, 'default' => 0),
 		array('name' => 'name', 'type' => 'varchar', 'size' => 128, 'null' => false, 'default' => 0),
 		array('name' => 'descr', 'type' => 'varchar', 'size' => 128, 'null' => false, 'default' => 0),
@@ -242,7 +242,7 @@ $trans_exists = $smcFunc['db_list_tables'](false, $db_prefix . 'treas_trans');
 if (!empty($trans_exists))
 {
 	// We'll do this the safest way and avoid potential issues
-	$payment_temp = array('name' => 'payment_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime());
+	$payment_temp = array('name' => 'payment_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time());
 	$smcFunc['db_add_column']('treas_trans', $payment_temp);
 
 	$trans_fix = $smcFunc['db_query']('', '
@@ -269,7 +269,7 @@ if (!empty($trans_exists))
 	$smcFunc['db_remove_column']('treas_trans', 'payment_date');
 
 	$smcFunc['db_change_column']('treas_trans', 'payment_temp', 
-		array('name' => 'payment_date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => gmmktime())
+		array('name' => 'payment_date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => time())
 	);
 
 	$smcFunc['db_query']('', '
@@ -299,9 +299,9 @@ else
 		array('name' => 'option_seleczion1', 'type' => 'varchar', 'size' => 127, 'null' => false, 'default' => 0),
 		array('name' => 'option_name2', 'type' => 'varchar', 'size' => 60, 'null' => false, 'default' => 0),
 		array('name' => 'option_seleczion2', 'type' => 'varchar', 'size' => 127, 'null' => false, 'default' => 0),
-		array('name' => 'memo', 'type' => 'text', 'null' => false),
+		array('name' => 'memo', 'type' => 'text', 'null' => false, 'default' => ''),
 		array('name' => 'payment_status', 'type' => 'varchar', 'size' => 15, 'null' => false, 'default' => 0),
-		array('name' => 'payment_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime()),
+		array('name' => 'payment_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time()),
 		array('name' => 'txn_type', 'type' => 'varchar', 'size' => 15, 'null' => false, 'default' => 0),
 		array('name' => 'mc_gross', 'type' => 'varchar', 'size' => 10, 'null' => false, 'default' => 0),
 		array('name' => 'mc_fee', 'type' => 'varchar', 'size' => 10, 'null' => false, 'default' => 0),
@@ -343,8 +343,8 @@ $log_exists = $smcFunc['db_list_tables'](false, $db_prefix . 'log_treasury');
 if (!empty($log_exists))
 {
 	// We'll do this the safest way to avoid potential issues
-	$log_temp = array('name' => 'log_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime());
-	$date_temp = array('name' => 'payment_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime());
+	$log_temp = array('name' => 'log_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time());
+	$date_temp = array('name' => 'payment_temp', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time());
 	$smcFunc['db_add_column']('log_treasury', $log_temp);
 	$smcFunc['db_add_column']('log_treasury', $date_temp);
 
@@ -375,10 +375,10 @@ if (!empty($log_exists))
 	$smcFunc['db_remove_column']('log_treasury', 'payment_date');
 
 	$smcFunc['db_change_column']('log_treasury', 'log_temp', 
-		array('name' => 'log_date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => gmmktime())
+		array('name' => 'log_date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => time())
 	);
 	$smcFunc['db_change_column']('log_treasury', 'payment_temp', 
-		array('name' => 'payment_date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => gmmktime())
+		array('name' => 'payment_date', 'type' => 'int', 'size' => '10', 'null' => false, 'default' => time())
 	);
 
 	$smcFunc['db_query']('', '
@@ -395,8 +395,8 @@ else
 *******************************************************************************/
 	$log_columns = array(
 		array('name' => 'id', 'type' => 'int', 'size' => 11, 'null' => false, 'auto' => true),
-		array('name' => 'log_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime()),
-		array('name' => 'payment_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime()),
+		array('name' => 'log_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time()),
+		array('name' => 'payment_date', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time()),
 		array('name' => 'logentry', 'type' => 'text', 'null' => false),
 	);
 	$log_indexes = array(
@@ -438,7 +438,7 @@ $smcFunc['db_insert']('ignore',
 *******************************************************************************/
 	$evt_columns = array(
 		array('name' => 'eid', 'type' => 'int', 'size' => 11, 'null' => false, 'auto' => true),
-		array('name' => 'date_start', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => gmmktime()),
+		array('name' => 'date_start', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => time()),
 		array('name' => 'date_end', 'type' => 'int', 'size' => 10, 'null' => false, 'default' => 0),
 		array('name' => 'title', 'type' => 'varchar', 'size' => 25, 'null' => true, 'default' => ''),
 		array('name' => 'description', 'type' => 'text', 'null' => true, 'default' => ''),
@@ -458,7 +458,7 @@ $smcFunc['db_query']('', '
 	SET value = {string:val} 
 	WHERE variable = {string:var}', 
 	array(
-		'val' => '2.12',
+		'val' => '2.12.1',
 		'var' => 'treasury_version',
 	)
 );

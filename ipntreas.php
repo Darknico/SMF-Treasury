@@ -15,8 +15,8 @@ if (!file_exists(dirname(__FILE__) . '/SSI.php'))
 	die('Cannot find SSI.php');
 require_once(dirname(__FILE__) . '/SSI.php');
 require_once($sourcedir . '/Subs-Post.php');
-require_once($sourcedir . '/TreasuryAdmin.php');
-loadLanguage('Treasury');
+require_once($sourcedir . '/Treasury/TreasuryAdmin.php');
+loadLanguage('Treasury/Treasury');
 
 global $db_prefix, $smcFunc, $scripturl, $txt, $context, $user_info, $ResultSQL;
 //Setup some globals needed in the template
@@ -410,7 +410,7 @@ if ($log)
 		VALUES 
 		(DEFAULT, {int:gm_time}, {int:pay_date}, {string:log_me})', 
 		array(
-			'gm_time' => gmmktime(),
+			'gm_time' => time(),
 			'pay_date' => $pay_date,
 			'log_me' => $log,
 		)

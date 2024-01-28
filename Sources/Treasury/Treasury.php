@@ -18,9 +18,9 @@ function treasuryMain()
 {
 
 	// Load the main treasury language and template
-	if (loadlanguage('Treasury') == false)
-		loadLanguage('Treasury','english');
-	loadtemplate('Treasury');
+	if (loadlanguage('Treasury/Treasury') == false)
+		loadLanguage('Treasury/Treasury','english');
+	loadtemplate('Treasury/Treasury');
 
 	// Treasury actions
 	$subActions = array(

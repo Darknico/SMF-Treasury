@@ -3,10 +3,10 @@
 * This program is free software; you can redistribute it and/or modify         *
 * it under the terms of the GNU General Public License as published by         *
 * the Free Software Foundation; either version 2 of the License.               *
-* $Source: /0cvs/TreasurySMF/TreasuryHelp.english-utf8.php,v $                 *
-* $Revision: 1.18 $                                                            *
-* $Date: 2013/07/21 03:06:49 $                                                 *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz                     *
+* $Source: /0cvs/TreasurySMF/TreasuryHelp.english.php,v $                      *
+* $Revision: 1.32 $                                                            *
+* $Date: 2012/12/02 00:04:48 $                                                 *
+* SMF2 Treasury Version 2.11 by Resourcez at resourcez.biz                     *
 *******************************************************************************/
 global $helptxt;
 $helptxt = array();
