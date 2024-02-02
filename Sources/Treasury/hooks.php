@@ -1,16 +1,7 @@
 <?php
 
 if (! defined('SMF'))
-    die('No direct access...');
-
-    add_integration_function('integrate_actions', 'treeAction');
-    add_integration_function('integrate_admin_areas', 'treeAdminMenu');
-    //add_integration_function('integrate_load_permissions', 'treePermission'); TODO
-    
-
-    function treeAction(&$actionArray) {
-          $actionArray += array('treasuryadmin' => array('Treasury/TreasuryAdmin.php', 'treasuryAdmin'));
-      }    
+    die('No direct access...');    
 
     function treeAdminMenu(array &$admin_areas) {
 		global $settings, $txt;
@@ -41,11 +32,10 @@ if (! defined('SMF'))
 		);
 	}
 
-    /* TODO
     function treePermission(array &$permissionGroups, array &$permissionList)
 	{
 		$permissionList['membergroup']['view_treasury'] = array(false, 'general', 'view_basic_info');
         $permissionList['membergroup']['admin_treasury'] = array(false, 'general', 'view_basic_info');
 	}
-    */
+    
 ?>

@@ -11,12 +11,13 @@
 		<require-dir name="Themes/default" destination="$themes_dir" />		
 		<require-file name="ipntreas.php" destination="$boarddir" />
 		<hook hook="integrate_pre_include" file="$sourcedir/Treasury/hooks.php" />
+		<code>hooks_install.php</code>
 		<code>install.php</code>
 		<readme type="file" parsebbc="true">readme.txt</readme>
 	</install>
 
 	<uninstall for="2.1-2.1.99">
-		<code>remove_hooks.php</code>
+		<code>hooks_uninstall.php</code>
 		<readme type="file" parsebbc="true">emdaer.txt</readme>
 		<!--<modification type="file" reverse="true">profile.xml</modification>-->
 		<remove-dir name="$sourcedir/Treasury" />
