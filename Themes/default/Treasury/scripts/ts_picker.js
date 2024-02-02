@@ -39,13 +39,13 @@ function show_calendar(str_target, str_datetime) {
 		"<table cellspacing=\"1\" cellpadding=\"2\" border=\"0\" width=\"100%\">\n"+
 		"<tr>\n<td style=\"background:#4682B4;\"><a href=\"javascript:window.opener.show_calendar('"+
 		str_target+"', '"+ dt2dtstr(dt_prev_month)+"'+document.cal.time.value);\">"+
-		"<img src=\"Themes/default/images/calprev.gif\" width=\"16\" height=\"16\" border=\"0\""+
+		"<img src=\"Themes/default/images/Treasury/calprev.gif\" width=\"16\" height=\"16\" border=\"0\""+
 		" alt=\"Previous Month\"></a></td>\n"+
 		"<td align=\"center\" colspan=\"5\" style=\"color:white; font-family:tahoma, verdana; font-size:12px; background:#4682B4;\">"
 		+arr_months[dt_datetime.getMonth()]+" "+dt_datetime.getFullYear()+"</td>\n"+
 		"<td style=\"background:#4682B4;\" align=\"right\"><a href=\"javascript:window.opener.show_calendar('"
 		+str_target+"', '"+dt2dtstr(dt_next_month)+"'+document.cal.time.value);\">"+
-		"<img src=\"Themes/default/images/calnext.gif\" width=\"16\" height=\"16\" border=\"0\""+
+		"<img src=\"Themes/default/images/Treasury/calnext.gif\" width=\"16\" height=\"16\" border=\"0\""+
 		" alt=\"Next Month\"></a></td>\n</tr>\n"
 	);
 
