@@ -101,7 +101,7 @@ function view()
 		FROM {db_prefix}treas_donations
 		WHERE $where 
 			AND (payment_status = 'Completed' OR payment_status = 'Refunded') 
-		GROUP BY txn_id, user_id, name, showname, currency, symbol, settled, date
+		GROUP BY user_id, name, showname, currency, symbol, settled, date, payment_date
 		ORDER BY payment_date DESC
 		LIMIT $tr_config[don_num_don]";
 	$Recordset1 = $smcFunc['db_query']('', $query_Recordset1,
