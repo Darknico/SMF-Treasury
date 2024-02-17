@@ -68,7 +68,7 @@ if (! defined('SMF'))
  	function treeCredits()	{
 		global $context;
 
-		$context['copyrights']['mods'][] = 'Treasury by <a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> - edited by <a href="https://www.darknico.com target="_blank" rel="noopener">Darknico</> &copy; 2024, ';
+		$context['copyrights']['mods'][] = 'Treasury by <a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> - edited by <a href="https://www.darknico.com target="_blank" rel="noopener">Darknico</a> &copy; 2024, ';
 	}	
     
 ?>
