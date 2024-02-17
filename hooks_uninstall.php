@@ -11,6 +11,7 @@ $KBHooks = array(
 	'integrate_actions' => 'treeActions',	
 	'integrate_admin_areas' => 'treeAdminMenu',
 	'integrate_load_permissions' => 'treePermission',
+	'integrate_credits' => 'treeCredits',
 	'integrate_pre_include' => '$sourcedir/Treasury/hooks.php'
 );
 
