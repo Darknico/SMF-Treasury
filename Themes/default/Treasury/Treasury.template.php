@@ -267,19 +267,7 @@ function template_main()
 			</tr>';
 		}
 	}
-	echo '  <tr>
-	          <td colspan="2">
-			    <hr />
-	          </td>
-			</tr>
-	        <tr>
-	          <td align="left">
-
-	          </td>
-	          <td align="right">
-			    <a href="http://resourcez.biz/">Treasury</a> &copy; v', $modSettings['treasury_version'], '
-	          </td>
-			</tr>
+	echo ' 
 	      </table>
 		</td>
 	  </tr>

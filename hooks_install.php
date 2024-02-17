@@ -6,6 +6,9 @@ elseif (!defined('SMF'))
 	exit('<b>Error:</b> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 	
 $KBHooks = array(
+	'integrate_load_theme' => 'treeloadTheme',
+	'integrate_menu_buttons' => 'treeMenu',
+	'integrate_actions' => 'treeActions',	
 	'integrate_admin_areas' => 'treeAdminMenu',
 	'integrate_load_permissions' => 'treePermission',
 	'integrate_pre_include' => '$sourcedir/Treasury/hooks.php'
