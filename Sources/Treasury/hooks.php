@@ -63,7 +63,7 @@ if (! defined('SMF'))
 		global $txt;
 		
 		
-		$profile_areas['info']['areas']['treasury'] = array(
+		$profile_areas['info']['areas']['showdonations'] = array(
 			'file' => 'Treasury/TreasuryProfile.php',
 			'label' => $txt['showDonations'],
 			'function' => 'showDonations',
