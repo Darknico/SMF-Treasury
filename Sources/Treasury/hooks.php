@@ -36,7 +36,7 @@ if (! defined('SMF'))
 	}	
 
     function treeAdminMenu(array &$admin_areas) {
-		global $settings, $txt;
+		global $txt;
 		
 		
 		$admin_areas['config']['areas']['treasury'] = array(
@@ -58,6 +58,22 @@ if (! defined('SMF'))
 			)
 		);
 	}
+
+    function treeProfileAreas(array &$profile_areas) {
+		global $txt;
+		
+		
+		$profile_areas['info']['areas']['treasury'] = array(
+			'file' => 'Treasury/TreasuryProfile.php',
+			'label' => $txt['showDonations'],
+			'function' => 'showDonations',
+			'permission' => array(
+				'own' => array('profile_view_own'),
+				'any' => array('admin_treasury'),
+			),
+			'icon' => 'treasury',
+		);
+	}	
 
     function treePermission(array &$permissionGroups, array &$permissionList)
 	{

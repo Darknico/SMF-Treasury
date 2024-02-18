@@ -6,20 +6,18 @@
 	<type>modification</type>
 	<version>2.12.2</version>
 	<install for="2.1-2.1.99">
-		<!--<modification type="file">profile.xml</modification>-->
 		<require-dir name="Sources/Treasury" destination="$sourcedir" />
 		<require-dir name="Themes/default" destination="$themes_dir" />		
 		<require-file name="ipntreas.php" destination="$boarddir" />
 		<hook hook="integrate_pre_include" file="$sourcedir/Treasury/hooks.php" />
 		<code>hooks_install.php</code>
 		<code>install.php</code>
-		<readme type="file" parsebbc="true">readme.txt</readme>
+		<readme type="file" parsemd="true">readme.md</readme>
 	</install>
 
 	<uninstall for="2.1-2.1.99">
 		<code>hooks_uninstall.php</code>
 		<readme type="file" parsebbc="true">emdaer.txt</readme>
-		<!--<modification type="file" reverse="true">profile.xml</modification>-->
 		<remove-dir name="$sourcedir/Treasury" />
 		<remove-dir name="$themedir/Treasury" />
 		<remove-dir name="$themedir/images/Treasury" />
