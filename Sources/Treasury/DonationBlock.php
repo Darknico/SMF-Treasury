@@ -1,14 +1,16 @@
 <?php
-/*************************************************************************
-* This program is free software; you can redistribute it and/or modify   *
-* it under the terms of the GNU General Public License as published by   *
-* the Free Software Foundation; either version 2 of the License.         *
-*                                                                        *
-* $Source: /0cvs/TreasurySMF/DonationBlock.php,v $                       *
-* $Revision: 1.22 $                                                      *
-* $Date: 2013/07/21 03:06:48 $                                           *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz               *
-*************************************************************************/
+/**
+ * DonationBlock.php
+ *
+ * @package Treasury
+ * @link https://github.com/Darknico/SMF-Treasury
+ * @author Darknico <info@darknico.com>
+ * @copyright Resourcez at resourcez.biz - Edited by Darknico
+ * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ *
+ * @version 2.12.3
+ */
+
 if (!defined('SMF'))
 	die('Hacking attempt...');
 

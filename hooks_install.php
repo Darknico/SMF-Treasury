@@ -1,4 +1,15 @@
 <?php
+/**
+ * hooks_install.php
+ *
+ * @package Treasury
+ * @link https://github.com/Darknico/SMF-Treasury
+ * @author Darknico <info@darknico.com>
+ * @copyright Resourcez at resourcez.biz - Edited by Darknico
+ * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ *
+ * @version 2.12.3
+ */
 
 if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
 	require_once(dirname(__FILE__) . '/SSI.php');
