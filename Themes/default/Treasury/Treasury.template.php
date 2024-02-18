@@ -176,7 +176,7 @@ function template_main()
 				else
 				{
 					echo' <dl class="settings">';
-					echo '<dt><b>', $txt['treas_not_logged'], '<b/></dt>
+					echo '<dt><b>', $txt['treas_not_logged'], '</b></dt>
 					<dd><b>', $txt['treas_username'], ':</b> <input type="text" name="custom" size="20" />
 					<input type="hidden" name="os1" value="Guest" /><dd></dl>';
 				}
