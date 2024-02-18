@@ -141,7 +141,7 @@ if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
 	    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_total_receipts'], ':</span>
 	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['receipts']), '</span><br />';
 		if ($tr_config['don_show_gross'] == 0) {
-			echo '<span style="width:95px;font-size:10px;float:left;">PayPal Fees:</span>
+			echo '<span style="width:95px;font-size:10px;float:left;">', $txt['treas_paypal_fees'], ':</span>
 		    <span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br />
 		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_net_balance'], ':</span>
 		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['net']), '</span><br />';
@@ -164,7 +164,16 @@ if (is_numeric($tr_config['dm_num_don']) && $tr_config['dm_num_don'] >= 0) {
 		FROM {db_prefix}treas_donations
 		WHERE $where 
 			AND (payment_status = 'Completed' OR payment_status = 'Refunded') 
-		GROUP BY txn_id 
+		GROUP BY
+			user_id,
+			name,
+			showname,
+			currency,
+			symbol,
+			settled,
+			date,
+			txn_id,
+			payment_date
 		ORDER BY payment_date DESC";
 	$Recordset4 = $smcFunc['db_query']('', $query_Recordset4,
 		array(

@@ -269,7 +269,7 @@ $smcFunc['db_insert']('ignore',
 	array('variable' => 'string', 'value' => 'string'),
 	array(
 		array('treasury_groupcheck', '0'), 
-		array('treasury_version', '2.12.2'), 
+		array('treasury_version', '2.12.3'), 
 	),
 	array('variable')
 );
@@ -299,7 +299,7 @@ $smcFunc['db_query']('', '
 	SET value = {string:val} 
 	WHERE variable = {string:var}', 
 	array(
-		'val' => '2.12.2',
+		'val' => '2.12.3',
 		'var' => 'treasury_version',
 	)
 );

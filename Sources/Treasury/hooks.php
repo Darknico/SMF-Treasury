@@ -36,7 +36,7 @@ if (! defined('SMF'))
 	}	
 
     function treeAdminMenu(array &$admin_areas) {
-		global $settings, $txt;
+		global $txt;
 		
 		
 		$admin_areas['config']['areas']['treasury'] = array(
@@ -59,6 +59,22 @@ if (! defined('SMF'))
 		);
 	}
 
+    function treeProfileAreas(array &$profile_areas) {
+		global $txt;
+		
+		
+		$profile_areas['info']['areas']['treasury'] = array(
+			'file' => 'Treasury/TreasuryProfile.php',
+			'label' => $txt['showDonations'],
+			'function' => 'showDonations',
+			'permission' => array(
+				'own' => array('profile_view_own'),
+				'any' => array('admin_treasury'),
+			),
+			'icon' => 'treasury',
+		);
+	}	
+
     function treePermission(array &$permissionGroups, array &$permissionList)
 	{
 		$permissionList['membergroup']['view_treasury'] = array(false, 'treasury', 'view_basic_info');
@@ -68,7 +84,7 @@ if (! defined('SMF'))
  	function treeCredits()	{
 		global $context;
 
-		$context['copyrights']['mods'][] = 'Treasury by <a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> - edited by <a href="https://www.darknico.com target="_blank" rel="noopener">Darknico</> &copy; 2024, ';
+		$context['copyrights']['mods'][] = 'Treasury by <a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> - edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> &copy; 2024, ';
 	}	
     
 ?>
