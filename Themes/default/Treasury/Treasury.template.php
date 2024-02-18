@@ -330,6 +330,16 @@ function template_treasury_profile()
 	elseif ($tr_config['date_format'] == 1) { $treas_date = '%Y/%m/%d %H:%M:%S'; }
 	elseif ($tr_config['date_format'] == 2) { $treas_date = '%d-%m-%Y %H:%M:%S'; }
 	elseif ($tr_config['date_format'] == 3) { $treas_date = '%d/%m/%Y %H:%M:%S'; }
+	
+	echo '
+	<div class="cat_bar">
+		<h3 class="catbg">
+			<span class="main_icons treasury"></span>
+			', $txt['treasury_menu'], '
+		</h3>
+	</div>
+		
+	<div class="roundframe noup">';	
 
     if ($donor_result)
 	{
@@ -384,6 +394,7 @@ function template_treasury_profile()
 			', $txt['treas_paypal_confirm'], '<br /><br/>
 			</td>
 		</tr>
-	</table>';
+	</table>
+	</div>';
 }
 ?>
