@@ -540,7 +540,7 @@ function template_config_block()
 	global $context, $scripturl, $txt, $tr_config, $tr_targets;
 
 	echo '<form name="tr_configs" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
-	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_paypal_config'] . '</h3></div>
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_block_config'] . '</h3></div>
 	<div class="windowbg noup"><dl class="settings">';
 	ShowTextBox('dm_name_length', $txt['treas_block_username'] , '', '4', '1');
 	showTextBox('dm_num_don', $txt['treas_block_number'] ,  '', '4', '1');
