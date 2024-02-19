@@ -1,15 +1,4 @@
 <?php
-/**
- * TreasuryHelp.italian.php.php
- *
- * @package Treasury
- * @link https://github.com/Darknico/SMF-Treasury
- * @author Darknico <info@darknico.com>
- * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
- * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
- *
- * @version 2.12.3
- */
 
 global $helptxt;
 $helptxt = array();
