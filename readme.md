@@ -19,14 +19,12 @@ Once you have installed the package,
 click on the Treasury link under Admin "Configuration" options, 
 then follow the setup and operational instructions.
 
-Produced by Resourcez at http://resourcez.biz /
-Copyright (c) 2008 All Rights Reserved.
+Originally NukeTreasury - Financial management for PHP-Nuke - Copyright (c) 2004 by Dave Lawrence (thrash at fragnastika dot com).
 
-Edited by Darknico at http://www.darknico.com /
-Copyright (c) 2024 All Rights Reserved.
+Produced by Resourcez at http://resourcez.biz - Copyright (c) 2008 All Rights Reserved.
 
-Originally NukeTreasury - Financial management for PHP-Nuke.
-Copyright (c) 2004 by Dave Lawrence (thrash at fragnastika dot com).
+Edited by Darknico at http://www.darknico.com - Copyright (c) 2024 All Rights Reserved.
+
 Issued under the terms of the GNU General Public License as published by 
 the Free Software Foundation; either version 2 of the License.
 

@@ -1,16 +1,15 @@
 <?php
-/*************************************************************************
-* Originally NukeTreasury - Financial management for PHP-Nuke            *
-* Copyright (c) 2004 by Dave Lawrence AKA Thrash  thrash@fragnastika.com *
-*                                                                        *
-* This program is free software; you can redistribute it and/or modify   *
-* it under the terms of the GNU General Public License as published by   *
-* the Free Software Foundation; either version 2 of the License.         *
-* $Source: /0cvs/TreasurySMF/Treasury.template.php,v $                   *
-* $Revision: 1.44 $                                                      *
-* $Date: 2013/07/21 03:08:15 $                                           *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz               *
-*************************************************************************/
+/**
+ * Treasury.template.php
+ *
+ * @package Treasury
+ * @link https://github.com/Darknico/SMF-Treasury
+ * @author Darknico <info@darknico.com>
+ * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
+ * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ *
+ * @version 2.12.4
+ */
 
 function template_main()
 {
@@ -41,11 +40,18 @@ function template_main()
 			$eventid = $event_info['eid'];
 		}
 	}
-
+	
 	echo '
-	<table class="tborder" cellspacing="0" cellpadding="2" width="100%">
-	<tr class="windowbg">
-	<td><h3 style="text-align:center; margin:5px;">', $tr_config['don_text_title'], '</h3>';
+	<div class="cat_bar">
+		<h3 class="catbg">
+			<span class="main_icons treasury"></span>
+			', $txt['treasury_menu'], '
+		</h3>
+	</div>
+		
+	<div class="roundframe noup">';
+
+	echo '<h3 style="text-align:center; margin:5px;">', $tr_config['don_text_title'], '</h3>';
 
 	// Do we wish to display the targets and progress section?
 	if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
@@ -81,22 +87,29 @@ function template_main()
 	}
 
 	if ($tr_config['don_show_button_top']) {
-		echo '<div style="text-align:center;"><a href="index.php?action=treasury#MakeDonation"><img src="', $settings['default_images_url'], '/Treasury//', $tr_config['don_button_top'], '" alt="" style="margin:5px 0px 0px 0px; border:0;', $don_top_image_dims, '" /></a></div>';
+		echo '<div style="text-align:center; margin:auto; padding:5px;"><a href="index.php?action=treasury#MakeDonation"><img src="', $settings['default_images_url'], '/Treasury/', $tr_config['don_button_top'], '" alt="" style="margin:5px 0px 0px 0px; border:0;', $don_top_image_dims, '" /></a></div>';
 	}
 	echo '<hr />
 	  ', $context['don_text'], '
-      <hr />
-	  <a id="MakeDonation"></a>
-      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;" width="100%" id="AutoNumber1">
-        <tr>
-          <td style="width:310px;" valign="top">
-		    <form action="', ($tr_config['pp_sandbox'] ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr'), '" method="post">
-			  <p style="margin-top:0;"> 
-				<input type="hidden" name="cmd" value="_xclick" />
-				<input type="hidden" name="business" value="', $tr_config['receiver_email'], '" />
-				<input type="hidden" name="item_name" value="', $tr_config['pp_itemname'], '" />
-				<input type="hidden" name="item_number" value="', $tr_config['pp_item_num'], '" />';
+	</div>';
 
+	  
+	echo '<a id="MakeDonation"></a>';
+	  
+	echo'
+	  <div class="roundframe">
+          
+		    <form action="', ($tr_config['pp_sandbox'] ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr'), '" method="post">
+	  			  
+			<input type="hidden" name="cmd" value="_xclick" />
+			<input type="hidden" name="business" value="', $tr_config['receiver_email'], '" />
+			<input type="hidden" name="item_name" value="', $tr_config['pp_itemname'], '" />
+			<input type="hidden" name="item_number" value="', $tr_config['pp_item_num'], '" />';
+
+	echo '<dl class="settings">
+		<dt><b>', $txt['treas_select_amount'], '</b></dt>
+		<dd>';	
+	
 	$don_amounts = array();
 	foreach($tr_targets['don_amount'] AS $subtype => $value) {
 		if( is_numeric($value) && $value > 0 ) {
@@ -110,43 +123,51 @@ function template_main()
 	}
 	else
 	{
-		echo '<b>', $txt['treas_select_amount'], ':</b><br />
-			', ($tr_config['don_amt_other'] ? '<input type="radio" name="amount" value="" /> ' . $txt['treas_other'] . '&nbsp; 
-			<input type="text" name="amount" value="0.00" size="6" /><br />' : '');
+		echo ($tr_config['don_amt_other'] ? '<input type="radio" name="amount" value="" /> ' . $txt['treas_other'] . '&nbsp; 
+			<input type="text" name="amount" value="0.00" size="6" /><br />' : '');	
+
+				
 		$i = 0;
 		foreach($don_amounts AS $subtypes => $values) {
 			if( is_numeric($values) && $values > 0 ) {
 				$checked = ($subtypes == $tr_config['don_amt_checked']-1) ? 'checked="checked"' : '';
-				echo '<input type="radio" name="amount" value="', $values, '" ', $checked, ' /> ', $values.( ($i == 4 || $i == 9 || $i == 14 ) ? '<br />' :  ' ' );
+				echo '<input type="radio" name="amount" value="', $values, '" ', $checked, ' /> ', $values.( ($i == 4 || $i == 9 || $i == 14 ) ? '<br>' :  ' ' );
 			}
 			$i++;
 		}
-	}
+	
+					
+	}	
 
-	echo	  '</p>
-			  <p>';
+	echo	  '</dd></dl>
+		<dl class="settings">';
 
 	if ($tr_config['pp_currency2'])
 	{
-		echo '<b>', $txt['treas_choose_currency'], ':&nbsp;</b><br />';
+		echo '<dt><b>', $txt['treas_choose_currency'], ':&nbsp;</b></dt>';
+		
+		echo '<dd>';
+		
 		$i = 0;
 		foreach($tr_targets['currency'] AS $subtype => $value) {
 			$checked = ($tr_config['pp_currency'] == $subtype) ? 'checked="checked"' :  '';
-			echo '<input type="radio" name="currency_code" value="', $subtype, '" ', $checked, ' /> ', $value, ' ', $subtype.( ($i == 2 || $i == 5 ) ? '<br />' : ' ' );
+			echo '<input type="radio" name="currency_code" value="', $subtype, '" ', $checked, ' /> ', $value, ' ', $subtype.( ($i == 2 || $i == 5 ) ? '<br>' : ' ' );
 			$checked = '';
 			$i++;
 		}
+		echo '</dd>';		
 	}
 	else
 	{
-		echo '<b>', $txt['treas_site_currency'], ':&nbsp;', $tr_config['pp_currency'], '&nbsp;</b><br />';
-		echo '<input type="hidden" name="currency_code" value="', $tr_config['pp_currency'], '" />';
+		echo '<dt><b>', $txt['treas_site_currency'], '</b></dt>';
+		echo '<dd>', $tr_config['pp_currency'], '<input type="hidden" name="currency_code" value="', $tr_config['pp_currency'], '" /></dd>';
 	}
 
-	echo	 '</p> 
-              <p>
+	echo	 '</dl>
+		
 				<input type="hidden" name="custom" value="', $username, '" />
 				<input type="hidden" name="on1" value="User Name" />';
+				
 				if (!$context['user']['is_guest'])
 				{
 					echo '<input type="hidden" name="custom" value="', $username, '" />
@@ -154,42 +175,53 @@ function template_main()
 				}
 				else
 				{
-					echo $txt['treas_not_logged'], '<br />
-					<b>', $txt['treas_username'], ':</b> <input type="text" name="custom" size="20" /><br /><br />
-					<input type="hidden" name="os1" value="Guest" />';
+					echo' <dl class="settings">';
+					echo '<dt><b>', $txt['treas_not_logged'], '</b></dt>
+					<dd><b>', $txt['treas_username'], ':</b> <input type="text" name="custom" size="20" />
+					<input type="hidden" name="os1" value="Guest" /><dd></dl>';
 				}
-				echo '<input type="hidden" name="on0" value="', (!empty($eventid) ? $eventid : 0), '" />
-				<b>', $tr_config['don_name_prompt'], '</b><br />
-				<select name="os0" class="smalltext">
+				echo '<input type="hidden" name="on0" value="', (!empty($eventid) ? $eventid : 0), '" />';
+				
+				echo' <dl class="settings">';
+				echo'<dt><b>', $tr_config['don_name_prompt'], '</b></dt>
+				<dd><select name="os0" class="smalltext">
 				  <option selected="selected" value="Yes">', $tr_config['don_name_yes'], '</option>
 				  <option value="No">', $tr_config['don_name_no'], '</option>
-				</select><br /><br />';
-				$pp_lang = array('DE' => 'Deutsch', 'NL' => 'Dutch', 'US' => 'English', 'ES' => 'Espa&ntilde;ol', 'FR' => 'Fran&ccedil;ais', 'IT' => 'Italiano',);
-				echo '<b>', $txt['treas_paypal_lang'], '</b> 
-				<select name="lc" class="smalltext">';
+				</select><dd></dl>';
+				
+				echo' <dl class="settings">';				
+				$pp_lang = array('DE' => 'Deutsch', 'NL' => 'Dutch', 'US' => 'English', 'ES' => 'Espa&ntilde;ol', 'FR' => 'Fran&ccedil;ais', 'IT' => 'Italiano');
+				
+				echo '<dt><b>', $txt['treas_paypal_lang'], '</b></dt>
+				<dd><select name="lc" class="smalltext">';
 				foreach($pp_lang AS $lc_lang => $lc_val) {
 					$lc_select = ($tr_config['pp_language'] == $lc_lang) ? ' selected="selected"' :  '';
 					echo '<option value="', $lc_lang, '"', $lc_select, '>', $lc_val, '</option>';
 					$lc_select = '';
 				}
-				echo '</select>';
-	echo	  '</p>
+				echo '</select>
+				<input type="image" src="', $settings['default_images_url'], '/Treasury/', $tr_config['don_button_submit'], '" name="I1"  style="border:0;', $don_sub_image_dims, '" />
+				</dd>';
+	echo	  '
 				<input type="hidden" name="no_shipping" value="1" />
 				<input type="hidden" name="cn" value="Comments" />
-				<input type="hidden" name="image_url" value="', $settings['default_images_url'], '/Treasury//', $tr_config['pp_image_url'], '" />
+				<input type="hidden" name="image_url" value="', $settings['default_images_url'], '/Treasury/', $tr_config['pp_image_url'], '" />
 				<input type="hidden" name="notify_url" value="', $boardurl, '/', $tr_config['pp_notify_url'], '" />
 				<input type="hidden" name="cancel_return" value="', $boardurl, '/', $tr_config['pp_cancel_url'], '" />
 				<input type="hidden" name="return" value="', $boardurl, '/', $tr_config['pp_ty_url'], '&u=', $userid, '&area=showdonations" />
 				<input type="hidden" name="rm" value="2" />
-              <p style="text-align:center;"> 
-                <input type="image" src="', $settings['default_images_url'], '/Treasury//', $tr_config['don_button_submit'], '" name="I1"  style="border:0;', $don_sub_image_dims, '" />
-              </p>
+				
+
+              
             </form>
-	      </td>
-	      <td valign="top" align="right">
-    	    <table style="border-collapse:collapse;" cellpadding="0" cellspacing="0">
-  	          <tr>
-                <td style="width:100%;" colspan="4" class="smalltext"><b>', $txt['treas_thanks_donated'], '</b></td>
+            
+ </div>';
+ 
+	 echo'<div class="roundframe">
+	      
+    	    <table style="border-collapse:collapse; margin:auto; padding:5px;" cellpadding="0" cellspacing="0">
+  	      <tr>
+                <th style="width:100%;" colspan="4" class="smalltext"><b>', $txt['treas_thanks_donated'], '</b></th>
               </tr>
   	          <tr>
                 <td align="left" class="smalltext">', $txt['treas_name'], '</td>
@@ -235,25 +267,18 @@ function template_main()
 						echo '<td align="right" class="smalltext">', $donators_rows['amt'], '</td>';
 					}
 				}
-				echo '</tr>';
+				echo '</tr></table>';
 			}
 		}
 	}
-	echo '
-			    </table>
-	          </td>
-			</tr>';
+	echo '</div>';
+			
 	if ($tr_config['show_registry'] && $is_donor)
 	{
 		if (isset($context['show_registry']))
 		{
-	        echo '<tr>
-		          <td colspan="2">
-				    <hr />
-		          </td>
-			</tr>
-	        <tr>
-		          <td align="center" colspan="2">';
+	        echo '<div class="roundframe">';
+	        	
 			echo '<table class="tborder" width="50%">';
 			echo '<tr class="windowbg"><td colspan="3" align="center"><b>', $txt['treas_income_expend'], '</b></td></tr>';
 			echo '<tr class="windowbg"><td><b>', $txt['treas_item'], '</b></td><td align="center"><b>', $txt['treas_number'], '</b></td><td align="center"><b>', $txt['treas_total'], '</b></td></tr>';
@@ -262,17 +287,12 @@ function template_main()
 				echo '<tr class="windowbg"><td>', $registry_show['name'], '</td><td align="center">', $registry_show['number'], '</td><td align="right">', sprintf('%.02f', $registry_show['total']), '</td></tr>';
 			}
 			echo '<tr><td><b>', $txt['treas_net_balance'], '</b></td><td></td><td align="right">', sprintf('%.02f', $net_registry), '</td></tr>';
-			echo'</table>';
-	echo '    </td>
-			</tr>';
+			echo '</table>';
+
+	echo '</div>';
 		}
 	}
-	echo ' 
-	      </table>
-		</td>
-	  </tr>
-	</table>
-	';
+
 }
 
 function template_paypal_return()
@@ -309,6 +329,16 @@ function template_treasury_profile()
 	elseif ($tr_config['date_format'] == 1) { $treas_date = '%Y/%m/%d %H:%M:%S'; }
 	elseif ($tr_config['date_format'] == 2) { $treas_date = '%d-%m-%Y %H:%M:%S'; }
 	elseif ($tr_config['date_format'] == 3) { $treas_date = '%d/%m/%Y %H:%M:%S'; }
+	
+	echo '
+	<div class="cat_bar">
+		<h3 class="catbg">
+			<span class="main_icons treasury"></span>
+			', $txt['treasury_menu'], '
+		</h3>
+	</div>
+		
+	<div class="roundframe noup">';	
 
     if ($donor_result)
 	{
@@ -363,6 +393,7 @@ function template_treasury_profile()
 			', $txt['treas_paypal_confirm'], '<br /><br/>
 			</td>
 		</tr>
-	</table>';
+	</table>
+	</div>';
 }
 ?>

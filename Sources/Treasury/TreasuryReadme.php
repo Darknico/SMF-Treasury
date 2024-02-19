@@ -1,15 +1,19 @@
 <?php
-/*******************************************************************************
-* This program is free software; you can redistribute it and/or modify         *
-* it under the terms of the GNU General Public License as published by         *
-* the Free Software Foundation; either version 2 of the License.               *
-* $Source: /0cvs/TreasurySMF/TreasuryReadme.php,v $                            *
-* $Revision: 1.38 $                                                            *
-* $Date: 2013/07/21 03:06:49 $                                                 *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz                     *
-*******************************************************************************/
+/**
+ * DonationBlock.php
+ *
+ * @package Treasury
+ * @link https://github.com/Darknico/SMF-Treasury
+ * @author Darknico <info@darknico.com>
+ * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
+ * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ *
+ * @version 2.12.4
+ */
+
 if (!defined('SMF'))
 	die('Hacking attempt...');
+
 loadLanguage('Treasury/Treasury');
 global $scripturl, $boardurl, $modSettings;
 

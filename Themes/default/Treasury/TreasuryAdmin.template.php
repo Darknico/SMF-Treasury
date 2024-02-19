@@ -1,16 +1,15 @@
 <?php
-/*******************************************************************************
-* Originally NukeTreasury - Financial management for PHP-Nuke                  *
-* Copyright (c) 2004 by Dave Lawrence AKA Thrash  thrash@fragnastika.com       *
-*                                                                              *
-* This program is free software; you can redistribute it and/or modify         *
-* it under the terms of the GNU General Public License as published by         *
-* the Free Software Foundation; either version 2 of the License.               *
-* $Source: /0cvs/TreasurySMF/TreasuryAdmin.template.php,v $                    *
-* $Revision: 1.49 $                                                            *
-* $Date: 2013/07/21 03:06:49 $                                                 *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz                     *
-*******************************************************************************/
+/**
+ * TreasuryAdmin.template.php
+ *
+ * @package Treasury
+ * @link https://github.com/Darknico/SMF-Treasury
+ * @author Darknico <info@darknico.com>
+ * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
+ * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ *
+ * @version 2.12.4
+ */
 
 function template_treasuryregister()
 {
@@ -541,7 +540,7 @@ function template_config_block()
 	global $context, $scripturl, $txt, $tr_config, $tr_targets;
 
 	echo '<form name="tr_configs" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
-	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_paypal_config'] . '</h3></div>
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_block_config'] . '</h3></div>
 	<div class="windowbg noup"><dl class="settings">';
 	ShowTextBox('dm_name_length', $txt['treas_block_username'] , '', '4', '1');
 	showTextBox('dm_num_don', $txt['treas_block_number'] ,  '', '4', '1');

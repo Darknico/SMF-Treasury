@@ -1,13 +1,5 @@
 <?php
-/*************************************************************************
-* This program is free software; you can redistribute it and/or modify   *
-* it under the terms of the GNU General Public License as published by   *
-* the Free Software Foundation; either version 2 of the License.         *
-* $Source: /0cvs/TreasurySMF/Treasury.english.php,v $                    *
-* $Revision: 1.37 $                                                      *
-* $Date: 2013/07/21 03:06:49 $                                           *
-* SMF2 Treasury Version 2.12 by Resourcez at resourcez.biz               *
-*************************************************************************/
+
 global $mbname;
 
 $txt['treasury_menu'] = 'Donations';
