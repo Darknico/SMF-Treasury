@@ -220,14 +220,14 @@ function template_main()
 	 echo'<div class="roundframe">
 	      
     	    <table style="border-collapse:collapse; margin:auto; padding:5px;" cellpadding="0" cellspacing="0">
-  	      <tr>
-                <th style="width:100%;" colspan="4" class="smalltext"><b>', $txt['treas_thanks_donated'], '</b></th>
-              </tr>
+				<tr>
+					<th style="width:100%;" colspan="4" class="smalltext"><b>', $txt['treas_thanks_donated'], '</b></th>
+				</tr>
   	          <tr>
                 <td align="left" class="smalltext">', $txt['treas_name'], '</td>
-                <td align="center" class="smalltext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', ($tr_config['don_show_amt'] ? $txt['treas_amount'] : ''), '</td>
-                <td align="center" class="smalltext">', ($tr_config['don_show_date'] ? $txt['treas_date'] : ''), '&nbsp;&nbsp;&nbsp;</td>
-                <td align="right" class="smalltext">', ($tr_config['don_show_amt'] ? $tr_config['pp_currency'] : ''), '&nbsp;</td>
+                <td align="center" class="smalltext">', ($tr_config['don_show_amt'] ? $txt['treas_amount'] : ''), '</td>
+                <td align="center" class="smalltext">', ($tr_config['don_show_date'] ? $txt['treas_date'] : ''), '</td>
+                <td align="right" class="smalltext">', ($tr_config['don_show_amt'] ? $tr_config['pp_currency'] : ''), '</td>
               </tr>
 			  <tr>
 			    <td colspan="4"><hr /></td>
@@ -246,13 +246,13 @@ function template_main()
 				echo '<td align="left" class="smalltext"> ';
 				echo $doname;
 				echo '</td>';
-				echo '<td align="right" class="smalltext">&nbsp;';
+				echo '<td align="center" class="smalltext">';
 				if ( $tr_config['don_show_amt'] )
 				{
 					echo $donators_rows['symbol'].($donators_rows['currency'] == 'JPY' ? round($donators_rows['amt'],0) : $donators_rows['amt']), ' (', $donators_rows['currency'], ')';
 				}
 				echo '</td>';
-				echo '<td align="left" class="smalltext" style="height:1px;">&nbsp;&nbsp;&nbsp;';
+				echo '<td align="center" class="smalltext" style="height:1px;">';
 				if ( $tr_config['don_show_date'] )
 				{
 					echo $donators_rows['date'];
@@ -267,11 +267,11 @@ function template_main()
 						echo '<td align="right" class="smalltext">', $donators_rows['amt'], '</td>';
 					}
 				}
-				echo '</tr></table>';
+				echo '</tr>';
 			}
 		}
 	}
-	echo '</div>';
+	echo '</table></div>';
 			
 	if ($tr_config['show_registry'] && $is_donor)
 	{
