@@ -1058,12 +1058,12 @@ function configUpdate()
 	checkSession();
 
 	echo '<div style="text-align:center;" class="titlebg"><b>', $txt['treas_config_error'], '</b></div>';
-	echo '<br /><p style="color:#0000FF;"><b>If you see this screen then an SQL error was encountered</b></br>'
-	. 'You should see a message in <span style="color:#FF0000;">RED</span> below indicating what the error is</p><br /><br />';
+	echo '<br><p style="color:#0000FF;"><b>If you see this screen then an SQL error was encountered</b></br>'
+	. 'You should see a message in <span style="color:#FF0000;">RED</span> below indicating what the error is</p><br><br>';
 
 	$ERR = 1;
 	$ilog = '';
-	$ilog .= '<br />';
+	$ilog .= '<br>';
 	foreach( $_POST as $option => $value )
 	{
 		# Look for form variables
@@ -1072,13 +1072,13 @@ function configUpdate()
 			$varnm = preg_replace('/var_/', '', $option);
 			# Check for subtype field
 			if ( preg_match('/-(.*)/', $varnm, $subtype) ) {
-				echo "<br />subtype = $subtype[1] <br />";
+				echo "<br>subtype = $subtype[1] <br>";
 				$temp = $varnm;
 				$varnm = preg_replace('/-.*/', '', $temp);
-				echo "$varnm $subtype[1] => $value<br />";
+				echo "$varnm $subtype[1] => $value<br>";
 				$ERR &= UpdateTarget($varnm, $subtype[1], $value);
 			} else {
-				echo "$varnm  => $value<br />";
+				echo "$varnm  => $value<br>";
 				$ERR &= UpdateConfig($varnm, $value);
 			}
 		}
@@ -1090,7 +1090,7 @@ function configUpdate()
 }
 
 function breakFix($str) {
-	$str = preg_replace(array('/\r\n/', '/\n/'), '<br />', $str);
+	$str = preg_replace(array('/\r\n/', '/\n/'), '<br>', $str);
   return $str;
 }
 
@@ -1388,7 +1388,7 @@ function donorGroup ($user_id, $custom, $payment_date, $option_seleczion1)
 		$grouplog .= $custom.' not added to Donor Group - anonymous disallowed.';
 	}
 	elseif (empty($isgroup)) {
-		$grouplog .= 'Donor group does not exist.<br />';
+		$grouplog .= 'Donor group does not exist.<br>';
 	}
 	elseif ($ingroupa) {
 		$grouplog .= $custom . ' is already a Donor group member';
@@ -1501,7 +1501,7 @@ function donorGroup ($user_id, $custom, $payment_date, $option_seleczion1)
 				'groupcheck' => 'treasury_groupcheck',
 			)
 		);
-		$grouplog .= '<br />Group duration check updated.';
+		$grouplog .= '<br>Group duration check updated.';
 	} else {
 		$request6 = $smcFunc['db_query']('', '
 			UPDATE {db_prefix}settings
@@ -1511,7 +1511,7 @@ function donorGroup ($user_id, $custom, $payment_date, $option_seleczion1)
 				'groupcheck' => 'treasury_groupcheck',
 			)
 		);
-		$grouplog .= '<br />Group duration check now empty.';
+		$grouplog .= '<br>Group duration check now empty.';
 	}
 
 	return $grouplog;

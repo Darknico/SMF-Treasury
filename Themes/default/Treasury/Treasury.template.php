@@ -65,21 +65,21 @@ function template_main()
 		echo '<div style="width:155px; margin:auto; padding:5px; border:1px solid;" class="windowbg2">';
 		if ($tr_config['dm_show_targets']) {
 		    echo '<span style="width:95px;font-size:10px;float:left;">', $period[2], ' ', $txt['treas_goal'], ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $period[3]), '</span><br />
+		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $period[3]), '</span><br>
 		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_due_date'], ':</span>
-		    <span style="float:right;font-size:10px;">', $row_Recordset3['due_by'], '</span><br />
+		    <span style="float:right;font-size:10px;">', $row_Recordset3['due_by'], '</span><br>
 		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_total_receipts'], ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset3['receipts']), '</span><br />';
+		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset3['receipts']), '</span><br>';
 			if ($tr_config['don_show_gross'] == 0) {
 				echo '<span style="width:95px;font-size:10px;float:left;">', $txt['treas_paypal_fees'], ':</span>
-				<span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br />
+				<span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br>
 				<span style="width:95px;font-size:10px;float:left;">', $txt['treas_net_balance'], ':</span>
-				<span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset3['net']), '</span><br />';
+				<span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset3['net']), '</span><br>';
 			}
 		    echo '<span style="width:95px;font-size:10px;float:left;">', (($dm_left >= 0 ) ? $txt['treas_below_goal'] : $txt['treas_above_goal']), ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', abs($dm_left)), '</span><br />
+		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', abs($dm_left)), '</span><br>
 			<span style="width:95px;font-size:10px;float:left;">', $txt['treas_site_currency'], ':</span>
-			<span style="float:right;font-size:10px;">', $tr_config['pp_currency'], '</span><br />';
+			<span style="float:right;font-size:10px;">', $tr_config['pp_currency'], '</span><br>';
 		}
 		// Do we want the donormeter displayed?
 		echo ($tr_config['dm_show_meter'] ? $donormeter : '');
@@ -119,12 +119,12 @@ function template_main()
 	if (count($don_amounts) == 1)
 	{
 		echo '<input type="hidden" name="amount" value="', $don_amounts[0], '" />
-			<b>', $txt['treas_donation_amount'], ':&nbsp;', $don_amounts[0], '</b><br />';
+			<b>', $txt['treas_donation_amount'], ':&nbsp;', $don_amounts[0], '</b><br>';
 	}
 	else
 	{
 		echo ($tr_config['don_amt_other'] ? '<input type="radio" name="amount" value="" /> ' . $txt['treas_other'] . '&nbsp; 
-			<input type="text" name="amount" value="0.00" size="6" /><br />' : '');	
+			<input type="text" name="amount" value="0.00" size="6" /><br>' : '');	
 
 				
 		$i = 0;
@@ -301,8 +301,8 @@ function template_paypal_return()
 	global $first_name, $last_name, $custom, $option_seleczion1, $item_name, $payment_amount, $payment_currency, $total;
 
 	echo '<div style="text-align:center;padding-bottom:10px;" class="tborder"><h4>', $txt['treas_appreciate_donation'], ' ', $custom, '.</h4>';
-	echo $txt['treas_thanks'], '<br />';
-	echo '<div style="width:30%; margin:auto;"><br />
+	echo $txt['treas_thanks'], '<br>';
+	echo '<div style="width:30%; margin:auto;"><br>
       <div class="titlebg">', $txt['treas_pay_details'], '</div>
 	  <ul style="text-align:left;">
       <li>', $txt['treas_name'], ': ', $first_name, ' ', $last_name, '</li>
@@ -311,13 +311,13 @@ function template_paypal_return()
       <li>', $txt['treas_amount'], ': ', $payment_amount, ' ', $payment_currency, '</li></ul>';
 	if (isset($total))
 	{
-		echo '<br /><ul style="text-align:left;">';
+		echo '<br><ul style="text-align:left;">';
 		foreach ($total AS $currency => $ammount) {
 			echo '<li>', $txt['treas_total'], '&nbsp;', $currency, ': ', substr($ammount,0,-2), '.', substr($ammount,-2), '</li>';
 		}
 	}
 	echo '</ul>';
-	echo '<button type="button" onclick="self.location.href=\'', $scripturl, '?action=treasury\';" style="background-color:#FFCC68; color:#000068; font-weight:bold; margin:auto;">', $txt['treas_continue'], '</button><br /><br /></div></div>';
+	echo '<button type="button" onclick="self.location.href=\'', $scripturl, '?action=treasury\';" style="background-color:#FFCC68; color:#000068; font-weight:bold; margin:auto;">', $txt['treas_continue'], '</button><br><br></div></div>';
 }
 
 function template_treasury_profile()
@@ -351,12 +351,12 @@ function template_treasury_profile()
 			</tr>
 			<tr class="windowbg2">
 				<td colspan="2">&nbsp;<b>', $txt['treas_last_ten_donations'], ' ', $context['member']['name'], ':</b>';
-		echo '<div style="text-align:left;"><br />';
+		echo '<div style="text-align:left;"><br>';
 		foreach ($context['my_donations'] as $donations_mine) {
 			$paydate = timeformat($donations_mine['payment_date'], $treas_date);
-            echo '<span style="width:10px; padding-left:27px; float:left;">&#8226;</span><span style="width:80px; float:left; text-align:right;">', $donations_mine['mc_gross'], ' ', $donations_mine['mc_currency'], '</span>&nbsp;&raquo;&nbsp;', $paydate, ' (', $donations_mine['payment_status'], ')<br />';
+            echo '<span style="width:10px; padding-left:27px; float:left;">&#8226;</span><span style="width:80px; float:left; text-align:right;">', $donations_mine['mc_gross'], ' ', $donations_mine['mc_currency'], '</span>&nbsp;&raquo;&nbsp;', $paydate, ' (', $donations_mine['payment_status'], ')<br>';
 		}
-        echo '<br />';
+        echo '<br>';
 		echo '<b>', $txt['treas_total_site_currency'], ':</b> ', $site_total, ' - ', $txt['treas_thank_you'], '</div>';
 
 		$summary = '';
@@ -381,7 +381,7 @@ function template_treasury_profile()
 				</td>
 			</tr>
 			<tr class="windowbg2">
-				<td><br />', $txt['treas_no_donations'],' ', $context['member']['name'], '.<br />
+				<td><br>', $txt['treas_no_donations'],' ', $context['member']['name'], '.<br>
 				</td>
 			</tr>
 		</table>';
@@ -390,7 +390,7 @@ function template_treasury_profile()
 	<table width="90%" cellspacing="1" cellpadding="4" style="margin:auto; border:0;" class="bordercolor">
 		<tr class="windowbg2">
 			<td>
-			', $txt['treas_paypal_confirm'], '<br /><br/>
+			', $txt['treas_paypal_confirm'], '<br><br/>
 			</td>
 		</tr>
 	</table>

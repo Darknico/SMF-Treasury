@@ -119,9 +119,9 @@ if ($tr_config['event_active'] && isset($context['info_event']))
 
 $dm_button_dims = is_numeric($tr_config['dm_img_width']) ? 'width:'.$tr_config['dm_img_width'].'px;' : '';
 $dm_button_dims .= is_numeric($tr_config['dm_img_height']) ? 'height:'.$tr_config['dm_img_height'].'px;' : '';
-echo '<div style="text-align:center;text-decoration:blink;">', $tr_config['dm_title'], '<br /></div>
+echo '<div style="text-align:center;text-decoration:blink;">', $tr_config['dm_title'], '<br></div>
 	<div style="text-align:center;">
-	', ($tr_config['dm_comments'] ? '<br />'.$tr_config['dm_comments'].'<br />' : ''), '
+	', ($tr_config['dm_comments'] ? '<br>'.$tr_config['dm_comments'].'<br>' : ''), '
 	<a href="', $scripturl, '?action=treasury">
 	<img src="', $settings['default_images_url'], '/Treasury//', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
 	</div>';
@@ -137,21 +137,21 @@ if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
 	echo '<div style="width:145px;margin:auto;">';
 	if ($tr_config['dm_show_targets']) {
 		echo '<span style="width:95px;font-size:10px;float:left;">', $tr_period[2], ' ', $txt['treas_goal'], ':</span>
-	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $tr_period[3]), '</span><br />
+	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $tr_period[3]), '</span><br>
 	    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_due_date'], ':</span>
-	    <span style="float:right;font-size:10px;">', $row_Recordset2['due_by'], '</span><br />
+	    <span style="float:right;font-size:10px;">', $row_Recordset2['due_by'], '</span><br>
 	    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_total_receipts'], ':</span>
-	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['receipts']), '</span><br />';
+	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['receipts']), '</span><br>';
 		if ($tr_config['don_show_gross'] == 0) {
 			echo '<span style="width:95px;font-size:10px;float:left;">', $txt['treas_paypal_fees'], ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br />
+		    <span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br>
 		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_net_balance'], ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['net']), '</span><br />';
+		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset2['net']), '</span><br>';
 		}
 		echo '<span style="width:95px;font-size:10px;float:left;">', (($dm_left >= 0 ) ? $txt['treas_below_goal'] : $txt['treas_above_goal']), ':</span>
-	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', abs($dm_left)), '</span><br />
+	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', abs($dm_left)), '</span><br>
 		<span style="width:95px;font-size:10px;float:left;">', $txt['treas_site_currency'], ':</span>
-		<span style="float:right;font-size:10px;">', $tr_config['pp_currency'], '</span><br />';
+		<span style="float:right;font-size:10px;">', $tr_config['pp_currency'], '</span><br>';
 	}
 	// Do we want the donormeter displayed?
 	echo ($tr_config['dm_show_meter'] ? $donormeter : '');
@@ -222,7 +222,7 @@ if (is_numeric($tr_config['dm_num_don']) && $tr_config['dm_num_don'] >= 0) {
 					} else {
 						echo '';
 					}
-					echo '<br /></div>';
+					echo '<br></div>';
 				}
 			}
 			$i++;

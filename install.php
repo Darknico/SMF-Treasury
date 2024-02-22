@@ -91,7 +91,7 @@ if (!empty($trans_exists))
 			array('don_name_yes', 'Yes! - Tell the world I gave my hard-earned cash!'), 
 			array('don_name_no', 'No - List my donation as Anonymous'), 
 			array('don_text_title', '<b>We Appreciate Your Support</b>'),
-			array('don_text', 'Hey, what are you doing here - we don\'t want your money, so keep it, go away!<br /><br />LOL, just kidding - if you see this message, the person who installed it still hasn\'t finished setting it up and customizing it, so please be patient if there are some glitches.<br />'), 
+			array('don_text', 'Hey, what are you doing here - we don\'t want your money, so keep it, go away!<br><br>LOL, just kidding - if you see this message, the person who installed it still hasn\'t finished setting it up and customizing it, so please be patient if there are some glitches.<br>'), 
 			array('ipn_dbg_lvl', '2'), 
 			array('ipn_log_entries', '50'),
 		),
