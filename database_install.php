@@ -293,18 +293,5 @@ $smcFunc['db_insert']('ignore',
 		array('type' => 'primary', 'columns' => array('eid')),
 	);
 	$smcFunc['db_create_table']('{db_prefix}treas_events', $evt_columns, $evt_indexes, array(), 'update');
-
-/*******************************************************************************
-* Update Treasury version                                                      *
-*******************************************************************************/
-$smcFunc['db_query']('', '
-	UPDATE {db_prefix}settings 
-	SET value = {string:val} 
-	WHERE variable = {string:var}', 
-	array(
-		'val' => '2.12.4',
-		'var' => 'treasury_version',
-	)
-);
-
+	
 ?>
