@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.4
+ * @version 2.12.5
  */
 
 function template_treasuryregister()
@@ -29,7 +29,7 @@ function template_treasuryregister()
 	echo '</td></tr></table>';
 	echo '</form>';
 
-	echo '<br /><table style="margin:auto;"><tr>';
+	echo '<br><table style="margin:auto;"><tr>';
 	if ( $pageNum_Recordset1 > 0 )
 	{
 		echo '<td><form action="', $scripturl.$context['treas_link'], ';sa=registry" method="post" style="margin:0;">'
@@ -58,7 +58,7 @@ function template_treasuryregister()
 	} else {
 		echo '<td colspan="2"></td>';
 	}
-	echo '</tr></table><br />';
+	echo '</tr></table><br>';
 
     echo '<table class="tborder" width="100%" style="margin:auto;"><tr>'
     .'<td class="titlebg2" align="center">&nbsp;</td>'
@@ -126,7 +126,7 @@ function template_treasuryregister()
 	.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" class="button" />';
 	echo '</td></tr></table></div></form>';
 	echo '<div><b>Note date format -</b> ', timeformat(time(), treasdate()), '</div>';
-    echo '<br />';
+    echo '<br>';
 }
 
 function template_treasury_donations()
@@ -206,7 +206,7 @@ function template_treasury_donations()
 			 	."document.transedit.Submit.value = 'Modify'; "
 			 	."document.transedit.sa.value = 'transregedit'; "
 			."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br />'
+	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br>'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=transregdel;did=', $donations_treas['id'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
 			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
 			.'</a></td>'
@@ -225,7 +225,7 @@ function template_treasury_donations()
 		}
 	}
 
-    echo '</table><br />';
+    echo '</table><br>';
     echo '<form name="transedit" action="', $scripturl.$context['treas_link'], '" method="post">'
 		.'<table><tr>'
 	    .'<td class="titlebg2" align="center">Tax ID</td>'
@@ -253,7 +253,7 @@ function template_treasury_donations()
         .'<td align="center"><input name="Exchange_rate" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Eid" type="text" size="3" class="smalltext" /></td>'
 		.'</tr>';
-	echo '<tr><td align="center" colspan="9"><br />'
+	echo '<tr><td align="center" colspan="9"><br>'
 		.'<input type="hidden" name="mode" value="', $mode, '" />'
 		.'<input type="hidden" name="start" value="', $start, '" />'
 		.'<input type="hidden" name="sort_order" value="', $sort_order, '" />'
@@ -265,7 +265,7 @@ function template_treasury_donations()
 	    ."return true;\" />&nbsp;"
 		.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" />';
 	echo '</td></tr></table></form>';
-	echo '<br /><table width="100%" style="border:1px solid;" class="windowbg">
+	echo '<br><table width="100%" style="border:1px solid;" class="windowbg">
 	<tr><td><b>Tax ID:</b></td><td> the receipt from paypal, something like ZYXGTY1234567890 (must be UNIQUE for every entry)</td></tr>
 <tr><td><b>Name:</b></td><td> the Username who donated (must be genuine for details to show in Profile)</td></tr>
 <tr><td><b>Show:</b></td><td> <b>Yes</b>, if they wanted their name displayed, otherwise <b>No</b>.</td></tr>
@@ -373,7 +373,7 @@ function template_treasury_totals() {
 			.'</tr>';
 		}
 	}
-	echo '</table><br />';
+	echo '</table><br>';
 
 	$period = '';
 	foreach($options2 as $opname2 => $opvalue2) {
@@ -504,9 +504,9 @@ function template_config_paypal()
 	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_paypal_config'] . '</h3></div>
 	<div class="windowbg noup"><dl class="settings">';
 	showTextBox('receiver_email', $txt['treas_pp_email'] , '', '50', '1');
-	ShowTextBox('pp_notify_url', $txt['treas_pp_notify_file'] . '<br /><a href="' . $boardurl . '/ipntreas.php?dbg=1" target="_blank"><b><i>' . $txt['treas_pp_test_ipn'] . '</i></b></a> ipntreas.php ', '', '50', '1');
-	showTextBox('pp_ty_url', $txt['treas_pp_return_file'] . '<br />index.php?action=profile ', '', '50', '1');
-	showTextBox('pp_cancel_url', $txt['treas_pp_cancel_file'] . '<br />index.php?action=treasury ', '', '50', '1');
+	ShowTextBox('pp_notify_url', $txt['treas_pp_notify_file'] . '<br><a href="' . $boardurl . '/ipntreas.php?dbg=1" target="_blank"><b><i>' . $txt['treas_pp_test_ipn'] . '</i></b></a> ipntreas.php ', '', '50', '1');
+	showTextBox('pp_ty_url', $txt['treas_pp_return_file'] . '<br>index.php?action=profile ', '', '50', '1');
+	showTextBox('pp_cancel_url', $txt['treas_pp_cancel_file'] . '<br>index.php?action=treasury ', '', '50', '1');
 	showTextBox('pp_image_url', $txt['treas_pp_image'] , '', '50', '1');
 
 	echo '</dl><hr><dl class="settings">';
@@ -593,7 +593,7 @@ function template_config_events()
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
 	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button"  />';
 	if ($tr_config['event_active']) {
-		echo '<br /><span style="color:red;">BEWARE: you activated an event - this will change your Treasury display!</span>';
+		echo '<br><span style="color:red;">BEWARE: you activated an event - this will change your Treasury display!</span>';
 	}
 	echo '</form></dl>';
 
@@ -667,7 +667,7 @@ function template_config_events()
 			$events_treas['date_end'] = $events_treas['date_end'] == '0' ? '' : timeformat($events_treas['date_end'], '%Y-%m-%d');
 			echo '<tr class="windowbg">'
 			.'<td align="center">'
-			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br />'
+			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br>'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=eventsdel;eid=', $events_treas['eid'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
 			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
 			.'</a></td>'
@@ -680,7 +680,7 @@ function template_config_events()
 			.'</tr>';
 		}
 	}
-	echo '</table><br />';
+	echo '</table><br>';
 
 	if (isset($context['treas_event']))
 	{
@@ -807,7 +807,7 @@ function template_ipn_reconcile()
 	global $context, $scripturl, $txt, $curdate, $ipn_total, $numrecs, $rval;
 
 	echo '<div class="titlebg" style="text-align:center;"><b>', $txt['treas_financial'], ' ', $txt['treas_reconciliation'], '</b>';
-	echo '<br /><b>', $txt['treas_registry_updated'], '</b><br /><br />';
+	echo '<br><b>', $txt['treas_registry_updated'], '</b><br><br>';
 
 	if ( $numrecs == 0 )
 	{
@@ -820,11 +820,11 @@ function template_ipn_reconcile()
 		}
 		else
 		{
-			echo "<b> ERROR : There are $numrecs records to import, but there was an<br />error encountered during db record insertion into the Financial table.<br />Insertion FAILED!";
+			echo "<b> ERROR : There are $numrecs records to import, but there was an<br>error encountered during db record insertion into the Financial table.<br>Insertion FAILED!";
 		}
 	}
 
-	echo '<br /><br /><button type="button" onclick="self.location.href=\'', $scripturl.$context['treas_link'], ';sa=registry\';" style="background-color:#FFCC68; color:#000068; font-weight:bold;">Return to Treasury Admin</button>';
+	echo '<br><br><button type="button" onclick="self.location.href=\'', $scripturl.$context['treas_link'], ';sa=registry\';" style="background-color:#FFCC68; color:#000068; font-weight:bold;">Return to Treasury Admin</button>';
 	echo '</div>';
 
 }

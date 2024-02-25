@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.4
+ * @version 2.12.5
  */
 
 if (!file_exists(dirname(__FILE__) . '/SSI.php'))
@@ -56,9 +56,9 @@ $dbg = (isset($_GET['dbg'])) ? 1 : 0;
 
 if ($dbg)
 {
-	dprt('Debug mode activated<br />', _INF);
-	echo 'SMF2 Treasury mod<br /><br />PayPal Instant Payment Notification script<br /><br />See below for status:<br />';
-	echo '----------------------------------------------------------------<br />';
+	dprt('Debug mode activated<br>', _INF);
+	echo 'SMF2 Treasury mod<br><br>PayPal Instant Payment Notification script<br><br>See below for status:<br>';
+	echo '----------------------------------------------------------------<br>';
 	$receiver_email = $tr_config['receiver_email'];
 }
 
@@ -72,7 +72,7 @@ foreach ($_POST as $key => $value) {
 # Is cURL available?
 if ($tr_config['use_curl'] && function_exists('curl_init') && $curly = curl_init('https://www.' . ($tr_config['pp_sandbox'] ? 'sandbox.' : '') .  'paypal.com/cgi-bin/webscr'))
 {
-	dprt('Opening connection via curl and validating request with PayPal...<br />', _INF);
+	dprt('Opening connection via curl and validating request with PayPal...<br>', _INF);
 	curl_setopt($curly, CURLOPT_POST, true);
 	curl_setopt($curly, CURLOPT_POSTFIELDS, $req);
 	curl_setopt($curly, CURLOPT_RETURNTRANSFER, true);
@@ -83,9 +83,9 @@ if ($tr_config['use_curl'] && function_exists('curl_init') && $curly = curl_init
 	$ErrorNum = curl_errno($curly);
 	$ErrorText = curl_error($curly);
 	if ($ErrorNum)
-		dprt("Curl error number, $ErrorNum - text, $ErrorText<br />", _INF);
+		dprt("Curl error number, $ErrorNum - text, $ErrorText<br>", _INF);
 	else
-		dprt('OK!<br />', _INF);
+		dprt('OK!<br>', _INF);
 	$res = curl_exec($curly);
 	curl_close($curly);
 }
@@ -98,18 +98,18 @@ else
 	$header .= "Content-Length: " . strlen($req) . "\r\n";
 	$header .= "Connection: Close\r\n\r\n";
 
-	dprt('Curl isn\'t available.<br />Opening connection via http and validating request with PayPal...<br />', _INF);
+	dprt('Curl isn\'t available.<br>Opening connection via http and validating request with PayPal...<br>', _INF);
 
 	$fp = fsockopen ('ssl://'.($tr_config['pp_sandbox'] ? 'www.sandbox.' : 'www.').'paypal.com', 443, $errno, $errstr, 30);
 
 	if (!$fp)
 	{
 		// HTTP ERROR
-		dprt('FAILED to connect to PayPal<br />', _ERR);
+		dprt('FAILED to connect to PayPal<br>', _ERR);
 		die();
 	}
 
-	dprt('OK!<br />', _INF);
+	dprt('OK!<br>', _INF);
 
 	fputs ($fp, $header . $req);
 	while (!feof($fp)) {
@@ -124,13 +124,13 @@ if (!$dbg) {
 	if (strcmp (trim($res), 'VERIFIED') == 0)
 	{
 		// okay, PayPal has told us we have a valid IPN here
-		dprt('PayPal Verified<br />', _INF);
+		dprt('PayPal Verified<br>', _INF);
 		$verified = 1;
 	}
 	elseif (strcmp (trim($res), 'INVALID') == 0)
 	{
 		// log for manual investigation
-		dprt('Invalid IPN transaction, this is an abnormal condition<br />', _ERR);
+		dprt('Invalid IPN transaction, this is an abnormal condition<br>', _ERR);
 		foreach ($_POST as $key => $val) {
 			dprt("$key => $val", $_ERR);
 		}
@@ -185,7 +185,7 @@ else
 // Perform PayPal email account verification
 if ( !$dbg && strcasecmp( $_POST['business'], $tr_config['receiver_email']) != 0)
 {
-	dprt("Incorrect receiver email: $_POST[business] vs $tr_config[receiver_email], aborting<br />", _ERR) ;
+	dprt("Incorrect receiver email: $_POST[business] vs $tr_config[receiver_email], aborting<br>", _ERR) ;
 	$ERR = 1;
 }
 
@@ -218,7 +218,7 @@ if (!$dbg && !$ERR && $verified == 1) {
 		)
 	);
 	if ($smcFunc['db_affected_rows']() == 0)
-		dprt("No Member ID - $id_member<br />", _INF);
+		dprt("No Member ID - $id_member<br>", _INF);
 	list ($id_member) = $smcFunc['db_fetch_row']($request);
 	$smcFunc['db_free_result']($request);
 
@@ -226,7 +226,7 @@ if (!$dbg && !$ERR && $verified == 1) {
 	if ( $payment_status == 'Refunded' || $payment_status == 'Reversed' )
 	{
 		// Verify the reversal
-		dprt('Transaction is a Refund<br />', _INF);
+		dprt('Transaction is a Refund<br>', _INF);
 		if ( $_POST['parent_txn_id'] )
 		{
 			$Recordset1 = $smcFunc['db_query']('', '
@@ -245,14 +245,14 @@ if (!$dbg && !$ERR && $verified == 1) {
 		if ( $NumTrans == 0 )
 		{
 			// This is an error.  A reversal implies a pre-existing completed transaction
-			dprt('IPN Error: Received refund but missing prior completed transaction<br />', _ERR);
+			dprt('IPN Error: Received refund but missing prior completed transaction<br>', _ERR);
 			foreach( $_POST as $key => $val ) {
 				dprt("$key => $val", $_ERR);
 			}
 		}
 		elseif ( $NumTrans != 1 )
 		{
-			dprt('IPN Error: Received refund but multiple prior txn_id\'s encountered, aborting<br />', _ERR);
+			dprt('IPN Error: Received refund but multiple prior txn_id\'s encountered, aborting<br>', _ERR);
 			foreach( $_POST as $key => $val ) {
 				dprt("$key => $val", $_ERR);
 			}
@@ -266,9 +266,9 @@ if (!$dbg && !$ERR && $verified == 1) {
 				VALUES 
 				(DEFAULT, '$_POST[parent_txn_id]', '$business', '$row_Recordset1[item_name]', '$item_number', '$row_Recordset1[quantity]', '$invoice', '$row_Recordset1[custom]', '$memo', '$row_Recordset1[tax]', '$row_Recordset1[option_name1]', '$row_Recordset1[option_seleczion1]', '$row_Recordset1[option_name2]', '$row_Recordset1[option_seleczion2]', '$payment_status', '$payment_date', '$row_Recordset1[txn_type]', '$payment_amount', '$payment_fee', '$payment_currency', '$settle_amount', '$row_Recordset1[exchange_rate]', '$first_name', '$last_name', '$address_street', '$address_city', '$address_state', '$address_zip', '$address_country', '$address_status', '$payer_email', '$row_Recordset1[payer_status]', '$row_Recordset1[user_id]', '$row_Recordset1[currency_symbol]', '$row_Recordset1[group_id]')";
 			// We're cleared to add this record
-			dprt($insertSQL.'<br />', _INF);
+			dprt($insertSQL.'<br>', _INF);
 			paypalUpdate($insertSQL);
-			dprt('SQL result = ' . $ResultSQL . '<br />', _INF);
+			dprt('SQL result = ' . $ResultSQL . '<br>', _INF);
 			$body = $row_Recordset1['currency_symbol'].(-$payment_amount) . " refunded to " . $row_Recordset1['custom'] . "\n\n";
 			$body .= "Member Link:\n" . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
 			$body2 = 'Thank you '. $row_Recordset1['custom'] . "\n\n";
@@ -281,9 +281,9 @@ if (!$dbg && !$ERR && $verified == 1) {
 	// Look for abnormal payment
 	elseif ( $payment_status == 'Completed' || $payment_status == 'Pending' && $txn_type == 'web_accept' || $txn_type == 'send_money' )
 	{
-		dprt('Normal transaction<br />', _INF);
+		dprt('Normal transaction<br>', _INF);
 		if ($pending_reason)
-			dprt('Pending '.$pending_reason.'<br />', _INF);
+			dprt('Pending '.$pending_reason.'<br>', _INF);
 
 		if ( $lp )
 			fputs($lp, $payer_email . ' ' . $payment_status . ' ' . $_POST['payment_date'] . "\n");
@@ -303,19 +303,19 @@ if (!$dbg && !$ERR && $verified == 1) {
 					'tax_id' => $txn_id,
 				)
 			);
-			dprt($updateSQL.'<br />', _INF);
+			dprt($updateSQL.'<br>', _INF);
 			paypalUpdate($updateSQL);
-			dprt('SQL echeck cleared = ' . $ResultSQL . '<br />', _INF);
+			dprt('SQL echeck cleared = ' . $ResultSQL . '<br>', _INF);
 			if ($tr_config['group_use'] == 1 && $tr_config['group_id'] > 1) {
-				dprt(donorGroup($id_member, $custom, $payment_date, $option_seleczion1) . '<br />', _INF);
+				dprt(donorGroup($id_member, $custom, $payment_date, $option_seleczion1) . '<br>', _INF);
 			} else {
-				dprt('Donor groups not activated.<br />', _INF);
+				dprt('Donor groups not activated.<br>', _INF);
 			}
 		}
 		elseif ($NumDups != 0)
 		// Oh well, no echeck or instant, let's get out of here - suspicious.
 		{
-			dprt('Valid IPN, but DUPLICATE txn_id! aborting<br />', _ERR);
+			dprt('Valid IPN, but DUPLICATE txn_id! aborting<br>', _ERR);
 			foreach( $_POST as $key => $val )	{
 				dprt("$key => $val", $_ERR);
 			}
@@ -349,9 +349,9 @@ if (!$dbg && !$ERR && $verified == 1) {
 				VALUES 
 				(DEFAULT, '$txn_id', '$business', '$item_name', '$item_number', '$quantity', '$invoice', '$custom', '$memo', '$tax', '$option_name1', '$option_seleczion1', '$option_name2', '$option_seleczion2', '$payment_status', '$payment_date', '$txn_type', '$payment_amount', '$payment_fee', '$payment_currency', '$settle_amount', '$exchange_rate', '$first_name', '$last_name', '$address_street', '$address_city', '$address_state', '$address_zip', '$address_country', '$address_status', '$payer_email', '$payer_status', '$id_member', '$currency_symbol', '$event_id')";
 			// We're cleared to add this record
-			dprt($insertSQL.'<br />', _INF);
+			dprt($insertSQL.'<br>', _INF);
 			paypalUpdate($insertSQL);
-			dprt('SQL result = ' . $ResultSQL . '<br />', _INF);
+			dprt('SQL result = ' . $ResultSQL . '<br>', _INF);
 			$body = $currency_symbol.$payment_amount . ' received from ' . $custom . "\n\n";
 			$body .= "Member Link:\n" . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
 			$body2 = 'Thank you '. $custom . "\n\n";
@@ -361,17 +361,17 @@ if (!$dbg && !$ERR && $verified == 1) {
 			emailuser('Treasury Donation', $body2, $payer_email);
 
 			if ($payment_status == 'Pending') {
-				dprt('Payment pending - no actions on Donor group.<br />', _INF);
+				dprt('Payment pending - no actions on Donor group.<br>', _INF);
 			} elseif ($tr_config['group_use'] == 1 && $tr_config['group_id'] > 1) {
-				dprt(donorGroup($id_member, $custom, $payment_date, $option_seleczion1) . '<br />', _INF);
+				dprt(donorGroup($id_member, $custom, $payment_date, $option_seleczion1) . '<br>', _INF);
 			} else {
-				dprt('Donor groups not activated or group not selected.<br />', _INF);
+				dprt('Donor groups not activated or group not selected.<br>', _INF);
 			}
 		}
 	}
 		else
 	{ // We're not interested in this transaction, so we're done
-		dprt('Valid IPN, but not interested in this transaction<br />', _ERR);
+		dprt('Valid IPN, but not interested in this transaction<br>', _ERR);
 		foreach( $_POST as $key => $val ) {
 			dprt("$key => $val", $_ERR);
 		}
@@ -380,8 +380,8 @@ if (!$dbg && !$ERR && $verified == 1) {
 
 if ($dbg)
 {
-	dprt('Selecting database......<br />', _INF);
-	dprt('Executing test query....<br />',_INF);
+	dprt('Selecting database......<br>', _INF);
+	dprt('Executing test query....<br>',_INF);
 	$Result1 = $smcFunc['db_query']('', '
 		SELECT * 
 		FROM {db_prefix}treas_donations 
@@ -390,18 +390,18 @@ if ($dbg)
 		)
 	);
 	if ($Result1) {
-		dprt('PASSED!<br />', _INF);
+		dprt('PASSED!<br>', _INF);
 	} else {
-		dprt('FAILED!<br />', _INF);
+		dprt('FAILED!<br>', _INF);
 	}
 
-	dprt('PayPal Receiver Email: <b>' . $tr_config['receiver_email'] . '</b><br />', _INF);
-	echo '<span style="color:red;"><b>Is this really your PayPal Email address?</b></span><br />';
+	dprt('PayPal Receiver Email: <b>' . $tr_config['receiver_email'] . '</b><br>', _INF);
+	echo '<span style="color:red;"><b>Is this really your PayPal Email address?</b></span><br>';
 }
 
 if ($log)
 {
-	dprt('Logging events....<br />', _INF);
+	dprt('Logging events....<br>', _INF);
 	// Insert the log entry
 	$pay_date = isset($_POST['payment_date']) ? strtotime($_POST['payment_date']) : 0;
 	$Result1 = $smcFunc['db_query']('', '
@@ -415,7 +415,7 @@ if ($log)
 			'log_me' => $log,
 		)
 	);
-	dprt($Result1.' event inserted into the log.<br />', _INF);
+	dprt($Result1.' event inserted into the log.<br>', _INF);
 	// Clear out old log entries
 	$Result1 = $smcFunc['db_query']('', '
 		SELECT id AS lowid 
@@ -444,15 +444,15 @@ if ($lp) fclose ($lp);
 
 if ($dbg)
 {
-	echo '----------------------------------------------------------------<br />';
-	echo 'If you don\'t see any error messages, you should be good to go!<br />';
+	echo '----------------------------------------------------------------<br>';
+	echo 'If you don\'t see any error messages, you should be good to go!<br>';
 }
 
 function dprt($str, $clvl)
 {
 	global $dbg, $ipnppd, $lp, $log, $loglvl;
 	if( $lp ) fputs($lp, $str . "\n");
-	if( $dbg ) echo $str . '<br />';
+	if( $dbg ) echo $str . '<br>';
 	if( $clvl <= $loglvl )
 		$log .= $str . "\n";
 }
