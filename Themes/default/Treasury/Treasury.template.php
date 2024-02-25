@@ -155,7 +155,7 @@ function template_main()
 					$lc_select = '';
 				}
 				echo '</select>
-				<input type="image" src="', $settings['default_images_url'], '/Treasury/', $tr_config['don_button_submit'], '" name="I1"  style="border:0;', $don_sub_image_dims, '" />
+				<input type="image" src="', $settings['default_images_url'], '/Treasury/', $tr_config['don_button_submit'], '" name="I1"  style="background:transparent;box-shadow:none;border:0;', $don_sub_image_dims, '" />
 				</dd>';
 	echo	  '
 				<input type="hidden" name="no_shipping" value="1" />
