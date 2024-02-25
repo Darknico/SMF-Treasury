@@ -132,11 +132,15 @@ if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
 	$pp_fees = sprintf('%.02f', $row_Recordset2['receipts'] - $row_Recordset2['net']);
 	$donatometer = ($tr_period[3] > 0) ? round((100 * ($tr_config['don_show_gross'] ? $row_Recordset2['receipts'] : $row_Recordset2['net']) / $tr_period[3]), 0) : '0';
 
-	$donormeter = '<div style="width:100%; height:12px; background-color:#FFFFFF; border:1px solid green;">'.($donatometer < 15 ? '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"></div><div style="font-size:8px; margin-top:-11px; text-indent:'.$donatometer.'%; color:green;">&nbsp;'.$donatometer.'%</div>' : ($donatometer > 99 ? '<div style="width:98%; height:10px; margin:1px; background-color:blue;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>' : '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>')).'</div>';
+	$donormeter = 
+	'<div style="width:100%; height:20px; background-color:#FFFFFF; border:1px solid green;">'
+	.($donatometer < 15 
+	? '<div style="width:'.$donatometer.'%; height:16px; margin:1px; background-color:green;"></div><div style="font-size:11px; margin-top:-17px; text-indent:'.$donatometer.'%; color:green;">&nbsp;'.$donatometer.'%</div>' 
+	: ($donatometer > 99 ? '<div style="height:16px; margin:1px; background-color:blue;"><span style="font-size:11px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>' : '<div style="width:'.$donatometer.'%; height:16px; margin:1px; background-color:green;"><span style="font-size:11px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>')).'</div>';
 
 	echo '<div style="width:145px;margin:auto;">';
 	if ($tr_config['dm_show_targets']) {
-		echo '<span style="width:95px;font-size:10px;float:left;">', $tr_period[2], ' ', $txt['treas_goal'], ':</span>
+		echo '<span style="width:95px;font-size:10px;float:left;">', $txt['treas_goal'], ' ', $tr_period[2], ':</span>
 	    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $tr_period[3]), '</span><br>
 	    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_due_date'], ':</span>
 	    <span style="float:right;font-size:10px;">', $row_Recordset2['due_by'], '</span><br>
@@ -183,7 +187,7 @@ if (is_numeric($tr_config['dm_num_don']) && $tr_config['dm_num_don'] >= 0) {
 	);
 	$numset3 = $smcFunc['db_num_rows']($Recordset4);
 	if ($numset3) {
-		echo '<div style="width:100%; text-align:center; font-size:11px;"><b><u>', $tr_period[2], ' ', $txt['treas_donations'], '</u></b></div>';
+		echo '<hr /><div style="width:100%; font-weight:bold; text-align:center; font-size:11px;">', $txt['treas_thanks_donated'], '</div>';
 
 		// List all the donors
 		echo '<div style="width:100%">';
@@ -206,17 +210,17 @@ if (is_numeric($tr_config['dm_num_don']) && $tr_config['dm_num_don'] >= 0) {
 				} else {
 					echo '<div>';
 					if ( $tr_config['dm_show_date'] ) {
-						echo '<span style="font-size:xx-small; float:left;">';
+						echo '<span style="font-size:10px; float:left;">';
 						echo $row_Recordset4['date'];
 						echo '&nbsp;</span>';
 					} else {
 						echo '';
 					}
-					echo '<span style="font-size:xx-small; float:left;">';
+					echo '<span style="font-size:10px; float:left;">';
 					echo $dname;
 					echo '</span>';
 					if ( $tr_config['dm_show_amt'] ) {
-						echo '<span style="font-size:xx-small; float:right;">';
+						echo '<span style="font-size:10px; float:right;">';
 						echo ' ', $row_Recordset4['currency'].$row_Recordset4['amt'];
 						echo '</span>';
 					} else {

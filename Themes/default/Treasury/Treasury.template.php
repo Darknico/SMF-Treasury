@@ -192,30 +192,59 @@ function template_main()
 		$pp_fees = sprintf('%.02f', $row_Recordset3['receipts'] - $row_Recordset3['net']);
 		$donatometer = ($period[3] > 0) ? round((100 * ($tr_config['don_show_gross'] ? $row_Recordset3['receipts'] : $row_Recordset3['net']) / $period[3]), 0) : '0';
 
-		$donormeter = '<div style="width:100%; height:12px; background-color:#FFFFFF; border:1px solid green;">'.($donatometer < 15 ? '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"></div><div style="font-size:8px; margin-top:-11px; text-indent:'.$donatometer.'%; color:green;">&nbsp;'.$donatometer.'%</div>' : ($donatometer > 99 ? '<div style="width:98%; height:10px; margin:1px; background-color:blue;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>' : '<div style="width:'.$donatometer.'%; height:10px; margin:1px; background-color:green;"><span style="font-size:8px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>')).'</div>';
+		$donormeter = 
+		'<div style="width:100%; height:20px; background-color:#FFFFFF; border:1px solid green;">'
+		.($donatometer < 15 
+		? '<div style="width:'.$donatometer.'%; height:16px; margin:1px; background-color:green;"></div><div style="font-size:11px; margin-top:-17px; text-indent:'.$donatometer.'%; color:green;">&nbsp;'.$donatometer.'%</div>' 
+		: ($donatometer > 99 ? '<div style="height:16px; margin:1px; background-color:blue;"><span style="font-size:11px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>' : '<div style="width:'.$donatometer.'%; height:16px; margin:1px; background-color:green;"><span style="font-size:11px; float:right; color:#FFFFFF;">'.$donatometer.'%&nbsp;</span></div>')).'</div>';
 
-		echo '<div style="width:155px; margin:auto; padding:5px; border:1px solid;" class="windowbg2">';
+
 		if ($tr_config['dm_show_targets']) {
-		    echo '<span style="width:95px;font-size:10px;float:left;">', $period[2], ' ', $txt['treas_goal'], ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $period[3]), '</span><br>
-		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_due_date'], ':</span>
-		    <span style="float:right;font-size:10px;">', $row_Recordset3['due_by'], '</span><br>
-		    <span style="width:95px;font-size:10px;float:left;">', $txt['treas_total_receipts'], ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset3['receipts']), '</span><br>';
-			if ($tr_config['don_show_gross'] == 0) {
-				echo '<span style="width:95px;font-size:10px;float:left;">', $txt['treas_paypal_fees'], ':</span>
-				<span style="float:right;font-size:10px;">', $currency_symbol.$pp_fees, '</span><br>
-				<span style="width:95px;font-size:10px;float:left;">', $txt['treas_net_balance'], ':</span>
-				<span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', $row_Recordset3['net']), '</span><br>';
-			}
-		    echo '<span style="width:95px;font-size:10px;float:left;">', (($dm_left >= 0 ) ? $txt['treas_below_goal'] : $txt['treas_above_goal']), ':</span>
-		    <span style="float:right;font-size:10px;">', $currency_symbol.sprintf('%.02f', abs($dm_left)), '</span><br>
-			<span style="width:95px;font-size:10px;float:left;">', $txt['treas_site_currency'], ':</span>
-			<span style="float:right;font-size:10px;">', $tr_config['pp_currency'], '</span><br>';
+		echo'
+			<table style="width:100%; margin:auto;" class="windowbg2" cellpadding="0" cellspacing="0">
+				<tr>
+					<th align="left" class="smalltext">', $txt['treas_goal'], ' ', $period[2], '</th>
+					<td align="right" class="smalltext">', $currency_symbol.sprintf('%.02f', $period[3]), '</td>
+				</tr>
+				<tr>
+					<th align="left" class="smalltext">', $txt['treas_due_date'], '</th>
+					<td align="right" class="smalltext">', $row_Recordset3['due_by'], '</td>
+				</tr>	
+				<tr>
+					<th align="left" class="smalltext">', $txt['treas_total_receipts'], '</th>
+					<td align="right" class="smalltext">', $currency_symbol.sprintf('%.02f', $row_Recordset3['receipts']), '</td>
+				</tr>';
+				if ($tr_config['don_show_gross'] == 0) 
+				{
+					echo'
+					<tr>
+						<th align="left" class="smalltext">', $txt['treas_paypal_fees'], '</th>
+						<td align="right" class="smalltext">', $currency_symbol.$pp_fees, '</td>
+					</tr>
+					<tr>
+						<th align="left" class="smalltext">', $txt['treas_net_balance'], '</th>
+						<td align="right" class="smalltext">', $currency_symbol.sprintf('%.02f', $row_Recordset3['net']), '</td>
+					</tr>';
+				}
+				echo'
+				<tr>
+					<th align="left" class="smalltext">', (($dm_left >= 0 ) ? $txt['treas_below_goal'] : $txt['treas_above_goal']), '</th>
+					<td align="right" class="smalltext">', $currency_symbol.sprintf('%.02f', abs($dm_left)), '</td>
+				</tr>
+				<tr>
+					<th align="left" class="smalltext">', $txt['treas_site_currency'], '</th>
+					<td align="right" class="smalltext">', $tr_config['pp_currency'], '</td>
+				</tr>';
+				if ($tr_config['dm_show_meter'])
+				{
+					echo'
+					<tr>
+						<td colspan="2">', $donormeter, '</td>
+					</tr>';
+				}
+		echo'</table>';
 		}
-		// Do we want the donormeter displayed?
-		echo ($tr_config['dm_show_meter'] ? $donormeter : '');
-		echo '</div>';
+
 	}
 
 	echo'</dt>
