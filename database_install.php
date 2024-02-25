@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.4
+ * @version 2.12.5
  */
 
 if (!defined('SMF'))
@@ -272,7 +272,7 @@ $smcFunc['db_insert']('ignore',
 	array('variable' => 'string', 'value' => 'string'),
 	array(
 		array('treasury_groupcheck', '0'), 
-		array('treasury_version', '2.12.4'), 
+		array('treasury_version', '2.12.5'), 
 	),
 	array('variable')
 );
