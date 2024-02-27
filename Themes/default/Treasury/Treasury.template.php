@@ -380,7 +380,7 @@ function template_treasury_profile()
 		<table width="90%" cellspacing="1" cellpadding="4" style="margin:auto; border:0;" class="bordercolor">
 			<tr class="titlebg">
 				<td colspan="2" style="height:26px;">
-					&nbsp;<img src="', $settings['images_url'], '/icons/profile_sm.gif" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
+					&nbsp;<img src="', $settings['images_url'], '/icons/profile_hd.png" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
 					</td>
 			</tr>
 			<tr class="windowbg2">
@@ -411,7 +411,7 @@ function template_treasury_profile()
 		<table width="90%" cellspacing="1" cellpadding="4" style="margin:auto; border:0;" class="bordercolor">
 			<tr class="titlebg">
 				<td style="height:26px;">
-					&nbsp;<img src="', $settings['images_url'], '/icons/profile_sm.gif" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
+					&nbsp;<img src="', $settings['images_url'], '/icons/profile_hd.png" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
 				</td>
 			</tr>
 			<tr class="windowbg2">

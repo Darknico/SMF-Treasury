@@ -754,9 +754,9 @@ function showImgXYBox($xnm, $ynm, $desc, $inpSize, $useHelp)
 		', addDescriptionHelp($xnm) ,'
 		<span>', $desc, '<span>
 	</dt>';
-	echo '<dd>Width '
+	echo '<dd>',$txt['treas_width'],' '
 	."<input size=\"$inpSize\" name=\"var_$xnm\" type=\"text\" value=\"$tr_config[$xnm]\" />";
-	echo ' Height '
+	echo ' ',$txt['treas_height'],' '
 	."<input size=\"$inpSize\" name=\"var_$ynm\" type=\"text\" value=\"$tr_config[$ynm]\" />";
 	echo '</dd>';
 }

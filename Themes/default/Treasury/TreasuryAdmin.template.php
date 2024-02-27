@@ -410,7 +410,6 @@ function template_config()
 	showYNBox('don_show_gross', $txt['treas_show_gross'] , '', '', '1');
 	showYNBox('don_show_date', $txt['treas_reveal_dates'] , '', '', '1');
 	showYNBox('don_show_amt', $txt['treas_reveal_amounts'] , '', '', '1');
-#	ShowYNBox('don_show_info_center', $txt['treas_show_info'] , '', '4', '1');
 	showYNBox('don_show_button_top' , $txt['treas_top_button_show'] , '', '', '1');
 	showTextBox('don_button_top', $txt['treas_top_button'] , '', '25', '1');
 	showImgXYBox('don_top_img_width', 'don_top_img_height', $txt['treas_image_dims'] , '2', '1');
@@ -419,16 +418,6 @@ function template_config()
 	
 	$time_durations = array('0' => $txt['treas_monthly'], '1' => $txt['treas_quarterly'], '2' => $txt['treas_half_yearly'], '3' => $txt['treas_yearly']);
 	selectBox('duration', $txt['treas_duration'] , $tr_config['duration'], $time_durations, '1');
-	ShowYNBox('group_use', $txt['treas_group_use'] , '', '', '1');
-	$donor_groups = array();
-	$donor_groups[0] = 'None Selected';
-	foreach($context['groups'] AS $gid => $gname) {
-		$donor_groups[$gid] = $gname;
-	}
-	selectBox('group_id', $txt['treas_group_select'] , $tr_config['group_id'], $donor_groups, '1');
-	showYNBox('group_duration', $txt['treas_group_duration'] , '', '', '1');
-	showYNBox('group_anonymous', $txt['treas_group_anonymous'] , '', '', '1');
-#	showTextBox('group_minimum', $txt['treas_group_min'] , '', '10', '1');
 	showYNBox('show_registry', $txt['treas_show_registry'] , '', '', '1');
 	ShowTextBox('don_num_don', $txt['treas_num_donors'] , '', '4', '1');
 	showTextBox('don_button_submit', $txt['treas_submit_button'] , '', '25', '1');
@@ -459,8 +448,8 @@ function template_config()
 	ksort($tr_targets['goal']);
 	foreach ($tr_targets['goal'] as $block_month => $block_goal)
 	{
-		$row1 .= '<td class="titlebg">' . timeformat(mktime(0, 0, 0, $block_month, 2, 0), '%b') . '</td>';
-		$row2 .= "<td><input size=\"4\" name=\"var_goal-$block_month\" type=\"text\" value=\"$block_goal\" /></td>";
+		$row1 .= '<td style=\"text-align:center;\" class="titlebg">' . timeformat(mktime(0, 0, 0, $block_month, 2, 0), '%b') . '</td>';
+		$row2 .= "<td><input style=\"text-align:center;\" size=\"4\" name=\"var_goal-$block_month\" type=\"text\" value=\"$block_goal\" /></td>";
 	}
 	$row1 .= '</tr>';
 	$row2 .= '</tr>';
@@ -478,8 +467,8 @@ function template_config()
 	ksort($tr_targets['don_amount']);
 	foreach ($tr_targets['don_amount'] AS $amountn => $amounts)
 	{
-		$row1 .= "<td class=\"titlebg\">$amountn</td>";
-		$row2 .= "<td><input size=\"4\" name=\"var_don_amount-$amountn\" type=\"text\" value=\"$amounts\" /></td>";
+		$row1 .= "<td style=\"text-align:center;\" class=\"titlebg\">$amountn</td>";
+		$row2 .= "<td><input style=\"text-align:center;\" size=\"4\" name=\"var_don_amount-$amountn\" type=\"text\" value=\"$amounts\" /></td>";
 	}
 	$row1 .= '</tr>';
 	$row2 .= '</tr>';
