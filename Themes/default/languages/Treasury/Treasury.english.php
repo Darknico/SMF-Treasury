@@ -89,6 +89,7 @@ $txt['treas_donation_title'] = 'Donations Page Title';
 $txt['treas_donation_goals'] = 'Donation Goals by Month';
 $txt['treas_donation_amount'] = 'Donation Amount';
 $txt['treas_donation_amounts'] = 'Suggested Donation Amounts';
+$txt['treas_donation_other_amounts'] = 'User can specify "Other" Amount?';
 $txt['treas_donation_default'] = 'Which Donation Amount is default?';
 $txt['treas_donations'] = 'Donations';
 $txt['treas_donations_descr'] = 'All payments can be edited or deleted, or you can add a payment.';
@@ -201,4 +202,6 @@ $txt['treas_username_yes'] = 'Username request: YES Response';
 $txt['treas_username_no'] = 'Username request: NO Response';
 $txt['treas_year'] = 'Year';
 $txt['treas_yearly'] = 'Yearly';
+$txt['treas_yes'] = 'Yes';
+$txt['treas_no'] = 'No';
 ?>

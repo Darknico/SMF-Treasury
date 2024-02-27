@@ -487,7 +487,7 @@ function template_config()
 	echo '</table></dt><dd></dd>';
 	
 	showTextBox('don_amt_checked', $txt['treas_donation_default'] , '300', '4', '1');
-	showYNBox('don_amt_other', 'User can specify "Other" Amount?', '', '', '1');
+	showYNBox('don_amt_other', $txt['treas_donation_other_amounts'], '', '', '1');
 	
 	echo '</dl></div>';
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=config" />';

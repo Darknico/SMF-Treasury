@@ -692,21 +692,6 @@ function addDescriptionHelp($name) {
 		onclick="return reqOverlayDiv(this.href);"><span class="main_icons help" title="'. $txt['help']. '"></span></a>';
 }
 
-function selectYN($nm, $val)
-{
-	global $tr_config, $tr_targets;
-	echo '<select size="1" name="', $nm, '">';
-	if ($val)
-	{
-		echo '<option selected="selected" value="1">Yes</option>'
-		. '<option value="0">No</option>';
-	} else {
-		echo '<option value="1">Yes</option>'
-		. '<option selected="selected" value="0">No</option>';
-	}
-	echo '</select>';
-}
-
 function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 {
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
@@ -720,11 +705,11 @@ function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 	echo '<dd><select size="1" name="var_', $name, '">';
 	if ( $tr_config[$name] )
 	{
-		echo '<option selected="selected" value="1">Yes</option>'
-		. '<option value="0">No</option>';
+		echo '<option selected="selected" value="1">',$txt['treas_yes'],'</option>'
+		. '<option value="0">',$txt['treas_no'],'</option>';
 	} else {
-		echo '<option value="1">Yes</option>'
-		. '<option selected="selected" value="0">No</option>';
+		echo '<option value="1">',$txt['treas_yes'],'</option>'
+		. '<option selected="selected" value="0">',$txt['treas_no'],'</option>';
 	}
 	echo '</select></dd>';
 }
