@@ -123,7 +123,7 @@ echo '<div style="text-align:center;text-decoration:blink;">', $tr_config['dm_ti
 	<div style="text-align:center;">
 	', ($tr_config['dm_comments'] ? '<br>'.$tr_config['dm_comments'].'<br>' : ''), '
 	<a href="', $scripturl, '?action=treasury">
-	<img src="', $settings['default_images_url'], '/Treasury//', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
+	<img src="', $settings['default_images_url'], '/Treasury/', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
 	</div>';
 
 if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {
