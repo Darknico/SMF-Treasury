@@ -21,10 +21,11 @@ function template_treasuryregister()
 	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_fin_register'] . '</h3></div>';
     	echo '<div class="windowbg noup"><table class="tborder" width="100%">';
 	echo '<tr class="catbg2"><td align="center">';
-	echo 'Number of new IPN records: ', $num_ipn, ' - ', $txt['treas_totalling'], ' ', $tr_targets['currency'][$tr_config['pp_currency']].sprintf('%0.2f',  $ipn_tot);
+	echo $txt['treas_registry_IPN_number'] . ': ', $num_ipn, ' - ', $txt['treas_totalling'], ' ', $tr_targets['currency'][$tr_config['pp_currency']].sprintf('%0.2f',  $ipn_tot);
 	echo '</td></tr>';
     	echo '<tr class="windowbg"><td align="center">';
-	echo '<input type="submit" value="PayPal IPN reconcile" onclick="return confirm(\'This action will total up all recent PayPal IPN' . '\n' . 'transactions and post them here in the register.' . '\n\n' . 'Are you sure you want to do this now?\')" />';
+	echo '<input type="submit" value="' . $txt['treas_registry_reconcile'] . '" 
+		onclick="return confirm(\'' . $txt['treas_registry_reconcile_confirm'] . '\')" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
 	echo '</td></tr></table>';
 	echo '</form>';
@@ -35,12 +36,12 @@ function template_treasuryregister()
 		echo '<td><form action="', $scripturl.$context['treas_link'], ';sa=registry" method="post" style="margin:0;">'
 		.'<input type="hidden" name="pageNum_Recordset1" value="0" />'
 		.'<input type="hidden" name="totalRows_Recordset1" value="', $totalRows_Recordset1, '" />'
-		.'<input type="submit" name="navig" value="|&laquo;" title="Current" /></form></td>';
+		.'<input type="submit" name="navig" value="|&laquo;" title="', $txt['treas_registry_current'], '" /></form></td>';
 		echo '<td><form action="', $scripturl.$context['treas_link'], ';sa=registry" method="post" style="margin:0;">'
 		.'<input type="hidden" name="pageNum_Recordset1" value="', max(0, $pageNum_Recordset1 - 1), '" />'
 		.'<input type="hidden" name="totalRows_Recordset1" value="', $totalRows_Recordset1, '" />'
 		.'<input type="hidden" name="sc" value="', $context['session_id'], '" />'
-		.'<input type="submit" name="navig" value="&laquo;" title="Next newest" /></form></td>';
+		.'<input type="submit" name="navig" value="&laquo;" title="', $txt['treas_registry_next_newest'], '" /></form></td>';
 	} else {
 		echo '<td colspan="2"></td>';
 	}
@@ -49,12 +50,12 @@ function template_treasuryregister()
 		echo '<td><form action="', $scripturl.$context['treas_link'], ';sa=registry" method="post" style="margin:0;">'
 		.'<input type="hidden" name="pageNum_Recordset1" value="', min($totalPages_Recordset1, $pageNum_Recordset1 + 1), '" />'
 		.'<input type="hidden" name="totalRows_Recordset1" value="', $totalRows_Recordset1, '" />'
-		.'<input type="submit" name="navig" value="&raquo;" title="Next Oldest" /></form></td>';
+		.'<input type="submit" name="navig" value="&raquo;" title="', $txt['treas_registry_next_oldest'], '" /></form></td>';
 		echo '<td><form action="', $scripturl.$context['treas_link'], ';sa=registry" method="post" style="margin:0;">'
 		.'<input type="hidden" name="pageNum_Recordset1" value="', $totalPages_Recordset1, '" />'
 		.'<input type="hidden" name="totalRows_Recordset1" value="', $totalRows_Recordset1, '" />'
 		.'<input type="hidden" name="sc" value="', $context['session_id'], '" />'
-		.'<input type="submit" name="navig" value="&raquo;|" title="Oldest" /></form></td>';
+		.'<input type="submit" name="navig" value="&raquo;|" title="', $txt['treas_registry_oldest'], '" /></form></td>';
 	} else {
 		echo '<td colspan="2"></td>';
 	}
@@ -62,11 +63,11 @@ function template_treasuryregister()
 
     echo '<table class="tborder" width="100%" style="margin:auto;"><tr>'
     .'<td class="titlebg2" align="center">&nbsp;</td>'
-    .'<td class="titlebg2" align="center">Date</td>'
-    .'<td class="titlebg2" align="center">Num</td>'
-    .'<td class="titlebg2" align="center">Name</td>'
-    .'<td class="titlebg2" align="center">Description</td>'
-    .'<td class="titlebg2" align="center">Amount</td></tr>';
+    .'<td class="titlebg2" align="center">', $txt['treas_date'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_num'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_name'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_event_descr'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_amount'], '</td></tr>';
 
 	if (isset($context['treas_registry']))
 	{
@@ -85,9 +86,9 @@ function template_treasuryregister()
 			 	."document.recedit.Submit.value = 'Modify'; "
 			 	."document.recedit.sa.value = 'finregedit'; "
 			  ."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a>&nbsp;'
+	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=finregdel;rid=', $register_treas['id'], ';sesc=', $context['session_id'], '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
+			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			."<td align=\"left\">$register_treas[fdate]</td>"
 	        ."<td align=\"left\" width=\"8\">$register_treas[num]</td>"
@@ -105,11 +106,11 @@ function template_treasuryregister()
     echo '</tr></table>';
     echo '<form name="recedit" action="', $scripturl.$context['treas_link'], '" method="post">'
 	.'<table><tr>'
-    .'<td class="titlebg2" align="center">Date</td>'
-    .'<td class="titlebg2" align="center">Num</td>'
-    .'<td class="titlebg2" align="center">Name</td>'
-    .'<td class="titlebg2" align="center">Description</td>'
-    .'<td class="titlebg2" align="center">Amount</td></tr><tr>'
+    .'<td class="titlebg2" align="center">', $txt['treas_date'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_num'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_name'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_event_descr'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_amount'], '</td></tr><tr>'
 	.'<td align="left" style="width:8px;"><input name="id" type="hidden" />'
 	.'<input name="Date" type="text" size="22" /></td>'
 	.'<td align="left" style="width:8px;"><input name="Num" type="text" size="6" /></td>'
@@ -125,13 +126,12 @@ function template_treasuryregister()
 	."return true;\" />&nbsp;"
 	.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" class="button" />';
 	echo '</td></tr></table></div></form>';
-	echo '<div><b>Note date format -</b> ', timeformat(time(), treasdate()), '</div>';
     echo '<br>';
 }
 
 function template_treasury_donations()
 {
-	global $scripturl, $txt, $context, $settings, $tr_config;
+	global $scripturl, $txt, $context, $settings;
 	global $start, $sort_order, $maxRows, $mode, $totalRows;
 
 	# Donation paging
@@ -170,17 +170,17 @@ function template_treasury_donations()
 
     echo '<table width="100%" style="margin:auto;" class="tborder"><tr>'
     .'<td class="titlebg2" align="center"><b>&nbsp;</b></td>'
-    .'<td class="titlebg2" align="center">Tax ID</td>'
-    .'<td class="titlebg2" align="center">Name</td>'
-    .'<td class="titlebg2" align="center">Show</td>'
-    .'<td class="titlebg2" align="center">Status</td>'
-    .'<td class="titlebg2" align="center">Curr.</td>'
-    .'<td class="titlebg2" align="center">Gross</td>'
-    .'<td class="titlebg2" align="center">Fee</td>'
-    .'<td class="titlebg2" align="center">Settle</td>'
-    .'<td class="titlebg2" align="center">Date</td>'
-    .'<td class="titlebg2" align="center">Rate</td>'
-    .'<td class="titlebg2" align="center">Event</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_taxid'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_name'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_show'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_donations_status'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_currency'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_gross'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_fees'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_settle'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_date'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_donations_rate'], '</td>'
+    .'<td class="titlebg2" align="center">', $txt['treas_event'], '</td>'
 	.'</tr>';
 
 	if (isset($context['treas_donations']))
@@ -206,18 +206,18 @@ function template_treasury_donations()
 			 	."document.transedit.Submit.value = 'Modify'; "
 			 	."document.transedit.sa.value = 'transregedit'; "
 			."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br>'
+	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" /></a><br>'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=transregdel;did=', $donations_treas['id'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
+			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
-			."<td align=\"left\" class=\"smalltext\">$donations_treas[txn_id]</td>"
-	        ."<td align=\"left\" class=\"smalltext\">$donations_treas[custom]</td>"
+			."<td align=\"center\" class=\"smalltext\">$donations_treas[txn_id]</td>"
+	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[custom]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[option_seleczion1]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[payment_status]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[mc_currency]</td>"
-	        ."<td align=\"right\" class=\"smalltext\">$donations_treas[mc_gross]</td>"
-	        ."<td align=\"right\" class=\"smalltext\">$donations_treas[mc_fee]</td>"
-	        ."<td align=\"right\" class=\"smalltext\">$donations_treas[settle_amount]</td>"
+	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[mc_gross]</td>"
+	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[mc_fee]</td>"
+	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[settle_amount]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[payment_date]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[exchange_rate]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[eid]</td>"
@@ -225,35 +225,35 @@ function template_treasury_donations()
 		}
 	}
 
-    echo '</table><br>';
+	echo '</table><br>';
     echo '<form name="transedit" action="', $scripturl.$context['treas_link'], '" method="post">'
 		.'<table><tr>'
-	    .'<td class="titlebg2" align="center">Tax ID</td>'
-	    .'<td class="titlebg2" align="center">Name</td>'
-	    .'<td class="titlebg2" align="center">Show</td>'
-	    .'<td class="titlebg2" align="center">Status</td>'
-	    .'<td class="titlebg2" align="center">Curr.</td>'
-	    .'<td class="titlebg2" align="center">Gross</td>'
-	    .'<td class="titlebg2" align="center">Fee</td>'
-	    .'<td class="titlebg2" align="center">Settle</td>'
-	    .'<td class="titlebg2" align="center">Date</td>'
-	    .'<td class="titlebg2" align="center">Rate</td>'
-	    .'<td class="titlebg2" align="center">Event</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_taxid'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_name'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_show'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_donations_status'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_currency'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_gross'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_fees'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_settle'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_date'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_donations_rate'], '</td>'
+	    .'<td class="titlebg2" align="center">', $txt['treas_event'], '</td>'
 		.'</tr><tr>'
         .'<td align="left" style="width:8px;"><input name="id" type="hidden" />'
         .'<input name="Txn_id" type="text" size="20" class="smalltext" /></td>'
-        .'<td align="left"><input name="Custom" type="text" size="13" class="smalltext" /></td>'
+        .'<td align="center"><input name="Custom" type="text" size="13" class="smalltext" /></td>'
         .'<td align="center"><input name="Option_seleczion1" type="text" size="4" class="smalltext" /></td>'
         .'<td align="center"><input name="Payment_status" type="text" size="10" class="smalltext" /></td>'
         .'<td align="center"><input name="Mc_currency" type="text" size="6" class="smalltext" /></td>'
-        .'<td align="right"><input name="Mc_gross" type="text" size="6" class="smalltext" /></td>'
-        .'<td align="right"><input name="Mc_fee" type="text" size="6" class="smalltext" /></td>'
-        .'<td align="right"><input name="Settle_amount" type="text" size="6" class="smalltext" /></td>'
+        .'<td align="center"><input name="Mc_gross" type="text" size="6" class="smalltext" /></td>'
+        .'<td align="center"><input name="Mc_fee" type="text" size="6" class="smalltext" /></td>'
+        .'<td align="center"><input name="Settle_amount" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Payment_date" type="text" size="22" class="smalltext" /></td>'
         .'<td align="center"><input name="Exchange_rate" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Eid" type="text" size="3" class="smalltext" /></td>'
 		.'</tr>';
-	echo '<tr><td align="center" colspan="9"><br>'
+	echo '<tr><td align="right" colspan="11"><br>'
 		.'<input type="hidden" name="mode" value="', $mode, '" />'
 		.'<input type="hidden" name="start" value="', $start, '" />'
 		.'<input type="hidden" name="sort_order" value="', $sort_order, '" />'
@@ -265,19 +265,21 @@ function template_treasury_donations()
 	    ."return true;\" />&nbsp;"
 		.'<input name="Submit" type="submit" value="', $txt['treas_add'], '" />';
 	echo '</td></tr></table></form>';
-	echo '<br><table width="100%" style="border:1px solid;" class="windowbg">
-	<tr><td><b>Tax ID:</b></td><td> the receipt from paypal, something like ZYXGTY1234567890 (must be UNIQUE for every entry)</td></tr>
-<tr><td><b>Name:</b></td><td> the Username who donated (must be genuine for details to show in Profile)</td></tr>
-<tr><td><b>Show:</b></td><td> <b>Yes</b>, if they wanted their name displayed, otherwise <b>No</b>.</td></tr>
-<tr><td><b>Status:</b></td><td> <b>Completed</b> for display,  <b>Refunded</b> if refund, <b>Pending</b> if waiting on echeck clearance.</td></tr>
-<tr><td><b>Curr. :</b></td><td> currency of donation - must match one of USD CAD AUD YEN EUR GBP</td></tr>
-<tr><td><b>Gross:</b></td><td> the donation amount, in that currency.</td></tr>
-<tr><td><b>Fee:</b></td><td> the paypal fee for that donation, in that currency.</td></tr>
-<tr><td><b>Settle:</b></td><td> the Gross less Fee, <b>converted</b> to your site (primary) currency.</td></tr>
-<tr><td><b>Date:</b></td><td> the format ', timeformat(time(), treasdate()), ' - <b>must</b> match this format.</td></tr>
-<tr><td><b>Rate:</b></td><td> the exchange rate (1.00 if donation currency same as site currency)</td></tr>
-<tr><td><b>Event:</b></td><td> the ID value for any events you may have used, default 0)</td></tr>
-</table></div>';
+
+	echo '<br>
+	<table width="100%" style="border:1px solid;" class="windowbg">
+	<tr><td><b>', $txt['treas_taxid'], ':</b></td><td> ', $txt['treas_taxid_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_name'], ':</b></td><td> ', $txt['treas_name_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_show'], ':</b></td><td> ', $txt['treas_show_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_donations_status'], ':</b></td><td> ', $txt['treas_donations_status_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_currency'], ':</b></td><td> ', $txt['treas_currency_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_gross'], ':</b></td><td> ', $txt['treas_gross_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_fees'], ':</b></td><td> ', $txt['treas_fees_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_settle'], ':</b></td><td> ', $txt['treas_settle_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_date'], ':</b></td><td> ', sprintf($txt['treas_date_description'], timeformat(time(), treasdate())), '</td></tr>
+	<tr><td><b>', $txt['treas_donations_rate'], ':</b></td><td> ', $txt['treas_donations_rate_description'], '</td></tr>
+	<tr><td><b>', $txt['treas_event'], ':</b></td><td> ', $txt['treas_event_description'], '</td></tr>
+	</table></div>';
 }
 
 function template_treasury_totals() {
@@ -341,7 +343,17 @@ function template_treasury_totals() {
 	</tr>
 	<tr class="windowbg"><td colspan="2"><span style="float:left;">', $pagination, '</span>';
 	echo '<span style="float:right;">
-	<b>&raquo;</b> From <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> <a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="Choose Start Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a>&nbsp;to&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> <a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="Choose End Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> <a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_choose_period" onclick="return reqWin(this.href);" class="help"><img src="', $settings['images_url'], '/helptopics_hd.png" alt="', ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']), '" align="top" /></a> <b>&laquo;</b>&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b>&raquo;</b> ', $txt['treas_calendar_from'], ' <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
+	<a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="', $txt['treas_calendar_choose_start_date'], '">
+		<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" />
+	</a>
+	&nbsp;', $txt['treas_calendar_to'], '&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> 
+	<a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="', $txt['treas_calendar_choose_end_date'], '">
+	<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> 
+	<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_choose_period" onclick="return reqWin(this.href);" class="help">
+		<img src="', $settings['images_url'], '/helptopics_hd.png" alt="', ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']), '" align="top" />
+	</a> 
+	<b>&laquo;</b>&nbsp;&nbsp;&nbsp;&nbsp; 
 	<input type="hidden" name="sc" value="', $context['session_id'], '" />
 	<input type="hidden" name="start" value="', $start, '" />
 	<input type="submit" name="submit" value="', $txt['treas_change'], '" style="margin:0;" />&nbsp;</span>
@@ -800,7 +812,7 @@ function template_ipn_reconcile()
 
 	if ( $numrecs == 0 )
 	{
-		echo 'There are no new IPN records to import!';
+		echo $txt['treas_registry_reconcile_norecords'];
 	} else {
 		ipnrecUpdate();
 		if ($rval)
@@ -809,11 +821,14 @@ function template_ipn_reconcile()
 		}
 		else
 		{
-			echo "<b> ERROR : There are $numrecs records to import, but there was an<br>error encountered during db record insertion into the Financial table.<br>Insertion FAILED!";
+			echo "<b>", sprintf($txt['treas_registry_reconcile_error'], $numrecs), "</b>";
 		}
 	}
 
-	echo '<br><br><button type="button" onclick="self.location.href=\'', $scripturl.$context['treas_link'], ';sa=registry\';" style="background-color:#FFCC68; color:#000068; font-weight:bold;">Return to Treasury Admin</button>';
+	echo '<br><br>
+		<button type="button" onclick="self.location.href=\'', $scripturl.$context['treas_link'], ';sa=registry\';" style="background-color:#FFCC68; color:#000068; font-weight:bold;">
+		', $txt['treas_return_treasury_admin'], '
+		</button>';
 	echo '</div>';
 
 }

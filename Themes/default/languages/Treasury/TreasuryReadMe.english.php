@@ -1,7 +1,5 @@
 <?php
 
-global $scripturl, $boardurl, $modSettings;
-
 $txt['treasury_readme_installedVersion'] = 'Installed version';
 $txt['treasury_readme_checkVersionVersion'] = 'Check latest version on';
 
