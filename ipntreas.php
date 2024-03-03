@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.5
+ * @version 2.12.6
  */
 
 if (!file_exists(dirname(__FILE__) . '/SSI.php'))
@@ -395,8 +395,8 @@ if ($dbg)
 		dprt('FAILED!<br>', _INF);
 	}
 
-	dprt('PayPal Receiver Email: <b>' . $tr_config['receiver_email'] . '</b><br>', _INF);
-	echo '<span style="color:red;"><b>Is this really your PayPal Email address?</b></span><br>';
+	dprt('PayPal Receiver Email: <strong>' . $tr_config['receiver_email'] . '</strong><br>', _INF);
+	echo '<span style="color:red;"><strong>Is this really your PayPal Email address?</strong></span><br>';
 }
 
 if ($log)

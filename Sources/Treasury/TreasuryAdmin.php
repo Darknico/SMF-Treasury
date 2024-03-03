@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.5
+ * @version 2.12.6
  */
 
 if (!defined('SMF'))
@@ -692,21 +692,6 @@ function addDescriptionHelp($name) {
 		onclick="return reqOverlayDiv(this.href);"><span class="main_icons help" title="'. $txt['help']. '"></span></a>';
 }
 
-function selectYN($nm, $val)
-{
-	global $tr_config, $tr_targets;
-	echo '<select size="1" name="', $nm, '">';
-	if ($val)
-	{
-		echo '<option selected="selected" value="1">Yes</option>'
-		. '<option value="0">No</option>';
-	} else {
-		echo '<option value="1">Yes</option>'
-		. '<option selected="selected" value="0">No</option>';
-	}
-	echo '</select>';
-}
-
 function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 {
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
@@ -720,11 +705,11 @@ function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 	echo '<dd><select size="1" name="var_', $name, '">';
 	if ( $tr_config[$name] )
 	{
-		echo '<option selected="selected" value="1">Yes</option>'
-		. '<option value="0">No</option>';
+		echo '<option selected="selected" value="1">',$txt['treas_yes'],'</option>'
+		. '<option value="0">',$txt['treas_no'],'</option>';
 	} else {
-		echo '<option value="1">Yes</option>'
-		. '<option selected="selected" value="0">No</option>';
+		echo '<option value="1">',$txt['treas_yes'],'</option>'
+		. '<option selected="selected" value="0">',$txt['treas_no'],'</option>';
 	}
 	echo '</select></dd>';
 }
@@ -769,9 +754,9 @@ function showImgXYBox($xnm, $ynm, $desc, $inpSize, $useHelp)
 		', addDescriptionHelp($xnm) ,'
 		<span>', $desc, '<span>
 	</dt>';
-	echo '<dd>Width '
+	echo '<dd>',$txt['treas_width'],' '
 	."<input size=\"$inpSize\" name=\"var_$xnm\" type=\"text\" value=\"$tr_config[$xnm]\" />";
-	echo ' Height '
+	echo ' ',$txt['treas_height'],' '
 	."<input size=\"$inpSize\" name=\"var_$ynm\" type=\"text\" value=\"$tr_config[$ynm]\" />";
 	echo '</dd>';
 }
@@ -1057,8 +1042,8 @@ function configUpdate()
 	isAllowedTo('admin_treasury');
 	checkSession();
 
-	echo '<div style="text-align:center;" class="titlebg"><b>', $txt['treas_config_error'], '</b></div>';
-	echo '<br><p style="color:#0000FF;"><b>If you see this screen then an SQL error was encountered</b></br>'
+	echo '<div style="text-align:center;" class="titlebg"><strong>', $txt['treas_config_error'], '</strong></div>';
+	echo '<br><p style="color:#0000FF;"><strong>If you see this screen then an SQL error was encountered</strong></br>'
 	. 'You should see a message in <span style="color:#FF0000;">RED</span> below indicating what the error is</p><br><br>';
 
 	$ERR = 1;
@@ -1554,7 +1539,7 @@ function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevn
 	if ( $total_pages > 10 ) {
 		$init_page_max = ( $total_pages > 3 ) ? 3 : $total_pages;
 		for($i = 1; $i < $init_page_max + 1; $i++) {
-			$page_string .= ( $i == $on_page ) ? '<b>'.$i.'</b>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+			$page_string .= ( $i == $on_page ) ? '<strong>'.$i.'</strong>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 			if ( $i <  $init_page_max ) { $page_string .= ', '; }
 		}
 		if ( $total_pages > 3 ) {
@@ -1563,7 +1548,7 @@ function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevn
 				$init_page_min = ( $on_page > 4 ) ? $on_page : 5;
 				$init_page_max = ( $on_page < $total_pages - 4 ) ? $on_page : $total_pages - 4;
 				for($i = $init_page_min - 1; $i < $init_page_max + 2; $i++) {
-					$page_string .= ($i == $on_page) ? '<b>'.$i.'</b>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+					$page_string .= ($i == $on_page) ? '<strong>'.$i.'</strong>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 					if ( $i <  $init_page_max + 1 ) { $page_string .= ', '; }
 				}
 				$page_string .= ( $on_page < $total_pages - 4 ) ? ' ... ' : ', ';
@@ -1571,13 +1556,13 @@ function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevn
 				$page_string .= ' ... ';
 			}
 			for($i = $total_pages - 2; $i < $total_pages + 1; $i++) {
-				$page_string .= ( $i == $on_page ) ? '<b>'.$i.'</b>'  : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+				$page_string .= ( $i == $on_page ) ? '<strong>'.$i.'</strong>'  : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 				if( $i <  $total_pages ) { $page_string .= ", "; }
 			}
 		}
 	} else {
 		for($i = 1; $i < $total_pages + 1; $i++) {
-			$page_string .= ( $i == $on_page ) ? '<b>'.$i.'</b>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+			$page_string .= ( $i == $on_page ) ? '<strong>'.$i.'</strong>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 			if ( $i <  $total_pages ) { $page_string .= ', '; }
 		}
 	}

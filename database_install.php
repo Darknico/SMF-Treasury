@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.5
+ * @version 2.12.6
  */
 
 if (!defined('SMF'))
@@ -50,7 +50,7 @@ if (!empty($trans_exists))
 			array('event_active', '0'), 
 			array('show_registry', '0'), 
 			array('use_curl', '0'), 
-			array('dm_title', '<b>Please Support Us!</b>'), 
+			array('dm_title', '<strong>Please Support Us!</strong>'), 
 			array('dm_show_targets', '1'), 
 			array('dm_show_meter', '1'), 
 			array('dm_name_length', '10'), 
@@ -90,7 +90,7 @@ if (!empty($trans_exists))
 			array('don_name_prompt', 'Do you want your username to be shown?'), 
 			array('don_name_yes', 'Yes! - Tell the world I gave my hard-earned cash!'), 
 			array('don_name_no', 'No - List my donation as Anonymous'), 
-			array('don_text_title', '<b>We Appreciate Your Support</b>'),
+			array('don_text_title', '<strong>We Appreciate Your Support</strong>'),
 			array('don_text', 'Hey, what are you doing here - we don\'t want your money, so keep it, go away!<br><br>LOL, just kidding - if you see this message, the person who installed it still hasn\'t finished setting it up and customizing it, so please be patient if there are some glitches.<br>'), 
 			array('ipn_dbg_lvl', '2'), 
 			array('ipn_log_entries', '50'),
@@ -272,7 +272,7 @@ $smcFunc['db_insert']('ignore',
 	array('variable' => 'string', 'value' => 'string'),
 	array(
 		array('treasury_groupcheck', '0'), 
-		array('treasury_version', '2.12.5'), 
+		array('treasury_version', '2.12.6'), 
 	),
 	array('variable')
 );

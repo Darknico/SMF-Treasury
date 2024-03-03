@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.5
+ * @version 2.12.6
  */
 
 if (!defined('SMF'))
@@ -123,7 +123,7 @@ echo '<div style="text-align:center;text-decoration:blink;">', $tr_config['dm_ti
 	<div style="text-align:center;">
 	', ($tr_config['dm_comments'] ? '<br>'.$tr_config['dm_comments'].'<br>' : ''), '
 	<a href="', $scripturl, '?action=treasury">
-	<img src="', $settings['default_images_url'], '/Treasury//', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
+	<img src="', $settings['default_images_url'], '/Treasury/', $tr_config['dm_button'], '" style="margin:5px 0px 0px 0px; border:0;', $dm_button_dims, '" alt="Donate with PayPal!"  /></a>
 	</div>';
 
 if ($tr_config['dm_show_targets'] || $tr_config['dm_show_meter']) {

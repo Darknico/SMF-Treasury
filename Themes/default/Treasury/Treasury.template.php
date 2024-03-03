@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.5
+ * @version 2.12.6
  */
 
 function template_main()
@@ -62,7 +62,7 @@ function template_main()
 			<input type="hidden" name="item_number" value="', $tr_config['pp_item_num'], '" />';
 
 	echo '<dl class="settings">
-		<dt><b>', $txt['treas_select_amount'], '</b></dt>
+		<dt><strong>', $txt['treas_select_amount'], '</strong></dt>
 		<dd>';	
 	
 	$don_amounts = array();
@@ -74,7 +74,7 @@ function template_main()
 	if (count($don_amounts) == 1)
 	{
 		echo '<input type="hidden" name="amount" value="', $don_amounts[0], '" />
-			<b>', $txt['treas_donation_amount'], '&nbsp;', $don_amounts[0], '</b><br>';
+			<strong>', $txt['treas_donation_amount'], '&nbsp;', $don_amounts[0], '</strong><br>';
 	}
 	else
 	{
@@ -99,7 +99,7 @@ function template_main()
 
 	if ($tr_config['pp_currency2'])
 	{
-		echo '<dt><b>', $txt['treas_choose_currency'], '&nbsp;</b></dt>';
+		echo '<dt><strong>', $txt['treas_choose_currency'], '&nbsp;</strong></dt>';
 		
 		echo '<dd>';
 		
@@ -114,7 +114,7 @@ function template_main()
 	}
 	else
 	{
-		echo '<dt><b>', $txt['treas_site_currency'], '</b></dt>';
+		echo '<dt><strong>', $txt['treas_site_currency'], '</strong></dt>';
 		echo '<dd>', $tr_config['pp_currency'], '<input type="hidden" name="currency_code" value="', $tr_config['pp_currency'], '" /></dd>';
 	}
 
@@ -131,14 +131,14 @@ function template_main()
 				else
 				{
 					echo' <dl class="settings">';
-					echo '<dt><b>', $txt['treas_not_logged'], '</b></dt>
-					<dd><b>', $txt['treas_username'], ':</b> <input type="text" name="custom" size="20" />
+					echo '<dt><strong>', $txt['treas_not_logged'], '</strong></dt>
+					<dd><strong>', $txt['treas_username'], ':</strong> <input type="text" name="custom" size="20" />
 					<input type="hidden" name="os1" value="Guest" /><dd></dl>';
 				}
 				echo '<input type="hidden" name="on0" value="', (!empty($eventid) ? $eventid : 0), '" />';
 				
 				echo' <dl class="settings">';
-				echo'<dt><b>', $tr_config['don_name_prompt'], '</b></dt>
+				echo'<dt><strong>', $tr_config['don_name_prompt'], '</strong></dt>
 				<dd><select name="os0" class="smalltext">
 				  <option selected="selected" value="Yes">', $tr_config['don_name_yes'], '</option>
 				  <option value="No">', $tr_config['don_name_no'], '</option>
@@ -147,7 +147,7 @@ function template_main()
 				echo' <dl class="settings">';				
 				$pp_lang = array('DE' => 'Deutsch', 'NL' => 'Dutch', 'US' => 'English', 'ES' => 'Espa&ntilde;ol', 'FR' => 'Fran&ccedil;ais', 'IT' => 'Italiano');
 				
-				echo '<dt><b>', $txt['treas_paypal_lang'], '</b></dt>
+				echo '<dt><strong>', $txt['treas_paypal_lang'], '</strong></dt>
 				<dd><select name="lc" class="smalltext">';
 				foreach($pp_lang AS $lc_lang => $lc_val) {
 					$lc_select = ($tr_config['pp_language'] == $lc_lang) ? ' selected="selected"' :  '';
@@ -155,7 +155,7 @@ function template_main()
 					$lc_select = '';
 				}
 				echo '</select>
-				<input type="image" src="', $settings['default_images_url'], '/Treasury/', $tr_config['don_button_submit'], '" name="I1"  style="border:0;', $don_sub_image_dims, '" />
+				<input type="image" src="', $settings['default_images_url'], '/Treasury/', $tr_config['don_button_submit'], '" name="I1"  style="background:transparent;box-shadow:none;border:0;', $don_sub_image_dims, '" />
 				</dd>';
 	echo	  '
 				<input type="hidden" name="no_shipping" value="1" />
@@ -254,7 +254,7 @@ function template_main()
 	      
     	    <table style="border-collapse:collapse; padding:5px;" cellpadding="0" cellspacing="0">
 				<tr>
-					<th style="width:100%;" colspan="4" class="smalltext"><b>', $txt['treas_thanks_donated'], '</b></th>
+					<th style="width:100%;" colspan="4" class="smalltext"><strong>', $txt['treas_thanks_donated'], '</strong></th>
 				</tr>
   	          <tr>
                 <td align="left" class="smalltext">', $txt['treas_name'], '</td>
@@ -315,13 +315,13 @@ function template_main()
 	        echo '<div class="roundframe">';
 	        	
 			echo '<table style="border-collapse:collapse; margin:auto; padding:5px; width:50%">';
-			echo '<tr class="windowbg"><td colspan="3" align="center"><b>', $txt['treas_income_expend'], '</b></td></tr>';
-			echo '<tr class="windowbg"><td><b>', $txt['treas_item'], '</b></td><td align="center"><b>', $txt['treas_number'], '</b></td><td align="center"><b>', $txt['treas_total'], '</b></td></tr>';
+			echo '<tr class="windowbg"><td colspan="3" align="center"><strong>', $txt['treas_income_expend'], '</strong></td></tr>';
+			echo '<tr class="windowbg"><td><strong>', $txt['treas_item'], '</strong></td><td align="center"><strong>', $txt['treas_number'], '</strong></td><td align="center"><strong>', $txt['treas_total'], '</strong></td></tr>';
 			foreach ($context['show_registry'] as $registry_show)
 			{
 				echo '<tr class="windowbg"><td>', $registry_show['name'], '</td><td align="center">', $registry_show['number'], '</td><td align="right">', sprintf('%.02f', $registry_show['total']), '</td></tr>';
 			}
-			echo '<tr><td><b>', $txt['treas_net_balance'], '</b></td><td></td><td align="right">', sprintf('%.02f', $net_registry), '</td></tr>';
+			echo '<tr><td><strong>', $txt['treas_net_balance'], '</strong></td><td></td><td align="right">', sprintf('%.02f', $net_registry), '</td></tr>';
 			echo '</table>';
 			echo '</div>';
 		}
@@ -380,18 +380,18 @@ function template_treasury_profile()
 		<table width="90%" cellspacing="1" cellpadding="4" style="margin:auto; border:0;" class="bordercolor">
 			<tr class="titlebg">
 				<td colspan="2" style="height:26px;">
-					&nbsp;<img src="', $settings['images_url'], '/icons/profile_sm.gif" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
+					&nbsp;<img src="', $settings['images_url'], '/icons/profile_hd.png" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
 					</td>
 			</tr>
 			<tr class="windowbg2">
-				<td colspan="2">&nbsp;<b>', $txt['treas_last_ten_donations'], ' ', $context['member']['name'], ':</b>';
+				<td colspan="2">&nbsp;<strong>', $txt['treas_last_ten_donations'], ' ', $context['member']['name'], ':</strong>';
 		echo '<div style="text-align:left;"><br>';
 		foreach ($context['my_donations'] as $donations_mine) {
 			$paydate = timeformat($donations_mine['payment_date'], $treas_date);
             echo '<span style="width:10px; padding-left:27px; float:left;">&#8226;</span><span style="width:80px; float:left; text-align:right;">', $donations_mine['mc_gross'], ' ', $donations_mine['mc_currency'], '</span>&nbsp;&raquo;&nbsp;', $paydate, ' (', $donations_mine['payment_status'], ')<br>';
 		}
         echo '<br>';
-		echo '<b>', $txt['treas_total_site_currency'], ':</b> ', $site_total, ' - ', $txt['treas_thank_you'], '</div>';
+		echo '<strong>', $txt['treas_total_site_currency'], ':</strong> ', $site_total, ' - ', $txt['treas_thank_you'], '</div>';
 
 		$summary = '';
 		if (isset($ttotal))
@@ -411,7 +411,7 @@ function template_treasury_profile()
 		<table width="90%" cellspacing="1" cellpadding="4" style="margin:auto; border:0;" class="bordercolor">
 			<tr class="titlebg">
 				<td style="height:26px;">
-					&nbsp;<img src="', $settings['images_url'], '/icons/profile_sm.gif" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
+					&nbsp;<img src="', $settings['images_url'], '/icons/profile_hd.png" alt="" align="top" />&nbsp;', $txt['treas_show_donations'], '
 				</td>
 			</tr>
 			<tr class="windowbg2">

@@ -8,13 +8,13 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.5
+ * @version 2.12.6
  */
 
 if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
 	require_once(dirname(__FILE__) . '/SSI.php');
 elseif (!defined('SMF'))
-	exit('<b>Error:</b> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
+	exit('<strong>Error:</strong> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 	
 $KBHooks = array(
 	'integrate_load_theme' => 'treeloadTheme',
