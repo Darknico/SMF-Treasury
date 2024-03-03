@@ -1042,8 +1042,8 @@ function configUpdate()
 	isAllowedTo('admin_treasury');
 	checkSession();
 
-	echo '<div style="text-align:center;" class="titlebg"><b>', $txt['treas_config_error'], '</b></div>';
-	echo '<br><p style="color:#0000FF;"><b>If you see this screen then an SQL error was encountered</b></br>'
+	echo '<div style="text-align:center;" class="titlebg"><strong>', $txt['treas_config_error'], '</strong></div>';
+	echo '<br><p style="color:#0000FF;"><strong>If you see this screen then an SQL error was encountered</strong></br>'
 	. 'You should see a message in <span style="color:#FF0000;">RED</span> below indicating what the error is</p><br><br>';
 
 	$ERR = 1;
@@ -1539,7 +1539,7 @@ function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevn
 	if ( $total_pages > 10 ) {
 		$init_page_max = ( $total_pages > 3 ) ? 3 : $total_pages;
 		for($i = 1; $i < $init_page_max + 1; $i++) {
-			$page_string .= ( $i == $on_page ) ? '<b>'.$i.'</b>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+			$page_string .= ( $i == $on_page ) ? '<strong>'.$i.'</strong>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 			if ( $i <  $init_page_max ) { $page_string .= ', '; }
 		}
 		if ( $total_pages > 3 ) {
@@ -1548,7 +1548,7 @@ function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevn
 				$init_page_min = ( $on_page > 4 ) ? $on_page : 5;
 				$init_page_max = ( $on_page < $total_pages - 4 ) ? $on_page : $total_pages - 4;
 				for($i = $init_page_min - 1; $i < $init_page_max + 2; $i++) {
-					$page_string .= ($i == $on_page) ? '<b>'.$i.'</b>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+					$page_string .= ($i == $on_page) ? '<strong>'.$i.'</strong>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 					if ( $i <  $init_page_max + 1 ) { $page_string .= ', '; }
 				}
 				$page_string .= ( $on_page < $total_pages - 4 ) ? ' ... ' : ', ';
@@ -1556,13 +1556,13 @@ function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevn
 				$page_string .= ' ... ';
 			}
 			for($i = $total_pages - 2; $i < $total_pages + 1; $i++) {
-				$page_string .= ( $i == $on_page ) ? '<b>'.$i.'</b>'  : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+				$page_string .= ( $i == $on_page ) ? '<strong>'.$i.'</strong>'  : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 				if( $i <  $total_pages ) { $page_string .= ", "; }
 			}
 		}
 	} else {
 		for($i = 1; $i < $total_pages + 1; $i++) {
-			$page_string .= ( $i == $on_page ) ? '<b>'.$i.'</b>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
+			$page_string .= ( $i == $on_page ) ? '<strong>'.$i.'</strong>' : '<a href="'.$scripturl . ($base_url.';start='.( ( $i - 1 ) * $per_page ) ).'">'.$i.'</a>';
 			if ( $i <  $total_pages ) { $page_string .= ', '; }
 		}
 	}

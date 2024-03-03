@@ -395,8 +395,8 @@ if ($dbg)
 		dprt('FAILED!<br>', _INF);
 	}
 
-	dprt('PayPal Receiver Email: <b>' . $tr_config['receiver_email'] . '</b><br>', _INF);
-	echo '<span style="color:red;"><b>Is this really your PayPal Email address?</b></span><br>';
+	dprt('PayPal Receiver Email: <strong>' . $tr_config['receiver_email'] . '</strong><br>', _INF);
+	echo '<span style="color:red;"><strong>Is this really your PayPal Email address?</strong></span><br>';
 }
 
 if ($log)

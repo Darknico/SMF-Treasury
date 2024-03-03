@@ -101,8 +101,8 @@ function template_treasuryregister()
 			echo ">", $tr_targets['currency'][$tr_config['pp_currency']].$amt, "</span></td></tr>";
 		}
 	}
-    echo '</table><table width="100%"><tr><td align="right"><b>Net Balance&nbsp;&nbsp;&nbsp;';
-	echo $tr_targets['currency'][$tr_config['pp_currency']].sprintf('%0.2f', $total), '&nbsp;</b></td>';
+    echo '</table><table width="100%"><tr><td align="right"><strong>Net Balance&nbsp;&nbsp;&nbsp;';
+	echo $tr_targets['currency'][$tr_config['pp_currency']].sprintf('%0.2f', $total), '&nbsp;</strong></td>';
     echo '</tr></table>';
     echo '<form name="recedit" action="', $scripturl.$context['treas_link'], '" method="post">'
 	.'<table><tr>'
@@ -169,7 +169,7 @@ function template_treasury_donations()
 	</table></form>';
 
     echo '<table width="100%" style="margin:auto;" class="tborder"><tr>'
-    .'<td class="titlebg2" align="center"><b>&nbsp;</b></td>'
+    .'<td class="titlebg2" align="center"><strong>&nbsp;</strong></td>'
     .'<td class="titlebg2" align="center">', $txt['treas_taxid'], '</td>'
     .'<td class="titlebg2" align="center">', $txt['treas_name'], '</td>'
     .'<td class="titlebg2" align="center">', $txt['treas_show'], '</td>'
@@ -268,17 +268,17 @@ function template_treasury_donations()
 
 	echo '<br>
 	<table width="100%" style="border:1px solid;" class="windowbg">
-	<tr><td><b>', $txt['treas_taxid'], ':</b></td><td> ', $txt['treas_taxid_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_name'], ':</b></td><td> ', $txt['treas_name_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_show'], ':</b></td><td> ', $txt['treas_show_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_donations_status'], ':</b></td><td> ', $txt['treas_donations_status_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_currency'], ':</b></td><td> ', $txt['treas_currency_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_gross'], ':</b></td><td> ', $txt['treas_gross_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_fees'], ':</b></td><td> ', $txt['treas_fees_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_settle'], ':</b></td><td> ', $txt['treas_settle_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_date'], ':</b></td><td> ', sprintf($txt['treas_date_description'], timeformat(time(), treasdate())), '</td></tr>
-	<tr><td><b>', $txt['treas_donations_rate'], ':</b></td><td> ', $txt['treas_donations_rate_description'], '</td></tr>
-	<tr><td><b>', $txt['treas_event'], ':</b></td><td> ', $txt['treas_event_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_taxid'], ':</strong></td><td> ', $txt['treas_taxid_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_name'], ':</strong></td><td> ', $txt['treas_name_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_show'], ':</strong></td><td> ', $txt['treas_show_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_donations_status'], ':</strong></td><td> ', $txt['treas_donations_status_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_currency'], ':</strong></td><td> ', $txt['treas_currency_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_gross'], ':</strong></td><td> ', $txt['treas_gross_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_fees'], ':</strong></td><td> ', $txt['treas_fees_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_settle'], ':</strong></td><td> ', $txt['treas_settle_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_date'], ':</strong></td><td> ', sprintf($txt['treas_date_description'], timeformat(time(), treasdate())), '</td></tr>
+	<tr><td><strong>', $txt['treas_donations_rate'], ':</strong></td><td> ', $txt['treas_donations_rate_description'], '</td></tr>
+	<tr><td><strong>', $txt['treas_event'], ':</strong></td><td> ', $txt['treas_event_description'], '</td></tr>
 	</table></div>';
 }
 
@@ -343,7 +343,7 @@ function template_treasury_totals() {
 	</tr>
 	<tr class="windowbg"><td colspan="2"><span style="float:left;">', $pagination, '</span>';
 	echo '<span style="float:right;">
-	<b>&raquo;</b> ', $txt['treas_calendar_from'], ' <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
+	<strong>&raquo;</strong> ', $txt['treas_calendar_from'], ' <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
 	<a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="', $txt['treas_calendar_choose_start_date'], '">
 		<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" />
 	</a>
@@ -353,7 +353,7 @@ function template_treasury_totals() {
 	<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_choose_period" onclick="return reqWin(this.href);" class="help">
 		<img src="', $settings['images_url'], '/helptopics_hd.png" alt="', ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']), '" align="top" />
 	</a> 
-	<b>&laquo;</b>&nbsp;&nbsp;&nbsp;&nbsp; 
+	<strong>&laquo;</strong>&nbsp;&nbsp;&nbsp;&nbsp; 
 	<input type="hidden" name="sc" value="', $context['session_id'], '" />
 	<input type="hidden" name="start" value="', $start, '" />
 	<input type="submit" name="submit" value="', $txt['treas_change'], '" style="margin:0;" />&nbsp;</span>
@@ -361,13 +361,13 @@ function template_treasury_totals() {
 	</table></form>';
 
     echo '<table width="100%" class="tborder"><tr class="titlebg2">'
-    .'<td align="left"><b>', $txt['treas_name'], '</b></td>'
-    .'<td align="center"><b>', $txt['treas_currency'], '</b></td>'
-    .'<td align="right"><b>', $txt['treas_gross'], '</b></td>'
-    .'<td align="right"><b>', $txt['treas_fees'], '</b></td>'
-    .'<td align="right"><b>', $txt['treas_net'], '</b></td>'
-    .'<td align="right"><b>', $txt['treas_settle'], '</b></td>'
-    .'<td align="center"><b>', $txt['treas_last_date'], '</b></td>'
+    .'<td align="left"><strong>', $txt['treas_name'], '</strong></td>'
+    .'<td align="center"><strong>', $txt['treas_currency'], '</strong></td>'
+    .'<td align="right"><strong>', $txt['treas_gross'], '</strong></td>'
+    .'<td align="right"><strong>', $txt['treas_fees'], '</strong></td>'
+    .'<td align="right"><strong>', $txt['treas_net'], '</strong></td>'
+    .'<td align="right"><strong>', $txt['treas_settle'], '</strong></td>'
+    .'<td align="center"><strong>', $txt['treas_last_date'], '</strong></td>'
 	.'</tr>';
 	if (isset($context['donor_totals']))
 	{
@@ -392,13 +392,13 @@ function template_treasury_totals() {
 		$period .= ($opname2 == $search_time) ? $opvalue2 : '';
 	}
     echo '<table class="tborder" style="margin:auto; width:50%;">'
-	.'<tr class="titlebg2"><td colspan="6" align="center"><b>', $txt['treas_summary_of'], ' ', ($search_event ? $txt['treas_all_donations'] : $period), '</b></td></tr>'
+	.'<tr class="titlebg2"><td colspan="6" align="center"><strong>', $txt['treas_summary_of'], ' ', ($search_event ? $txt['treas_all_donations'] : $period), '</strong></td></tr>'
     .'<tr class="windowbg">'
-	.'<td><b>', $txt['treas_type'], '</b></td><td align="right"><b>', $txt['treas_num'], '</b></td><td align="right"><b>', $txt['treas_total'], ' ', $tr_config['pp_currency'], '</b></td>'
-	.'<td align="right"><b>', $txt['treas_gross'], '</b></td><td align="right"><b>', $txt['treas_fees'], '</b></td><td align="right"><b>', $txt['treas_net'], '</b></td>'
+	.'<td><strong>', $txt['treas_type'], '</strong></td><td align="right"><strong>', $txt['treas_num'], '</strong></td><td align="right"><strong>', $txt['treas_total'], ' ', $tr_config['pp_currency'], '</strong></td>'
+	.'<td align="right"><strong>', $txt['treas_gross'], '</strong></td><td align="right"><strong>', $txt['treas_fees'], '</strong></td><td align="right"><strong>', $txt['treas_net'], '</strong></td>'
 	.'</tr>'
 	.'<tr>'
-	.'<td class="windowbg"><b>', $txt['treas_amount'], '</b></td><td align="right" class="windowbg2">', $num, '</td><td align="right" class="windowbg2">', $settled, '</td>'
+	.'<td class="windowbg"><strong>', $txt['treas_amount'], '</strong></td><td align="right" class="windowbg2">', $num, '</td><td align="right" class="windowbg2">', $settled, '</td>'
 	.'<td align="right" class="windowbg2">', $total, '</td><td align="right" class="windowbg2">', $fees, '</td><td align="right" class="windowbg2">', $net, '</td>'
 	.'</tr>'
 	.'</table></div>';
@@ -505,7 +505,7 @@ function template_config_paypal()
 	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_paypal_config'] . '</h3></div>
 	<div class="windowbg noup"><dl class="settings">';
 	showTextBox('receiver_email', $txt['treas_pp_email'] , '', '50', '1');
-	ShowTextBox('pp_notify_url', $txt['treas_pp_notify_file'] . '<br><a href="' . $boardurl . '/ipntreas.php?dbg=1" target="_blank"><b><i>' . $txt['treas_pp_test_ipn'] . '</i></b></a> ipntreas.php ', '', '50', '1');
+	ShowTextBox('pp_notify_url', $txt['treas_pp_notify_file'] . '<br><a href="' . $boardurl . '/ipntreas.php?dbg=1" target="_blank"><strong><i>' . $txt['treas_pp_test_ipn'] . '</i></strong></a> ipntreas.php ', '', '50', '1');
 	showTextBox('pp_ty_url', $txt['treas_pp_return_file'] . '<br>index.php?action=profile ', '', '50', '1');
 	showTextBox('pp_cancel_url', $txt['treas_pp_cancel_file'] . '<br>index.php?action=treasury ', '', '50', '1');
 	showTextBox('pp_image_url', $txt['treas_pp_image'] , '', '50', '1');
@@ -777,7 +777,7 @@ function template_trans_log()
 
 
     echo '<table class="tborder" width="100%" style="margin:auto;"><tr>'
-	.'<td class="titlebg2" align="center"><b>&nbsp;</b></td>'
+	.'<td class="titlebg2" align="center"><strong>&nbsp;</strong></td>'
     .'<td class="titlebg2" align="center">Log Date</td>'
     .'<td class="titlebg2" align="center">Payment</td>'
     .'<td class="titlebg2" align="center">Log Entry</td></tr>';
@@ -807,8 +807,8 @@ function template_ipn_reconcile()
 {
 	global $context, $scripturl, $txt, $curdate, $ipn_total, $numrecs, $rval;
 
-	echo '<div class="titlebg" style="text-align:center;"><b>', $txt['treas_financial'], ' ', $txt['treas_reconciliation'], '</b>';
-	echo '<br><b>', $txt['treas_registry_updated'], '</b><br><br>';
+	echo '<div class="titlebg" style="text-align:center;"><strong>', $txt['treas_financial'], ' ', $txt['treas_reconciliation'], '</strong>';
+	echo '<br><strong>', $txt['treas_registry_updated'], '</strong><br><br>';
 
 	if ( $numrecs == 0 )
 	{
@@ -817,11 +817,11 @@ function template_ipn_reconcile()
 		ipnrecUpdate();
 		if ($rval)
 		{
-			echo "<b>$numrecs</b> ", $txt['treas_registry_imported'], " $", sprintf('%0.2f', $ipn_total);
+			echo "<strong>$numrecs</strong> ", $txt['treas_registry_imported'], " $", sprintf('%0.2f', $ipn_total);
 		}
 		else
 		{
-			echo "<b>", sprintf($txt['treas_registry_reconcile_error'], $numrecs), "</b>";
+			echo "<strong>", sprintf($txt['treas_registry_reconcile_error'], $numrecs), "</strong>";
 		}
 	}
 
