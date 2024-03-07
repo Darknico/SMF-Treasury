@@ -99,7 +99,13 @@ function treeCredits()
 {
 	global $context;
 
-	$context['copyrights']['mods'][] = 'Treasury by <a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> - edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> &copy; 2024, ';
+	$context['copyrights']['mods'][] = 
+	'<a href="https://github.com/Darknico/SMF-Treasury" target="_blank" rel="noopener">Treasury</a> 
+	| &copy; 2024, 
+	<a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> 
+	edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> 
+	- <a href="https://www.italiansmf.net" target="_blank" rel="noopener">Italian SMF</a>
+	| Licensed under <a href="https://github.com/Darknico/SMF-Treasury/blob/main/LICENSE" target="_blank" rel="noopener">GNU GPLv2</a>';
 }	
     
 ?>
