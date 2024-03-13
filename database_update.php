@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.6
+ * @version 2.12.7
  */
 
 if (!defined('SMF'))
@@ -26,7 +26,7 @@ $smcFunc['db_query']('', '
 	SET value = {string:val} 
 	WHERE variable = {string:var}', 
 	array(
-		'val' => '2.12.6',
+		'val' => '2.12.7',
 		'var' => 'treasury_version',
 	)
 );
