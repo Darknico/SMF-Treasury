@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.6
+ * @version 2.12.7
  */
 
 if (!defined('SMF'))
@@ -25,9 +25,11 @@ echo '
 	<div class="windowbg noup">
 		<dl class="settings">
 			<dt>
-				Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 <br>
-				Resourcez at resourcez.biz Copyright (c) 2008 <br>
-				Edited by Darknico Copyright (c) 2024
+				Originally NukeTreasury - Financial management for PHP-Nuke &copy; 2004 <br>
+				<a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> 
+				at resourcez.biz &copy; 2008 <br>
+				Edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> 
+				at <a href="https://www.italiansmf.net" target="_blank" rel="noopener">Italian SMF</a> &copy; 2024
 				<br><br>
 				', $txt['treasury_readme_info_description'],'
 			</dt>

@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.6
+ * @version 2.12.7
  */
 
 function template_treasuryregister()
@@ -839,6 +839,8 @@ function template_read_me()
 	require($sourcedir.'/Treasury/TreasuryReadme.php');
 }
 
+/*Temporary removed - evaluate if is necessary...
+
 function template_treasuryhelp()
 {
 	# TODO Remove - check how use native popup
@@ -861,7 +863,7 @@ function template_treasuryhelp()
 		</div>
 	</body>
 </html>';
-}
+}*/
 
 
 ?>

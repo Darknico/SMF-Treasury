@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.6
+ * @version 2.12.7
  */
 
 if (!defined('SMF'))
@@ -47,7 +47,7 @@ function treasuryAdmin()
 		'ipnrecupdate' => array('ipnrecUpdate', 'admin_treasury'),
 		'donations' => array('treasuryDonations', 'admin_treasury'),
 		'donortotals' => array('treasuryTotals', 'admin_treasury'),
-		'treashelp' => array('treasuryHelp', 'admin_treasury'),
+		//'treashelp' => array('treasuryHelp', 'admin_treasury'), Temporary removed - evaluate if is necessary...
 	);
 
 
@@ -685,11 +685,14 @@ function financialRegEdit()
 
 
 function addDescriptionHelp($name) {
+
+	/* Temporary removed - evaluate if is necessary...
+
 	global $scripturl, $settings, $txt;
 	echo 
 	 '<a id="setting_treas_'. $name. '"
 		href="' . $scripturl . '?action=admin;area=treasury;sa=treashelp;help=treas_'. $name. '" 
-		onclick="return reqOverlayDiv(this.href);"><span class="main_icons help" title="'. $txt['help']. '"></span></a>';
+		onclick="return reqOverlayDiv(this.href);"><span class="main_icons help" title="'. $txt['help']. '"></span></a>';*/
 }
 
 function showYNBox($name, $desc, $tdWidth, $inpSize, $useHelp)
@@ -1502,6 +1505,8 @@ function donorGroup ($user_id, $custom, $payment_date, $option_seleczion1)
 	return $grouplog;
 }
 
+/* Temporary removed - evaluate if is necessary...
+
 function treasuryHelp() {
 	global $txt, $helptxt, $context, $scripturl;
 	isAllowedTo('admin_treasury');
@@ -1526,7 +1531,7 @@ function treasuryHelp() {
 	{
 		$context['help_text'] = sprintf($context['help_text'], $scripturl, $context['session_id']);
 	}
-}
+}*/
 
 function treasuryPages($base_url, $num_items, $per_page, $start_item, $add_prevnext_text = TRUE)
 {
