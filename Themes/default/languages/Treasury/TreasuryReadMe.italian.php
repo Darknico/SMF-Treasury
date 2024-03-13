@@ -13,85 +13,75 @@ $txt['treasury_readme_unistallNote_title'] = 'Note sulla disinstallazione';
 // description
 $txt['treasury_readme_info_description'] = 
 'Treasury ti consente di ricevere e gestire le donazioni tramite PayPal.<br>
-In questa pagina puoi leggere tutte le informazioni per l\utilizzo.';
+In questa pagina puoi leggere tutte le informazioni per l\'utilizzo.';
 
 $txt['treasury_readme_treasSetup_description'] = 
 '<ol>
-<li>Since you are here, I presume you have installed successfully, and followed the instructions provided in the package notes.<br><br></li>
-<li>In the <a href="%2$ssa=configpaypal" style="text-decoration:underline;"><strong>PayPal Config</strong></a> tab, ensure you enter your own PayPal email ID (and your PayPal primary currency) - it simply will not work with the default email ID from install.<br><br></li>
-<li>If you know how to use the PayPal "sandbox", you  can test all you like after setting up a (free) developer account with PayPal.  The sandbox was used to debug this module.<br>If not, get a friend to make some test donations, unless you have a second PayPal account to use.  You can refund these through your PayPal account, without any fees or penalties.<br><br></li>
-<li>Check the other options in admin for setting up the <a href="%2$ssa=config" style="text-decoration:underline;"><strong>Module</strong></a> appearance (and <a href="%2$ssa=configblock" style="text-decoration:underline;"><strong>Block</strong></a> for Portal users).<br><br></li>
-<li>You will need to setup your viewing and admin <a href="%1$s?action=admin;area=permissions" style="text-decoration:underline;"><strong>permissions</strong></a> for each member group.<br><br></li>
-<li>Should you wish to change the name that appears in your menu bar from Donations to something else, you can edit the value for $txt[\'treasury_menu\'] in "Themes/default/languages/Treasury.english.php".<br><br></li>
-<li>Your monthly goals are displayed on the <a href="%1$s?action=treasury" style="text-decoration:underline;"><strong>Treasury</strong></a> page.<br><br></li>
+<li>Dato che sei qui, presumo che tu abbia installato correttamente e seguito le istruzioni fornite nelle note del pacchetto.<br><br></li>
+<li>Nella scheda <a href="%2$ssa=configpaypal" style="text-decoration:underline;"><strong>PayPal</strong></a>, assicurati di inserire il tuo indirizzo email di PayPal (e la valuta principale PayPal): non funzionerà con la email predefinita.<br><br></li>
+<li>Se sai come utilizzare la "sandbox" di PayPal, puoi testare tutto ciò che desideri dopo aver creato un account sviluppatore (gratuito) con PayPal. La sandbox è stata utilizzata per eseguire il debug di questo modulo.<br>In caso contrario, chiedi a un amico di effettuare alcune donazioni di prova, a meno che tu non abbia un secondo conto PayPal da utilizzare. Puoi rimborsarli tramite il tuo conto PayPal, senza commissioni o penalità.<br><br></li>
+<li>Controlla le altre opzioni nell\'amministrazione per impostare l\'aspetto del <a href="%2$ssa=config" style="text-decoration:underline;"><strong>Modulo</strong></a> ( ed il <a href="%2$ssa=configblock" style="text-decoration:underline;"><strong>Blocco</strong></a> per gli utenti del portale).<br><br></li >
+<li>Dovrai impostare le <a href="%1$s?action=admin;area=permissions" style="text-decoration:underline;"><strong>autorizzazioni</strong></a> di visualizzazione ed amministrazione per ciascun gruppo di utenti.<br><br></li>
+<li>Se desideri cambiare il nome che appare nella barra dei menu da Donazioni a qualcos\'altro, puoi modificare il valore di $txt[\'treasury_menu\'] in "Themes/default/languages/Treasury/Treasury.italian.php". <br><br></li>
+<li>I tuoi obiettivi mensili vengono visualizzati nella pagina <a href="%1$s?action=treasury" style="text-decoration:underline;"><strong>Treasury</strong></a>.<br><br></li>
 </ol>';
 
 $txt['treasury_readme_paypalSetup_description'] = 
-'If you choose to ignore this advice, ask PayPal - they get paid to answer your questions.
-I don\'t mean to be rude, but the info is provided for a good reason - so you can help yourself.<br><br>
-If you have problems and do not have full access to the PayPal account profile, do not contact us - it is impossible to problem solve when you cannot directly verify account settings or changes.<br><br>
-I leave your selection of a PayPal account entirely up to you - I will <strong>not</strong> provide advice on this issue.
-After a previous unpleasant experience, I will not leave myself open to absurd threats of legal action.<br>
+'Se scegli di ignorare questo consiglio, chiedi a PayPal: verranno pagati per rispondere alle tue domande.
+Non intendo essere scortese, ma le informazioni vengono fornite per una buona ragione, quindi puoi aiutarti da solo.<br><br>
+Se riscontri problemi e non hai pieno accesso al profilo del conto PayPal, non contattarci: è impossibile risolvere il problema quando non puoi verificare direttamente le impostazioni o le modifiche del conto.<br><br>
+Lascio a te la scelta del conto PayPal: <strong>non</strong> fornirò consigli su questo problema.
+Dopo una precedente esperienza spiacevole, non mi lascerò esporsi ad assurde minacce di azioni legali.<br>
 <ol>
-<li>Treasury requires IPN settings in your PayPal account "Profile".<br>
-&#8226; Set \'IPN\' to \'On\' in "Instant Payment Notification Preferences".<br/>
-&#8226; This will also require a URL to be entered - anything will do, but not blank.<br>
+<li>Treasury richiede le impostazioni IPN nel "Profilo" del tuo conto PayPal.<br>
+&#8226; Imposta "IPN" su "On" nelle "Preferenze di notifica di pagamento istantaneo".<br>
+&#8226; Ciò richiederà anche l\'inserimento di un URL: va bene qualsiasi cosa, ma non lasciarlo vuoto.<br>
 <br>
-The URL you set here is NOT important as Treasury operates from its own Notify and Return URLs which ignore, and are independent of, your PayPal settings.<br>
-&#8226; <strong>Why?</strong> If you already have an IPN setting activated for some other program, it will continue to function for that program.<br>
-&#8226; <strong>Example?</strong> If you have already set your IPN URL so that you can use, say, Paid Subscriptions, then you can leave the URL on PayPal as it is, and still use Treasury.<br><br></li>
-<li>You should also modify "Payment Receiving Preferences" in your "Profile" area.<br>
-&#8226; Check your option for "Block payments sent to me in a currency I do not hold:".<br>
-&#8226; You should set this to the second option "No, accept them and convert them...".<br>
-<br><strong>Failure</strong> to do this means you will have to manually confirm each payment within your PayPal account and the donation will NOT show on your site.<br><br></li>
-<li>Treasury settings in "Website Payment Preferences".<br>
-  You need to set,<br>
-&#8226; Set/Leave \'Auto Return\' to \'On\', <strong>repeat \'On\'</strong> in "Website Payment Preferences".<br>
-&#8226; Set/Leave \'Payment Data Transfer\' to \'Off\' in "Website Payment Preferences".<br><br></li>
-<li>Settings in "Currency Balances".<br>
-These shouldn\'t need changing - PayPal default is fine - a primary currency which is Open and all other currencies Closed.<br>
-If you do not have special reasons for operating with multiple open currencies, DO NOT fiddle!<br>
-If you do have special reasons, you <strong>will not receive exchange rate and settle amounts from PayPal</strong> for non-primary currencies which you have Open.<br>
-You WILL have to manually edit all Treasury transactions for currencies you receive that are not your Primary Currency!<br><br></li>
+L\'URL impostato qui NON è importante poiché Treasury opera dai propri URL di notifica e restituzione che ignorano e sono indipendenti dalle impostazioni PayPal.<br>
+&#8226; <strong>Perché?</strong> Se hai già attivato un\'impostazione IPN per qualche altro programma, continuerà a funzionare per quel programma.<br>
+&#8226; <strong>Esempio?</strong> Se hai già impostato l\'URL IPN in modo da poter utilizzare, ad esempio, gli abbonamenti a pagamento, puoi lasciare l\'URL su PayPal così com\'è e utilizzare comunque Treasury.<br><br></li>
+<li>Dovresti anche modificare le "Preferenze per la ricezione dei pagamenti" nella tua area "Profilo".<br>
+&#8226; Seleziona l\'opzione "Blocca i pagamenti che mi sono stati inviati in una valuta che non possiedo:".<br>
+&#8226; Dovresti impostarlo sulla seconda opzione "No, accettali e convertili...".<br>
+<br><strong>In caso</strong> contrario, dovrai confermare manualmente ogni pagamento nel tuo conto PayPal e la donazione NON verrà visualizzata sul tuo sito.<br><br></li>
+<li>Impostazioni di Treasury in "Preferenze di pagamento del sito web".<br>
+   È necessario impostare,<br>
+&#8226; Imposta/Lascia "Ritorno automatico" su "Attiva", <strong>ripeti "Attiva"</strong> in "Preferenze di pagamento sul sito web".<br>
+&#8226; Imposta/Lascia \'Trasferimento dati pagamento\' su \'Disattivato\' nelle "Preferenze di pagamento del sito web".<br><br></li>
+<li>Impostazioni in "Saldo valute".<br>
+Non dovrebbe essere necessario modificarli: l\'impostazione predefinita di PayPal va bene: una valuta primaria aperta e tutte le altre valute chiuse.<br>
+Se non hai ragioni particolari per operare con più valute aperte, NON giocherellare!<br>
+Se hai motivi speciali, <strong>non riceverai il tasso di cambio e non liquiderai gli importi da PayPal</strong> per le valute non primarie che hai aperto.<br>
+Dovrai modificare manualmente tutte le transazioni di Tesoreria per le valute che ricevi che non sono la tua valuta principale!<br><br></li>
 </ol>';
 
 $txt['treasury_readme_operationalNote_description'] = 
 '<ol>
-<li>The <a href="%2$ssa=registry" style="text-decoration:underline;"><strong>Registry</strong></a> tab allows you to manage your site\'s <strong>receipts &amp; expenses</strong> with basic entries to record them.  You can also total your most recent user contributions as a single entry in the register by <a href="%2$ssa=registry" style="text-decoration:underline;"><strong>Reconciling</strong></a> your paypal receipts.  Should you wish to provide full disclosure to your donors, you can elect to display a summary of your Income &amp; Expenses to them.<br><br></li>
-<li>The <a href="%2$ssa=configblock" style="text-decoration:underline;"><strong>Block</strong></a> is provided for Portal installations where you can have a side-block.  It allows you to display your current monthly donation goal and what funds have been received towards that goal. Display of Goals and/or Donormeter is now selectable. It also lists the users who have contributed in the current month.<br>The Treasury main page already provides all of this information.<br><br></li>
-<li>There are help tips for admin options that describe their use.<br>Just click the question mark for a pop-up to see the descriptions.<br><br></li>
-<li>Treasury will look at varying time periods, depending on the option you choose - monthly, quarterly, half yearly and yearly.  Alternatively, you can choose to manage donations on an event basis, with set targets for each donation campaign.<br><br></li>
-<li>Users can view their personal donation summary through their <a href="%1$s?action=profile;area=showdonations;u=1" style="text-decoration:underline;"><strong>Profile</strong></a> - viewable only by the user or admin.<br><br></li>
-<li>Treasury will also account for any refunds that you process - they will automatically cancel out the original donation and a record will be saved in the Transaction Log.  The donor\'s profile will show the original donation as well as the refund.<br><br></li>
-<li>Got an Internal Server <strong>Error 500</strong> when PayPal returns to your site?<br>Check file permissions for %3$s/ipntreas.php are 644 or 755 (CHMOD to 644 if they are 777 or 666).<br>Similarly if you are using %3$s/Sources/Treasury/DonationBlock.php under a Portal.<br><br></li>
-<li>You can verify that your site will respond to PayPal by <a href="%3$s/ipntreas.php?dbg=1" style="text-decoration:underline;" target="_blank"><strong>clicking here</strong></a>.<br>
-&#8226; This will also place an entry in your <a href="%2$ssa=translog" style="text-decoration:underline;"><strong>transaction log</strong></a>.<br><br></li>
-<li>If you are having problems with transactions not appearing, check the <a href="%2$ssa=translog" style="text-decoration:underline;"><strong>Transaction Log</strong></a> for any clues to problems.<br>
-&#8226; if they pay by echeck (3 days to clear) the log will contain "pending_reason => echeck".<br><br></li>
-<li>Whenever IPN data is not stored in your database, you will have to manually enter the data from your PayPal Email in the bottom row <a href="%2$ssa=donations" style="text-decoration:underline;"><strong>here</strong></a>.<br><br></li>
-<li>Treasury accepts pending payments, like eCheck, and stores the info in the database, with status of \'Pending\'.  When the eCheck clears, it should now receive the PayPal IPN info and automatically update your datbase - otherwise, you can change status to \'Completed\' in <a href="%2$ssa=donations" style="text-decoration:underline;"><strong>Donations</strong></a> and the donation will appear in your goals and donor list - you will need to add data for the fee, settle amount and exchange rate.<br><br></li>
-<li>Membergroup subscriptions - not to be confused with PayPal subscriptions.&nbsp; Auto assignment to a special Supporters group of your choice was introduced previously - now you can choose to allow that membership only for your donation duration i.e. monthly, quarterly, etc. after which their group membership will automatically expire.<br><br>
-Each subsequent donation by a given donor will simply extend the expiry date by the duration from which the donation was made.<br>
-e.g. your duration is Monthly, a donation on 15th Feb will expire on 15th March.<br>
-Same donor contributes again on 27th Feb, so the expiry is extended to 27th March.<br><br></li>
-<li>Events based donations - this is an alternative to the existing time-based donation system.<br>You choose one or the other - it does <strong>not support both</strong> simultaneously.<br>It will only operate for one event Campaign at a time, and you must decide when to end any given campaign.<br><br></li>
-<li>Treasury was initially designed for multi-purpose use, collating information on the basis of paypal transactions for different email addresses.<br>
-&#8226; this means that the "business" field for a transaction is expected to match the "receiver email" address you specified in your <a href="%2$ssa=configpaypal" style="text-decoration:underline;"><strong>PayPal Config</strong></a> tab.<br>
-&#8226; if the two don\'t match up, the donation will be ignored in summaries, so you need to edit the "business" field in your database \'smf_treas_donations\' table.<br>(perhaps in later versions we will put this capability to use).<br><br></li>
-<li>The green bar below the goal summary (near the bottom of the block for Portal users) is the percent achievement of your monthly goal.<br><br></li>
+<li>La scheda <a href="%2$ssa=registry" style="text-decoration:underline;"><strong>Registro</strong></a> ti consente di gestire le <strong>ricevute del tuo sito &amp; spese</strong> con voci di base per registrarle. Puoi anche sommare i tuoi contributi utente più recenti come una singola voce nel registro mediante la <a href="%2$ssa=registry" style="text-decoration:underline;"><strong>Riconciliazione</strong></a> delle tue ricevute PayPal. Se desideri fornire un\'informativa completa ai tuoi donatori, puoi scegliere di visualizzare un riepilogo del tuo reddito e delle tue entrate &amp; spese a loro carico.<br><br></li>
+<li>Il <a href="%2$ssa=configblock" style="text-decoration:underline;"><strong>Blocco</strong></a> viene fornito per le installazioni del Portale in cui è possibile avere un blocco laterale. Ti consente di visualizzare il tuo attuale obiettivo di donazione mensile e quali fondi sono stati ricevuti per raggiungere tale obiettivo. La visualizzazione degli obiettivi e/o il misuratore dei donatori è ora selezionabile. Elenca anche gli utenti che hanno contribuito nel periodo corrente.<br>La pagina principale di Treasury fornisce già tutte queste informazioni.<br><br></li>
+<li>Sono presenti suggerimenti di aiuto per le opzioni di amministrazione che ne descrivono l\'utilizzo.<br>Basta fare clic sul punto interrogativo per visualizzare le descrizioni.<br><br></li>
+<li>Treasury esaminerà periodi di tempo diversi, a seconda dell\'opzione scelta: mensile, trimestrale, semestrale e annuale. In alternativa, puoi scegliere di gestire le donazioni in base agli eventi, con obiettivi prefissati per ciascuna campagna di donazioni.<br><br></li>
+<li>Gli utenti possono visualizzare il riepilogo delle donazioni personali tramite il loro <a href="%1$s?action=profile;area=showdonations;u=1" style="text-decoration:underline;"><strong>Profilo</strong></a> - visualizzabile solo dall\'utente o dall\'amministratore.<br><br></li>
+<li>Treasury terrà conto anche di eventuali rimborsi elaborati: annullerà automaticamente la donazione originale e un record verrà salvato nel registro delle transazioni. Il profilo del donatore mostrerà la donazione originale così come il rimborso.<br><br></li>
+<li>Hai ricevuto un <strong>errore 500</strong> dal server interno quando PayPal ritorna al tuo sito?<br>Controlla che i permessi del file per %3$s/ipntreas.php siano 644 o 755 (CHMOD a 644 se sono 777 o 666).<br>Allo stesso modo se stai utilizzando %3$s/Sources/Treasury/DonationBlock.php in un portale.<br><br></li>
+<li>Puoi verificare che il tuo sito risponderà a PayPal <a href="%3$s/ipntreas.php?dbg=1" style="text-decoration:underline;" target="_blank"><strong>facendo clic qui</strong></a>.<br>
+&#8226; Ciò inserirà anche una voce nel tuo <a href="%2$ssa=translog" style="text-decoration:underline;"><strong>registro delle transazioni</strong></a>.<br><br </li>
+<li>Se riscontri problemi con le transazioni che non vengono visualizzate, controlla il <a href="%2$ssa=translog" style="text-decoration:underline;"><strong>Registro delle transazioni</strong></a > per eventuali indizi sui problemi.<br>
+&#8226; se pagano tramite echeck (3 giorni per cancellare) il registro conterrà "pending_reason => echeck".<br><br></li>
+<li>Ogni volta che i dati IPN non sono archiviati nel tuo database, dovrai inserire manualmente i dati dalla tua email PayPal nella riga inferiore <a href="%2$ssa=donations" style="text-decoration:underline;"><strong>qui</strong></a>.<br><br></li>
+<li>Treasury accetta pagamenti in sospeso, come eCheck, e memorizza le informazioni nel database, con lo stato "Pending". Quando l\'eCheck viene cancellato, ora dovrebbe ricevere le informazioni IPN PayPal e aggiornare automaticamente il tuo database, altrimenti puoi modificare lo stato in "Completato" in <a href="%2$ssa=donations" style="text-decoration:underline;"><strong>Donazioni</strong></a> e le donazioni verranno visualizzate nei tuoi obiettivi e nell\'elenco dei donatori: dovrai aggiungere i dati per la quota, saldare l\'importo e il tasso di cambio.<br><br></li>
+<li>Donazioni basate sugli eventi: questa è un\'alternativa al sistema di donazioni esistente basato sul tempo.<br>Scegli l\'uno o l\'altro, <strong>non supporta entrambi</strong> contemporaneamente.<br>Lo farà solo per una campagna di eventi alla volta e devi decidere quando terminare una determinata campagna.<br><br></li>
+<li>Treasury è stato inizialmente progettato per un uso multiuso, raccogliendo informazioni sulla base delle transazioni PayPal per diversi indirizzi e-mail.<br>
+&#8226; ciò significa che è previsto che il campo "aziendale" per una transazione corrisponda all\'indirizzo "e-mail del destinatario" specificato nella scheda <a href="%2$ssa=configpaypal" style="text-decoration:underline;">scheda <strong>Configurazione PayPal</strong></a>.<br>
+&#8226; se i due non corrispondono, la donazione verrà ignorata nei riepiloghi, quindi dovrai modificare il campo "azienda" nella tabella "smf_treas_donations" del tuo database.<br>(forse nelle versioni successive utilizzeremo questa funzionalità).<br><br></li>
+<li>La barra verde sotto il riepilogo dell\'obiettivo (vicino alla parte inferiore del blocco per gli utenti del portale) indica la percentuale di raggiungimento del tuo obiettivo mensile.<br><br></li>
 </ol>';
 
 $txt['treasury_readme_unistallNote_description'] = 
 '<ol>
-<li>You must run Uninstall before upgrading so that all existing Treasury changes and files can be removed.<br>
-Note: for theme changes, Uninstall will only modify the default theme.<br>
-Any manual changes you made to other themes you must manually reverse yourself.<br></li>
-<li>To avoid any warnings below, it is recommended that you first uninstall mods added after Treasury,
-and uninstall them in the <strong>REVERSE ORDER</strong> that you installed them.<br></li>
-<li>If you do have warnings below, continuing the uninstall process <strong>WILL</strong> create issues with your site.<br>
-Then determine what caused this issue and fix that.<br><br></li>
-<li>Note: Uninstall will deliberately <strong>NOT</strong> remove the Treasury database tables.<br>
-For permanent Uninstall you will need to manually <strong>DROP</strong> these tables from the database:<br>
+<li>La disinstallazione rimuove tutti i file e gli hooks</li>
+<li>Nota: durante la disinstallazione <strong>NON</strong> vengono rimosse le tabelle di Treasury dal database.<br>
+Per una completa disinstallazione bisogna <strong>ELIMINARE</strong> queste tabelle nel database:<br>
 - smf_log_treasurey<br>
 - smf_treas_config<br>
 - smf_treas_donations<br>
@@ -99,7 +89,7 @@ For permanent Uninstall you will need to manually <strong>DROP</strong> these ta
 - smf_treas_registry<br>
 - smf_treas_subscribers<br>
 - smf_treas_targets<br>
-(assumes you used smf_ for your prefix)<br><br></li>
+(assumanedo che venga utilizzato smf_ come prefisso)<br><br></li>
 </ol>';
 
 ?>

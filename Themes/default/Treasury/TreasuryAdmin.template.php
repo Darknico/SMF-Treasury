@@ -839,6 +839,8 @@ function template_read_me()
 	require($sourcedir.'/Treasury/TreasuryReadme.php');
 }
 
+/*Temporary removed - evaluate if is necessary...
+
 function template_treasuryhelp()
 {
 	# TODO Remove - check how use native popup
@@ -861,7 +863,7 @@ function template_treasuryhelp()
 		</div>
 	</body>
 </html>';
-}
+}*/
 
 
 ?>

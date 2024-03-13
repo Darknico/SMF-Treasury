@@ -22,7 +22,7 @@ $txt['treasury_readme_treasSetup_description'] =
 <li>If you know how to use the PayPal "sandbox", you  can test all you like after setting up a (free) developer account with PayPal.  The sandbox was used to debug this module.<br>If not, get a friend to make some test donations, unless you have a second PayPal account to use.  You can refund these through your PayPal account, without any fees or penalties.<br><br></li>
 <li>Check the other options in admin for setting up the <a href="%2$ssa=config" style="text-decoration:underline;"><strong>Module</strong></a> appearance (and <a href="%2$ssa=configblock" style="text-decoration:underline;"><strong>Block</strong></a> for Portal users).<br><br></li>
 <li>You will need to setup your viewing and admin <a href="%1$s?action=admin;area=permissions" style="text-decoration:underline;"><strong>permissions</strong></a> for each member group.<br><br></li>
-<li>Should you wish to change the name that appears in your menu bar from Donations to something else, you can edit the value for $txt[\'treasury_menu\'] in "Themes/default/languages/Treasury.english.php".<br><br></li>
+<li>Should you wish to change the name that appears in your menu bar from Donations to something else, you can edit the value for $txt[\'treasury_menu\'] in "Themes/default/languages/Treasury/Treasury.english.php".<br><br></li>
 <li>Your monthly goals are displayed on the <a href="%1$s?action=treasury" style="text-decoration:underline;"><strong>Treasury</strong></a> page.<br><br></li>
 </ol>';
 
@@ -70,10 +70,6 @@ $txt['treasury_readme_operationalNote_description'] =
 &#8226; if they pay by echeck (3 days to clear) the log will contain "pending_reason => echeck".<br><br></li>
 <li>Whenever IPN data is not stored in your database, you will have to manually enter the data from your PayPal Email in the bottom row <a href="%2$ssa=donations" style="text-decoration:underline;"><strong>here</strong></a>.<br><br></li>
 <li>Treasury accepts pending payments, like eCheck, and stores the info in the database, with status of \'Pending\'.  When the eCheck clears, it should now receive the PayPal IPN info and automatically update your datbase - otherwise, you can change status to \'Completed\' in <a href="%2$ssa=donations" style="text-decoration:underline;"><strong>Donations</strong></a> and the donation will appear in your goals and donor list - you will need to add data for the fee, settle amount and exchange rate.<br><br></li>
-<li>Membergroup subscriptions - not to be confused with PayPal subscriptions.&nbsp; Auto assignment to a special Supporters group of your choice was introduced previously - now you can choose to allow that membership only for your donation duration i.e. monthly, quarterly, etc. after which their group membership will automatically expire.<br><br>
-Each subsequent donation by a given donor will simply extend the expiry date by the duration from which the donation was made.<br>
-e.g. your duration is Monthly, a donation on 15th Feb will expire on 15th March.<br>
-Same donor contributes again on 27th Feb, so the expiry is extended to 27th March.<br><br></li>
 <li>Events based donations - this is an alternative to the existing time-based donation system.<br>You choose one or the other - it does <strong>not support both</strong> simultaneously.<br>It will only operate for one event Campaign at a time, and you must decide when to end any given campaign.<br><br></li>
 <li>Treasury was initially designed for multi-purpose use, collating information on the basis of paypal transactions for different email addresses.<br>
 &#8226; this means that the "business" field for a transaction is expected to match the "receiver email" address you specified in your <a href="%2$ssa=configpaypal" style="text-decoration:underline;"><strong>PayPal Config</strong></a> tab.<br>
@@ -83,13 +79,7 @@ Same donor contributes again on 27th Feb, so the expiry is extended to 27th Marc
 
 $txt['treasury_readme_unistallNote_description'] = 
 '<ol>
-<li>You must run Uninstall before upgrading so that all existing Treasury changes and files can be removed.<br>
-Note: for theme changes, Uninstall will only modify the default theme.<br>
-Any manual changes you made to other themes you must manually reverse yourself.<br></li>
-<li>To avoid any warnings below, it is recommended that you first uninstall mods added after Treasury,
-and uninstall them in the <strong>REVERSE ORDER</strong> that you installed them.<br></li>
-<li>If you do have warnings below, continuing the uninstall process <strong>WILL</strong> create issues with your site.<br>
-Then determine what caused this issue and fix that.<br><br></li>
+<li>The uninstall remove all file and all hooks</li>
 <li>Note: Uninstall will deliberately <strong>NOT</strong> remove the Treasury database tables.<br>
 For permanent Uninstall you will need to manually <strong>DROP</strong> these tables from the database:<br>
 - smf_log_treasurey<br>
