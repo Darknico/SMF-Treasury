@@ -34,7 +34,7 @@ echo '
 				', $txt['treasury_readme_info_description'],'
 			</dt>
 			<dd>
-				', $txt['treasury_readme_installedVersion'],': <strong>',$modSettings['treasury_version'],'</strong><br>
+				', $txt['treasury_readme_installedVersion'],': <strong>',TREAS_VERSION,'</strong><br>
 				', $txt['treasury_readme_checkVersionVersion'],' <a href="https://github.com/Darknico/SMF-Treasury/releases" target="_blank">GitHub</a>
 			</dd>
 		<dl>

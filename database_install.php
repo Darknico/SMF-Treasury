@@ -272,7 +272,6 @@ $smcFunc['db_insert']('ignore',
 	array('variable' => 'string', 'value' => 'string'),
 	array(
 		array('treasury_groupcheck', '0'), 
-		array('treasury_version', '2.12.7'), 
 	),
 	array('variable')
 );

@@ -10,7 +10,6 @@
 		<require-dir name="Sources/Treasury" destination="$sourcedir" />
 		<require-dir name="Themes/default" destination="$themes_dir" />		
 		<require-file name="ipntreas.php" destination="$boarddir" />
-		<code>database_update.php</code>
 	</upgrade>
 
 	<install for="2.1.*">
