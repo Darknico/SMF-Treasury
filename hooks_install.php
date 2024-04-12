@@ -16,7 +16,7 @@ if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
 elseif (!defined('SMF'))
 	exit('<strong>Error:</strong> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 	
-$KBHooks = array(
+$TRHooks = array(
 	'integrate_load_theme' => 'treeloadTheme',
 	'integrate_menu_buttons' => 'treeMenu',
 	'integrate_actions' => 'treeActions',	
@@ -27,6 +27,6 @@ $KBHooks = array(
 	'integrate_pre_include' => '$sourcedir/Treasury/hooks.php'
 );
 
-foreach ($KBHooks as $hook => $function)
+foreach ($TRHooks as $hook => $function)
     add_integration_function($hook, $function);
 ?>
