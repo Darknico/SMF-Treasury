@@ -19,13 +19,15 @@
 		<hook hook="integrate_pre_include" file="$sourcedir/Treasury/hooks.php" />
 		<code>hooks_install.php</code>
 		<code>database_install.php</code>
-		<readme type="file" parsemd="true">readme.md</readme>
+		<readme type="file" parsebbc="true">readme.txt</readme>
+		<readme type="file" parsebbc="true" lang="italian">readme.ita.txt</readme>
 		<redirect url="?action=admin;area=treasury" timeout="3000" />
 	</install>
 
 	<uninstall for="2.1.*">
 		<code>hooks_uninstall.php</code>
-		<readme type="file" parsebbc="true">emdaer.txt</readme>
+		<readme type="file" parsebbc="true">uninstallReadme.txt</readme>
+		<readme type="file" parsebbc="true" lang="italian">uninstallReadme.ita.txt</readme>
 		<remove-dir name="$sourcedir/Treasury" />
 		<remove-dir name="$themedir/Treasury" />
 		<remove-dir name="$themedir/images/Treasury" />
