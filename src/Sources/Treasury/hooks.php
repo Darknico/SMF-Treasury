@@ -8,11 +8,13 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.7
+ * @version 2.12.8
  */
 
 if (!defined('SMF'))
-	die('Hacking attempt...');   
+	die('Hacking attempt...');  
+
+	defined('TREAS_VERSION') || define('TREAS_VERSION', '2.12.8');	
 
 function treeloadTheme() 
 {
@@ -100,8 +102,7 @@ function treeCredits()
 	global $context;
 
 	$context['copyrights']['mods'][] = 
-	'<a href="https://github.com/Darknico/SMF-Treasury" target="_blank" rel="noopener">Treasury</a> 
-	| &copy; 2024, 
+	'<a href="https://github.com/Darknico/SMF-Treasury" target="_blank" rel="noopener">Treasury</a> ' .TREAS_VERSION. ' | &copy; 2024, 
 	<a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> 
 	edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> 
 	- <a href="https://www.italiansmf.net" target="_blank" rel="noopener">Italian SMF</a>

@@ -1,6 +1,6 @@
 <?php
 /**
- * hooks_install.php
+ * hooks_uninstall.php
  *
  * @package Treasury
  * @link https://github.com/Darknico/SMF-Treasury
@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.7
+ * @version 2.12.8
  */
 
 if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
@@ -16,7 +16,7 @@ if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
 elseif (!defined('SMF'))
 	exit('<strong>Error:</strong> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 	
-$KBHooks = array(
+$TRHooks = array(
 	'integrate_load_theme' => 'treeloadTheme',
 	'integrate_menu_buttons' => 'treeMenu',
 	'integrate_actions' => 'treeActions',	
@@ -27,6 +27,6 @@ $KBHooks = array(
 	'integrate_pre_include' => '$sourcedir/Treasury/hooks.php'
 );
 
-foreach ($KBHooks as $hook => $function)
-    add_integration_function($hook, $function);
+foreach ($TRHooks as $hook => $function)
+	remove_integration_function($hook, $function);
 ?>

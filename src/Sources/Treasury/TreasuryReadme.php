@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.7
+ * @version 2.12.8
  */
 
 if (!defined('SMF'))
@@ -34,7 +34,7 @@ echo '
 				', $txt['treasury_readme_info_description'],'
 			</dt>
 			<dd>
-				', $txt['treasury_readme_installedVersion'],': <strong>',$modSettings['treasury_version'],'</strong><br>
+				', $txt['treasury_readme_installedVersion'],': <strong>',TREAS_VERSION,'</strong><br>
 				', $txt['treasury_readme_checkVersionVersion'],' <a href="https://github.com/Darknico/SMF-Treasury/releases" target="_blank">GitHub</a>
 			</dd>
 		<dl>

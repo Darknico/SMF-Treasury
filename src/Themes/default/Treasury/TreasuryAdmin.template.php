@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.7
+ * @version 2.12.8
  */
 
 function template_treasuryregister()
@@ -350,9 +350,6 @@ function template_treasury_totals() {
 	&nbsp;', $txt['treas_calendar_to'], '&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> 
 	<a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="', $txt['treas_calendar_choose_end_date'], '">
 	<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> 
-	<a href="', $scripturl.$context['treas_link'], ';sa=treashelp;help=treas_choose_period" onclick="return reqWin(this.href);" class="help">
-		<img src="', $settings['images_url'], '/helptopics_hd.png" alt="', ($context['treas_smf'] == 1 ? $txt['119'] : $txt['help']), '" align="top" />
-	</a> 
 	<strong>&laquo;</strong>&nbsp;&nbsp;&nbsp;&nbsp; 
 	<input type="hidden" name="sc" value="', $context['session_id'], '" />
 	<input type="hidden" name="start" value="', $start, '" />

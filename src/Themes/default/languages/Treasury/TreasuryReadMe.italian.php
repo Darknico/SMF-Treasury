@@ -89,7 +89,7 @@ Per una completa disinstallazione bisogna <strong>ELIMINARE</strong> queste tabe
 - smf_treas_registry<br>
 - smf_treas_subscribers<br>
 - smf_treas_targets<br>
-(assumanedo che venga utilizzato smf_ come prefisso)<br><br></li>
+(assumendo che venga utilizzato smf_ come prefisso)<br><br></li>
 </ol>';
 
 ?>
