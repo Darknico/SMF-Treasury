@@ -14,7 +14,7 @@
 if (!defined('SMF'))
 	die('Hacking attempt...');  
 
-	defined('TREAS_VERSION') || define('TREAS_VERSION', '2.12.9');	
+	defined('TREAS_VERSION') || define('TREAS_VERSION', '2.12.10');	
 
 function treeloadTheme() 
 {
