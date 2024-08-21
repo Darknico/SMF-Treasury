@@ -230,4 +230,15 @@ $txt['treas_calendar_choose_end_date'] = 'Scegli data finale';
 $txt['treas_calendar_from'] = 'Da';
 $txt['treas_calendar_to'] = 'a';
 
+// Mail
+$txt['treas_mail_subject_donation'] = 'Donazione';
+$txt['treas_mail_subject_refund'] = 'Rimborso';
+$txt['treas_mail_body_received_from'] = ' ricevuto da ';
+$txt['treas_mail_body_refunded_to'] = ' rimborsato a ';
+$txt['treas_mail_body_member_link'] = 'Link utente:\n';
+$txt['treas_mail_body2_thank'] = 'Grazie ';
+$txt['treas_mail_body2_confirm_receipt'] = 'Siamo lieti di confermare la ricezione della vostra generosa donazione di ';
+$txt['treas_mail_body2_confirm_refunding'] = 'Confermiamo il rimborso della tua donazione di ';
+$txt['treas_mail_body2_details'] = 'Dettagli Qui:\n';
+
 ?>

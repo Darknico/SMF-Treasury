@@ -230,4 +230,15 @@ $txt['treas_calendar_choose_end_date'] = 'Choose End Date';
 $txt['treas_calendar_from'] = 'From';
 $txt['treas_calendar_to'] = 'to';
 
+// Mail
+$txt['treas_mail_subject_donation'] = 'Treasury Donation';
+$txt['treas_mail_subject_refund'] = 'Treasury Refund';
+$txt['treas_mail_body_received_from'] = ' received from ';
+$txt['treas_mail_body_refunded_to'] = ' refunded to ';
+$txt['treas_mail_body_member_link'] = 'Member Link:\n';
+$txt['treas_mail_body2_thank'] = 'Thank you ';
+$txt['treas_mail_body2_confirm_receipt'] = 'We are pleased to confirm receipt of your generous donation of ';
+$txt['treas_mail_body2_confirm_refunding'] = 'We confirm refunding your donation of ';
+$txt['treas_mail_body2_details'] = 'Details Here:\n';
+
 ?>

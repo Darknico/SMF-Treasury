@@ -269,13 +269,13 @@ if (!$dbg && !$ERR && $verified == 1) {
 			dprt($insertSQL.'<br>', _INF);
 			paypalUpdate($insertSQL);
 			dprt('SQL result = ' . $ResultSQL . '<br>', _INF);
-			$body = $row_Recordset1['currency_symbol'].(-$payment_amount) . " refunded to " . $row_Recordset1['custom'] . "\n\n";
-			$body .= "Member Link:\n" . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
-			$body2 = 'Thank you '. $row_Recordset1['custom'] . "\n\n";
-			$body2 .= 'We confirm refunding your donation of ' . $row_Recordset1['currency_symbol'].(-$payment_amount) . "\n";
-			$body2 .= "Details Here:\n" . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
-			emailadmin('Treasury Refund', $body);
-			emailuser('Treasury Refund', $body2, $payer_email);
+			$body = $row_Recordset1['currency_symbol'].(-$payment_amount) . $txt['treas_mail_body_refunded_to'] . $row_Recordset1['custom'] . "\n\n";
+			$body .= $txt['treas_mail_body_member_link'] . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
+			$body2 = $txt['treas_mail_body2_thank']. $row_Recordset1['custom'] . "\n\n";
+			$body2 .= $txt['treas_mail_body2_confirm_refunding'] . $row_Recordset1['currency_symbol'].(-$payment_amount) . "\n";
+			$body2 .= $txt['treas_mail_body2_details'] . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
+			emailadmin($txt['treas_mail_subject_refund'], $body);
+			emailuser($txt['treas_mail_subject_refund'], $body2, $payer_email);
 		}
 	}
 	// Look for abnormal payment
@@ -352,13 +352,13 @@ if (!$dbg && !$ERR && $verified == 1) {
 			dprt($insertSQL.'<br>', _INF);
 			paypalUpdate($insertSQL);
 			dprt('SQL result = ' . $ResultSQL . '<br>', _INF);
-			$body = $currency_symbol.$payment_amount . ' received from ' . $custom . "\n\n";
-			$body .= "Member Link:\n" . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
-			$body2 = 'Thank you '. $custom . "\n\n";
-			$body2 .= 'We are pleased to confirm receipt of your generous donation of ' . $currency_symbol.$payment_amount . "\n";
-			$body2 .= "Details Here:\n" . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
-			emailadmin('Treasury Donation', $body);
-			emailuser('Treasury Donation', $body2, $payer_email);
+			$body = $currency_symbol.$payment_amount . $txt['treas_mail_body_received_from'] . $custom . "\n\n";
+			$body .= $txt['treas_mail_body_member_link'] . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
+			$body2 = $txt['treas_mail_body2_thank']. $custom . "\n\n";
+			$body2 .= $txt['treas_mail_body2_confirm_receipt'] . $currency_symbol.$payment_amount . "\n";
+			$body2 .= $txt['treas_mail_body2_details'] . $scripturl . '?action=profile;u=' . $id_member . ';sa=showDonations';
+			emailadmin($txt['treas_mail_subject_donation'], $body);
+			emailuser($txt['treas_mail_subject_donation'], $body2, $payer_email);
 
 			if ($payment_status == 'Pending') {
 				dprt('Payment pending - no actions on Donor group.<br>', _INF);
