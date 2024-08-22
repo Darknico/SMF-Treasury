@@ -732,6 +732,21 @@ function showTextBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 	</dd>';
 }
 
+function showTextBoxImage($name, $desc, $tdWidth, $inpSize, $useHelp)
+{
+	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
+	isAllowedTo('admin_treasury');
+
+    echo '
+	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>
+    	<dd>Themes/default/images/Treasury/
+		<input size="', $inpSize, '" name="var_', $name, '" type="text" value="', $tr_config[$name], '" />
+	</dd>';
+}
+
 function showTextArea($name, $desc, $tcols, $trows, $useHelp)
 {
 	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;

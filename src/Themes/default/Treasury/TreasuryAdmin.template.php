@@ -426,7 +426,7 @@ function template_config()
 	selectBox('duration', $txt['treas_duration'] , $tr_config['duration'], $time_durations, '1');
 	showYNBox('show_registry', $txt['treas_show_registry'] , '', '', '1');
 	ShowTextBox('don_num_don', $txt['treas_num_donors'] , '', '4', '1');
-	showTextBox('don_button_submit', $txt['treas_submit_button'] , '', '25', '1');
+	showTextBoxImage('don_button_submit', $txt['treas_submit_button'] , '', '15', '1');
 	showImgXYBox('don_sub_img_width', 'don_sub_img_height', $txt['treas_image_dims'] , '2', '1');
 
 	echo '</dl><hr><dl class="settings">';
@@ -539,14 +539,14 @@ function template_config_block()
 	<div class="windowbg noup"><dl class="settings">';
 	ShowTextBox('dm_name_length', $txt['treas_block_username'] , '', '4', '1');
 	showTextBox('dm_num_don', $txt['treas_block_number'] ,  '', '4', '1');
-	showTextBox('dm_button', $txt['treas_block_image'] , '', '25', '1');
+	showTextBoxImage('dm_button', $txt['treas_block_image'] , '', '15', '1');
+	showImgXYBox('dm_img_width', 'dm_img_height',  $txt['treas_block_image_size'] , '4', '1');
 
 	echo '</dl><hr><dl class="settings">';
 
 	showYNBox('dm_show_date', $txt['treas_block_dates'] , '', '', '1');
 	showYNBox('dm_show_amt', $txt['treas_block_amounts'] , '', '', '1');
-	showImgXYBox('dm_img_width', 'dm_img_height',  $txt['treas_block_image_size'] , '4', '1');
-
+	
 	echo '</dl><hr><dl class="settings">';
 	
 	showTextBox('dm_title', $txt['treas_block_title'] , '', '40', '1');
