@@ -110,6 +110,7 @@ $txt['treas_event_description'] = 'the ID value for any events you may have used
 $txt['treas_donor_totals'] = 'Totals';
 $txt['treas_donor_totals_descr'] = 'You can select various time periods to display total donations during that time, or choose an event.';
 $txt['treas_duration'] = 'Select Duration of Donations';
+$txt['treas_no_event'] = 'No Event';
 $txt['treas_event'] = 'Event';
 $txt['treas_events'] = 'Events';
 $txt['treas_event_active'] = 'Active Event';
@@ -124,6 +125,12 @@ $txt['treas_event_start'] = 'Date Start';
 $txt['treas_event_target'] = 'Target';
 $txt['treas_event_title'] = 'Title';
 $txt['treas_event_titlemax'] = 'Title (max. 25 chars)';
+$txt['treas_event_beware_message'] = 'BEWARE: you activated an event - this will change your Treasury display!';
+$txt['treas_event_sort_last_event'] = 'Sort Last Event';
+$txt['treas_event_sort_target'] = 'Sort Target';
+$txt['treas_event_sort_actual'] = 'Sort Actual';
+$txt['treas_event_update_event'] = 'Update Event';
+$txt['treas_event_add_event'] = 'Add an Event';
 $txt['treas_fees'] = 'Fees';
 $txt['treas_fin_register'] = 'Registry';
 $txt['treas_fin_register_descr'] = 'Reconcile PayPal payments &amp; edit / delete / add details to the financial registry.';
@@ -238,5 +245,22 @@ $txt['treas_mail_body2_thank'] = 'Thank you ';
 $txt['treas_mail_body2_confirm_receipt'] = 'We are pleased to confirm receipt of your generous donation of ';
 $txt['treas_mail_body2_confirm_refunding'] = 'We confirm refunding your donation of ';
 $txt['treas_mail_body2_details'] = 'Details Here:\n';
+
+// Fatal Error
+$txt['treas_fatal_error_date_blank'] = 'The Date field cannot be blank';
+$txt['treas_fatal_error_invalid_date'] = 'Invalid Date format';
+$txt['treas_fatal_error_name_blank'] = 'The Name field cannot be blank';
+$txt['treas_fatal_error_invalid_gross'] = 'Invalid Gross field';
+$txt['treas_fatal_error_invalid_fee'] = 'Invalid Fee field';
+$txt['treas_fatal_error_exchange_rate_blank'] = 'Exchange rate field cannot be blank';
+$txt['treas_fatal_error_invalid_exchange_rate'] = 'Invalid Exchange Rate field';
+$txt['treas_fatal_error_invalid_id'] = 'Invalid record id specified, operation aborted';
+$txt['treas_fatal_error_invalid_amount'] = 'Invalid Amount field';
+$txt['treas_fatal_error_invalid_amount_with_desc'] = 'Invalid Amount field, do not use any characters other than -.0123456789';
+$txt['treas_fatal_error_start_date_blank'] = 'The Start Date field cannot be blank';
+$txt['treas_fatal_error_blank_title'] = 'The Title field cannot be blank';
+$txt['treas_fatal_error_blank_description'] = 'The Description field cannot be blank';
+$txt['treas_fatal_error_invalid_target'] = 'Invalid Target field';
+$txt['treas_fatal_error_invalid_actual'] = 'Invalid Actual field';
 
 ?>

@@ -330,7 +330,7 @@ function template_treasury_totals() {
 
 	echo '&nbsp;', $txt['treas_event'], ':&nbsp;';
 	$select4 = '<select name="search_event" id="search_event">';
-	$select4 .= '<option value="0">No Event</option>';
+	$select4 .= '<option value="0">'.$txt['treas_no_event'].'</option>';
 	if (!empty($context['treas_eventid'])) {
 		foreach($context['treas_eventid'] AS $eid => $etitle) {
 			$select4 .= '<option value="' . $eid . '" ' . (($eid == $search_event) ? 'selected="selected"' : '') . '>' . $etitle . '</option>' . "\n";
@@ -434,9 +434,11 @@ function template_config()
 	showTextBox('don_name_prompt', $txt['treas_username_prompt'] , '', '60', '1');
 	showTextBox('don_name_yes', $txt['treas_username_yes'] , '', '60', '1');
 	showTextBox('don_name_no', $txt['treas_username_no'] , '', '60', '1');
+
 	if ($tr_config['event_active']) {
-		echo '<tr><td colspan="3" align="center"><span style="color:red;">BEWARE: you have an active event, so the following Title, Text and Monthly Goals are inoperative!</span></td></tr>';
+		echo '<dt><span style="color:red;">'.$txt['treas_event_beware_message'].'</span></dt><dd></dd>';
 	}
+
 	ShowTextBox('don_text_title', $txt['treas_donation_title'] , '', '60', '1');
 	showTextArea('don_text', $txt['treas_donation_text'] , '50', '10', '1');
 
@@ -570,8 +572,13 @@ function template_config_events()
 	</script>';
 	
 	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_events'] . '</h3></div>
-		<div class="windowbg noup"><dl class="settings">';
-
+		<div class="windowbg noup">';
+		
+		if ($tr_config['event_active']) {
+			echo '<dl><br><span style="color:red;">'.$txt['treas_event_beware_message'].'</span></dl>';
+		}
+		
+	echo' <dl class="settings">';
 	echo '<form name="tr_events" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
 
 	$event_id = array();
@@ -587,9 +594,6 @@ function template_config_events()
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=configevents" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
 	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button"  />';
-	if ($tr_config['event_active']) {
-		echo '<br><span style="color:red;">BEWARE: you activated an event - this will change your Treasury display!</span>';
-	}
 	echo '</form></dl>';
 
 	# Events paging
@@ -599,7 +603,7 @@ function template_config_events()
 	<tr>
 	<td align="left">', sprintf($txt['treas_page_of'], ( floor( $start / $maxRows ) + 1 ), ceil( $totalRows / $maxRows )), '</td>
 	  <td align="right" style="white-space:nowrap;">', $txt['treas_select_sort'], ':&nbsp;';
-	$options = array('lastevent' => 'Sort Last Event', 'target' => 'Sort Target', 'actual' => 'Sort Actual');
+	$options = array('lastevent' => $txt['treas_event_sort_last_event'], 'target' => $txt['treas_event_sort_target'], 'actual' => $txt['treas_event_sort_actual']);
 	$select = '<select name="mode" id="mode">';
 	foreach($options as $opname => $opvalue) {
 		$select .= '<option value="' . $opname . '" ' . (($opname == $mode) ? 'selected="selected"' : '') . '>' . $opvalue . '</option>' . "\n";
@@ -724,12 +728,12 @@ function template_config_events()
 		<input type="hidden" name="mode" value="', $mode, '" />
 		<input type="hidden" name="start" value="', $start, '" />
 		<input type="hidden" name="eid" value="', $eid, '" />
-		<input type="submit" name="update" style="width:120px;" value="Update Event" /></td>
+		<input type="submit" name="update" style="width:130px;" value="'.$txt['treas_event_update_event'].'" /></td>
 		</tr>';
 	} else {
 		echo '
 		<input type="hidden" name="sa" value="eventsadd" />
-		<input type="submit" name="save" style="width:100px;" value="Add an Event" class="button" /></td>
+		<input type="submit" name="save" style="width:130px;" value="'.$txt['treas_event_add_event'].'" class="button" /></td>
 		</tr>';
 	}
 	echo '</td></tr>';
