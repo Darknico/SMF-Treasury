@@ -57,7 +57,7 @@ $dbg = (isset($_GET['dbg'])) ? 1 : 0;
 if ($dbg)
 {
 	dprt('Debug mode activated<br>', _INF);
-	echo 'SMF2 Treasury mod<br><br>PayPal Instant Payment Notification script<br><br>See below for status:<br>';
+	echo 'Treasury mod for SMF 2.1<br><br>PayPal Instant Payment Notification script<br><br>See below for status:<br>';
 	echo '----------------------------------------------------------------<br>';
 	$receiver_email = $tr_config['receiver_email'];
 }

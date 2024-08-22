@@ -419,9 +419,6 @@ function template_config()
 	showYNBox('don_show_gross', $txt['treas_show_gross'] , '', '', '1');
 	showYNBox('don_show_date', $txt['treas_reveal_dates'] , '', '', '1');
 	showYNBox('don_show_amt', $txt['treas_reveal_amounts'] , '', '', '1');
-	showYNBox('don_show_button_top' , $txt['treas_top_button_show'] , '', '', '1');
-	showTextBox('don_button_top', $txt['treas_top_button'] , '', '25', '1');
-	showImgXYBox('don_top_img_width', 'don_top_img_height', $txt['treas_image_dims'] , '2', '1');
 
 	echo '</dl><hr><dl class="settings">';
 	
