@@ -86,9 +86,9 @@ function template_treasuryregister()
 			 	."document.recedit.Submit.value = 'Modify'; "
 			 	."document.recedit.sa.value = 'finregedit'; "
 			  ."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" /></a>&nbsp;'
+	  		.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=finregdel;rid=', $register_treas['id'], ';sesc=', $context['session_id'], '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			."<td align=\"left\">$register_treas[fdate]</td>"
 	        ."<td align=\"left\" width=\"8\">$register_treas[num]</td>"
@@ -206,9 +206,9 @@ function template_treasury_donations()
 			 	."document.transedit.Submit.value = 'Modify'; "
 			 	."document.transedit.sa.value = 'transregedit'; "
 			."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" /></a><br>'
+	  		.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=transregdel;did=', $donations_treas['id'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			."<td align=\"center\" class=\"smalltext\">$donations_treas[txn_id]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[custom]</td>"
@@ -657,9 +657,9 @@ function template_config_events()
 			$events_treas['date_end'] = $events_treas['date_end'] == '0' ? '' : timeformat($events_treas['date_end'], '%Y-%m-%d');
 			echo '<tr class="windowbg">'
 			.'<td align="center">'
-			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br>'
+			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=eventsdel;eid=', $events_treas['eid'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 	        .'<td align="left" class="smalltext">'.stripslashes($events_treas['title']).'</td>'
 	        .'<td align="left" class="smalltext">'.stripslashes($events_treas['description']).'</td>'
@@ -776,7 +776,7 @@ function template_trans_log()
 		{
 		    echo '<tr>'
 			.'<td align="left"><a href="', $scripturl.$context['treas_link'], ';sa=translogdel;lid=', $log_trans['id'], ';start=', $start, ';order=', $sort_order, ';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			.'<td align="left">', timeformat($log_trans['log_date'], treasdate()), '</td>'
 	        .'<td align="left">', ($log_trans['payment_date'] > 0) ? timeformat($log_trans['payment_date'], treasdate()) : '-', '</td>'
