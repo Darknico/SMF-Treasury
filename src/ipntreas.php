@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.10
+ * @version 2.12.11
  */
 
 if (!file_exists(dirname(__FILE__) . '/SSI.php'))
@@ -57,7 +57,7 @@ $dbg = (isset($_GET['dbg'])) ? 1 : 0;
 if ($dbg)
 {
 	dprt('Debug mode activated<br>', _INF);
-	echo 'SMF2 Treasury mod<br><br>PayPal Instant Payment Notification script<br><br>See below for status:<br>';
+	echo 'Treasury mod for SMF 2.1<br><br>PayPal Instant Payment Notification script<br><br>See below for status:<br>';
 	echo '----------------------------------------------------------------<br>';
 	$receiver_email = $tr_config['receiver_email'];
 }

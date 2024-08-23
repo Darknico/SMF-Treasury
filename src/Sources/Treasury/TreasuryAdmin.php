@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.10
+ * @version 2.12.11
  */
 
 if (!defined('SMF'))
@@ -437,30 +437,30 @@ function transactionRegAdd()
 
 	if ($_POST['Payment_date'] == '')
 	{
-		fatal_error('The Date field cannot be blank');
+		fatal_error($txt['treas_fatal_error_date_blank']);
 	}
 	elseif (strtotime($_POST['Payment_date']) == -1)
 	{
-		fatal_error('Invalid Date format');
+		fatal_error($txt['treas_fatal_error_invalid_date']);
 	}
 	elseif (strlen($_POST['Custom']) == 0)
 	{
-		fatal_error('The Name field cannot be blank');
+		fatal_error($txt['treas_fatal_error_name_blank']);
 	}
 	elseif (!is_numeric($_POST['Mc_gross']))
 	{
-		fatal_error('Invalid Gross field');
+		fatal_error($txt['treas_fatal_error_invalid_gross']);
 	}
 	elseif (!is_numeric($_POST['Mc_fee']))
 	{
-		fatal_error('Invalid Fee field');
+		fatal_error($txt['treas_fatal_error_invalid_fee']);
 	}
 	elseif ($_POST['Exchange_rate'] == ''){
-		fatal_error('Exchange rate field cannot be blank');
+		fatal_error($txt['treas_fatal_error_exchange_rate_blank']);
 	}
 	elseif (!is_numeric($_POST['Exchange_rate']))
 	{
-		fatal_error('Invalid Exchange Rate field');
+		fatal_error($txt['treas_fatal_error_invalid_exchange_rate']);
 	}
 	else
 	{
@@ -502,7 +502,7 @@ function transactionRegDel()
 	$mode = isset($_GET['mode']) ? $_GET['mode'] : 'lastdonated';
 	if ( !(is_numeric($_GET['did']) && $_GET['did']>0))
 	{
-		fatal_error('Invalid record id specified, operation aborted');
+		fatal_error($txt['treas_fatal_error_invalid_id']);
 	} else {
 		$del_Transaction = "
 			DELETE 
@@ -537,31 +537,31 @@ function transactionRegEdit()
 	$mode = isset($_POST['mode']) ? $_POST['mode'] : (isset($_GET['mode']) ? $_GET['mode'] : 'lastdonated');
 	if ($_POST['Payment_date'] == '')
 	{
-		fatal_error('The Date field cannot be blank');
+		fatal_error($txt['treas_fatal_error_date_blank']);
 	}
 	elseif (strtotime($_POST['Payment_date']) == -1)
 	{
-		fatal_error('Invalid Date format');
+		fatal_error($txt['treas_fatal_error_invalid_date']);
 	}
 	elseif (strlen($_POST['Custom']) == 0)
 	{
-		fatal_error('The Name field cannot be blank');
+		fatal_error($txt['treas_fatal_error_name_blank']);
 	}
 	elseif (!is_numeric($_POST['Mc_gross']))
 	{
-		fatal_error('Invalid Gross field');
+		fatal_error($txt['treas_fatal_error_invalid_gross']);
 	}
 	elseif (!is_numeric($_POST['Mc_fee']))
 	{
-		fatal_error('Invalid Fee field');
+		fatal_error($txt['treas_fatal_error_invalid_fee']);
 	}
 	elseif ($_POST['Exchange_rate'] == '')
 	{
-		fatal_error('Exchange rate field cannot be blank');
+		fatal_error($txt['treas_fatal_error_exchange_rate_blank']);
 	}
 	elseif (!is_numeric($_POST['Exchange_rate']))
 	{
-		fatal_error('Invalid Exchange Rate field');
+		fatal_error($txt['treas_fatal_error_invalid_exchange_rate']);
 	}
 	else
 	{
@@ -599,19 +599,19 @@ function financialRegAdd()
 
 	if ($_POST['Date'] == '')
 	{
-		fatal_error('The Date field cannot be blank');
+		fatal_error($txt['treas_fatal_error_date_blank']);
 	}
 	elseif (strtotime($_POST['Date']) == -1)
 	{
-		fatal_error('Invalid Date format');
+		fatal_error($txt['treas_fatal_error_invalid_date']);
 	}
 	elseif (strlen($_POST['Name']) == 0)
 	{
-		fatal_error('The Name field cannot be blank');
+		fatal_error($txt['treas_fatal_error_name_blank']);
 	}
 	elseif (!is_numeric($_POST['Amount']))
 	{
-		fatal_error('Invalid Amount field');
+		fatal_error($txt['treas_fatal_error_invalid_amount']);
 	}
 	else
 	{
@@ -634,7 +634,7 @@ function financialRegDel()
 
 	if ( !(is_numeric($_GET['rid']) && $_GET['rid'] > 0))
 	{
-		fatal_error('Invalid record id specified, operation aborted');
+		fatal_error($txt['treas_fatal_error_invalid_id']);
 	}
 	else
 	{
@@ -656,19 +656,19 @@ function financialRegEdit()
 
 	if ($_POST['Date'] == '')
 	{
-		fatal_error('The Date field cannot be blank');
+		fatal_error($txt['treas_fatal_error_date_blank']);
 	}
 	elseif (strtotime($_POST['Date']) == -1)
 	{
-		fatal_error('Invalid Date format');
+		fatal_error($txt['treas_fatal_error_invalid_date']);
 	}
 	elseif (strlen($_POST['Name']) == 0)
 	{
-		fatal_error('The Name field cannot be blank');
+		fatal_error($txt['treas_fatal_error_name_blank']);
 	}
 	elseif (!is_numeric($_POST['Amount']))
 	{
-		fatal_error('Invalid Amount field, do not use any characters other than -.0123456789');
+		fatal_error($txt['treas_fatal_error_invalid_amount_with_desc']);
 	}
 	else
 	{
@@ -728,6 +728,21 @@ function showTextBox($name, $desc, $tdWidth, $inpSize, $useHelp)
 		<span>', $desc, '<span>
 	</dt>
     	<dd>
+		<input size="', $inpSize, '" name="var_', $name, '" type="text" value="', $tr_config[$name], '" />
+	</dd>';
+}
+
+function showTextBoxImage($name, $desc, $tdWidth, $inpSize, $useHelp)
+{
+	global $smcFunc, $tr_config, $tr_targets, $scripturl, $settings, $txt;
+	isAllowedTo('admin_treasury');
+
+    echo '
+	<dt>
+		', addDescriptionHelp($name) ,'
+		<span>', $desc, '<span>
+	</dt>
+    	<dd>Themes/default/images/Treasury/
 		<input size="', $inpSize, '" name="var_', $name, '" type="text" value="', $tr_config[$name], '" />
 	</dd>';
 }
@@ -1093,27 +1108,27 @@ function eventsEdit()
 	$mode = isset($_GET['mode']) ? $_GET['mode'] : 'lastevent';
 	if ($_POST['date_start'] == '')
 	{
-		fatal_error('The Start Date field cannot be blank');
+		fatal_error($txt['treas_fatal_error_start_date_blank']);
 	}
 	elseif (strtotime($_POST['date_start']) == -1)
 	{
-		fatal_error('Invalid Date format');
+		fatal_error($txt['treas_fatal_error_invalid_date']);
 	}
 	elseif (strlen($_POST['title']) == 0)
 	{
-		fatal_error('The Title field cannot be blank');
+		fatal_error($txt['treas_fatal_error_blank_title']);
 	}
 	elseif (strlen($_POST['description']) == 0)
 	{
-		fatal_error('The Description field cannot be blank');
+		fatal_error($txt['treas_fatal_error_blank_description']);
 	}
 	elseif (!is_numeric($_POST['target']))
 	{
-		fatal_error('Invalid Target field');
+		fatal_error($txt['treas_fatal_error_invalid_target']);
 	}
 	elseif (!is_numeric($_POST['actual']))
 	{
-		fatal_error('Invalid Actual field');
+		fatal_error($txt['treas_fatal_error_invalid_actual']);
 	}
 	else
 	{
@@ -1138,23 +1153,23 @@ function eventsAdd()
 
 	if ($_POST['date_start'] == '')
 	{
-		fatal_error('The Start Date field cannot be blank');
+		fatal_error($txt['treas_fatal_error_start_date_blank']);
 	}
 	elseif (strtotime($_POST['date_start']) == -1)
 	{
-		fatal_error('Invalid Date format');
+		fatal_error($txt['treas_fatal_error_invalid_date']);
 	}
 	elseif (strlen($_POST['title']) == 0)
 	{
-		fatal_error('The Title field cannot be blank');
+		fatal_error($txt['treas_fatal_error_blank_title']);
 	}
 	elseif (strlen($_POST['description']) == 0)
 	{
-		fatal_error('The Description field cannot be blank');
+		fatal_error($txt['treas_fatal_error_blank_description']);
 	}
 	elseif (!is_numeric($_POST['target']))
 	{
-		fatal_error('Invalid Target field');
+		fatal_error($txt['treas_fatal_error_invalid_target']);
 	}
 	else
 	{
@@ -1182,7 +1197,7 @@ function eventsDelete()
 	$mode = isset($_GET['mode']) ? $_GET['mode'] : 'lastevent';
 	if ( !(is_numeric($_GET['eid']) && $_GET['eid'] > 0) )
 	{
-		fatal_error('Invalid record eid specified, operation aborted');
+		fatal_error($txt['treas_fatal_error_invalid_id']);
 	} else {
 		$del_Transaction = "
 			DELETE 
@@ -1240,13 +1255,13 @@ function transactionLog()
 }
 
 function transactionLogdelete() {
-    global $smcFunc;
+    global $smcFunc, $txt;
 
 	$start = (isset($_GET['start']) && intval($_GET['start'])) ? $_GET['start'] : 0;
 	$sort_order = isset($_GET['order']) ? $_GET['order'] : '';
 	if ( !(is_numeric($_GET['lid']) && $_GET['lid'] > 0))
 	{
-		fatal_error('Invalid record id specified, operation aborted');
+		fatal_error($txt['treas_fatal_error_invalid_id']);
 	}
 	else
 	{

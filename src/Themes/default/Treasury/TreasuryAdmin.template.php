@@ -8,7 +8,7 @@
  * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.10
+ * @version 2.12.11
  */
 
 function template_treasuryregister()
@@ -86,9 +86,9 @@ function template_treasuryregister()
 			 	."document.recedit.Submit.value = 'Modify'; "
 			 	."document.recedit.sa.value = 'finregedit'; "
 			  ."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" /></a>&nbsp;'
+	  		.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=finregdel;rid=', $register_treas['id'], ';sesc=', $context['session_id'], '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			."<td align=\"left\">$register_treas[fdate]</td>"
 	        ."<td align=\"left\" width=\"8\">$register_treas[num]</td>"
@@ -112,14 +112,14 @@ function template_treasuryregister()
     .'<td class="titlebg2" align="center">', $txt['treas_event_descr'], '</td>'
     .'<td class="titlebg2" align="center">', $txt['treas_amount'], '</td></tr><tr>'
 	.'<td align="left" style="width:8px;"><input name="id" type="hidden" />'
-	.'<input name="Date" type="text" size="22" /></td>'
+	.'<input name="Date" type="date" size="22" /></td>'
 	.'<td align="left" style="width:8px;"><input name="Num" type="text" size="6" /></td>'
 	.'<td align="left"><input name="Name" type="text" size="15" /></td>'
 	.'<td align="left"><input name="Descr" type="text" size="30" /></td>'
 	.'<td align="right"><input name="Amount" type="text" size="8" /></td></tr>';
 	echo '<tr><td align="right" colspan="5">'
 	.'<input type="hidden" name="sc" value="', $context['session_id'], '" />'
-	.'<input type="hidden" name="sa" value="finreg" />'
+	.'<input type="hidden" name="sa" value="finregadd" />'
 	."<input name=\"\" type=\"reset\" value=\"Reset\" onclick=\""
 	."document.recedit.Submit.value = 'Add'; "
 	."document.recedit.sa.value = 'finregadd'; "
@@ -206,9 +206,9 @@ function template_treasury_donations()
 			 	."document.transedit.Submit.value = 'Modify'; "
 			 	."document.transedit.sa.value = 'transregedit'; "
 			."return false;\">"
-	  		.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" /></a><br>'
+	  		.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=transregdel;did=', $donations_treas['id'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			."<td align=\"center\" class=\"smalltext\">$donations_treas[txn_id]</td>"
 	        ."<td align=\"center\" class=\"smalltext\">$donations_treas[custom]</td>"
@@ -249,7 +249,7 @@ function template_treasury_donations()
         .'<td align="center"><input name="Mc_gross" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Mc_fee" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Settle_amount" type="text" size="6" class="smalltext" /></td>'
-        .'<td align="center"><input name="Payment_date" type="text" size="22" class="smalltext" /></td>'
+        .'<td align="center"><input name="Payment_date" type="date" size="22" class="smalltext" /></td>'
         .'<td align="center"><input name="Exchange_rate" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Eid" type="text" size="3" class="smalltext" /></td>'
 		.'</tr>';
@@ -288,11 +288,7 @@ function template_treasury_totals() {
 	global $num, $total, $fees, $net, $settled, $periods, $periode;
 
 	$pagination = treasuryPages($context['treas_link'] . ';sa=donortotals;search_time=' . $search_time . ';search_event=' . $search_event . ';mode=' . $mode . ';order=' . $sort_order, $totalRows, $maxRows, $start) . '&nbsp;';
-	echo '<script type="text/javascript" src="', $settings['default_theme_url'], '/Treasury/scripts/ts_picker.js">
-	//Script by Denis Gritcyuk: tspicker@yahoo.com
-	//Submitted to JavaScript Kit (http://javascriptkit.com)
-	//Visit http://javascriptkit.com for this script
-	</script>';
+
 	echo '<form name="treas" method="post" action="', $scripturl.$context['treas_link'], ';sa=donortotals">
 	<div class="cat_bar"><h3 class="catbg">' . $txt['treas_donor_totals'] . '</h3></div>
 	<div class="windowbg noup">
@@ -330,7 +326,7 @@ function template_treasury_totals() {
 
 	echo '&nbsp;', $txt['treas_event'], ':&nbsp;';
 	$select4 = '<select name="search_event" id="search_event">';
-	$select4 .= '<option value="0">No Event</option>';
+	$select4 .= '<option value="0">'.$txt['treas_no_event'].'</option>';
 	if (!empty($context['treas_eventid'])) {
 		foreach($context['treas_eventid'] AS $eid => $etitle) {
 			$select4 .= '<option value="' . $eid . '" ' . (($eid == $search_event) ? 'selected="selected"' : '') . '>' . $etitle . '</option>' . "\n";
@@ -343,13 +339,13 @@ function template_treasury_totals() {
 	</tr>
 	<tr class="windowbg"><td colspan="2"><span style="float:left;">', $pagination, '</span>';
 	echo '<span style="float:right;">
-	<strong>&raquo;</strong> ', $txt['treas_calendar_from'], ' <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
-	<a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="', $txt['treas_calendar_choose_start_date'], '">
-		<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" />
-	</a>
-	&nbsp;', $txt['treas_calendar_to'], '&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> 
-	<a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="', $txt['treas_calendar_choose_end_date'], '">
-	<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> 
+	
+    <strong>&raquo;</strong> ', $txt['treas_calendar_from'], ' 
+    <input type="date" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
+
+	&nbsp;', $txt['treas_calendar_to'], '&nbsp;
+    <input type="date" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> 
+    
 	<strong>&laquo;</strong>&nbsp;&nbsp;&nbsp;&nbsp; 
 	<input type="hidden" name="sc" value="', $context['session_id'], '" />
 	<input type="hidden" name="start" value="', $start, '" />
@@ -419,9 +415,6 @@ function template_config()
 	showYNBox('don_show_gross', $txt['treas_show_gross'] , '', '', '1');
 	showYNBox('don_show_date', $txt['treas_reveal_dates'] , '', '', '1');
 	showYNBox('don_show_amt', $txt['treas_reveal_amounts'] , '', '', '1');
-	showYNBox('don_show_button_top' , $txt['treas_top_button_show'] , '', '', '1');
-	showTextBox('don_button_top', $txt['treas_top_button'] , '', '25', '1');
-	showImgXYBox('don_top_img_width', 'don_top_img_height', $txt['treas_image_dims'] , '2', '1');
 
 	echo '</dl><hr><dl class="settings">';
 	
@@ -429,7 +422,7 @@ function template_config()
 	selectBox('duration', $txt['treas_duration'] , $tr_config['duration'], $time_durations, '1');
 	showYNBox('show_registry', $txt['treas_show_registry'] , '', '', '1');
 	ShowTextBox('don_num_don', $txt['treas_num_donors'] , '', '4', '1');
-	showTextBox('don_button_submit', $txt['treas_submit_button'] , '', '25', '1');
+	showTextBoxImage('don_button_submit', $txt['treas_submit_button'] , '', '15', '1');
 	showImgXYBox('don_sub_img_width', 'don_sub_img_height', $txt['treas_image_dims'] , '2', '1');
 
 	echo '</dl><hr><dl class="settings">';
@@ -437,9 +430,11 @@ function template_config()
 	showTextBox('don_name_prompt', $txt['treas_username_prompt'] , '', '60', '1');
 	showTextBox('don_name_yes', $txt['treas_username_yes'] , '', '60', '1');
 	showTextBox('don_name_no', $txt['treas_username_no'] , '', '60', '1');
+
 	if ($tr_config['event_active']) {
-		echo '<tr><td colspan="3" align="center"><span style="color:red;">BEWARE: you have an active event, so the following Title, Text and Monthly Goals are inoperative!</span></td></tr>';
+		echo '<dt><span style="color:red;">'.$txt['treas_event_beware_message'].'</span></dt><dd></dd>';
 	}
+
 	ShowTextBox('don_text_title', $txt['treas_donation_title'] , '', '60', '1');
 	showTextArea('don_text', $txt['treas_donation_text'] , '50', '10', '1');
 
@@ -542,14 +537,14 @@ function template_config_block()
 	<div class="windowbg noup"><dl class="settings">';
 	ShowTextBox('dm_name_length', $txt['treas_block_username'] , '', '4', '1');
 	showTextBox('dm_num_don', $txt['treas_block_number'] ,  '', '4', '1');
-	showTextBox('dm_button', $txt['treas_block_image'] , '', '25', '1');
+	showTextBoxImage('dm_button', $txt['treas_block_image'] , '', '15', '1');
+	showImgXYBox('dm_img_width', 'dm_img_height',  $txt['treas_block_image_size'] , '4', '1');
 
 	echo '</dl><hr><dl class="settings">';
 
 	showYNBox('dm_show_date', $txt['treas_block_dates'] , '', '', '1');
 	showYNBox('dm_show_amt', $txt['treas_block_amounts'] , '', '', '1');
-	showImgXYBox('dm_img_width', 'dm_img_height',  $txt['treas_block_image_size'] , '4', '1');
-
+	
 	echo '</dl><hr><dl class="settings">';
 	
 	showTextBox('dm_title', $txt['treas_block_title'] , '', '40', '1');
@@ -566,15 +561,15 @@ function template_config_events()
 {
 	global $context, $scripturl, $txt, $tr_config, $settings;
 	global $start, $sort_order, $maxRows, $mode, $totalRows;
-	echo '<script type="text/javascript" src="', $settings['default_theme_url'], '/Treasury/scripts/ts_picker.js">
-	//Script by Denis Gritcyuk: tspicker@yahoo.com
-	//Submitted to JavaScript Kit (http://javascriptkit.com)
-	//Visit http://javascriptkit.com for this script
-	</script>';
 	
 	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_events'] . '</h3></div>
-		<div class="windowbg noup"><dl class="settings">';
-
+		<div class="windowbg noup">';
+		
+		if ($tr_config['event_active']) {
+			echo '<dl><br><span style="color:red;">'.$txt['treas_event_beware_message'].'</span></dl>';
+		}
+		
+	echo' <dl class="settings">';
 	echo '<form name="tr_events" action="', $scripturl.$context['treas_link'], ';sa=configupdate" method="post">';
 
 	$event_id = array();
@@ -590,9 +585,6 @@ function template_config_events()
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=configevents" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
 	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button"  />';
-	if ($tr_config['event_active']) {
-		echo '<br><span style="color:red;">BEWARE: you activated an event - this will change your Treasury display!</span>';
-	}
 	echo '</form></dl>';
 
 	# Events paging
@@ -602,7 +594,7 @@ function template_config_events()
 	<tr>
 	<td align="left">', sprintf($txt['treas_page_of'], ( floor( $start / $maxRows ) + 1 ), ceil( $totalRows / $maxRows )), '</td>
 	  <td align="right" style="white-space:nowrap;">', $txt['treas_select_sort'], ':&nbsp;';
-	$options = array('lastevent' => 'Sort Last Event', 'target' => 'Sort Target', 'actual' => 'Sort Actual');
+	$options = array('lastevent' => $txt['treas_event_sort_last_event'], 'target' => $txt['treas_event_sort_target'], 'actual' => $txt['treas_event_sort_actual']);
 	$select = '<select name="mode" id="mode">';
 	foreach($options as $opname => $opvalue) {
 		$select .= '<option value="' . $opname . '" ' . (($opname == $mode) ? 'selected="selected"' : '') . '>' . $opvalue . '</option>' . "\n";
@@ -665,9 +657,9 @@ function template_config_events()
 			$events_treas['date_end'] = $events_treas['date_end'] == '0' ? '' : timeformat($events_treas['date_end'], '%Y-%m-%d');
 			echo '<tr class="windowbg">'
 			.'<td align="center">'
-			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="Edit" /></a><br>'
+			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=eventsdel;eid=', $events_treas['eid'], ';start=', $start, ';order=', $sort_order, ';mode=', $mode,';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 	        .'<td align="left" class="smalltext">'.stripslashes($events_treas['title']).'</td>'
 	        .'<td align="left" class="smalltext">'.stripslashes($events_treas['description']).'</td>'
@@ -715,8 +707,8 @@ function template_config_events()
 		.'<td><textarea name="description" cols="43" rows="6" class="smalltext">', $description, '</textarea></td>'
 		.'<td align="center" valign="top"><input name="target" type="text" size="9" class="smalltext" value="', $target, '" /></td>'
 		.'<td align="center" valign="top"><input name="actual" type="text" size="9" class="smalltext" value="', $actual, '" /></td>'
-		.'<td valign="top"><input name="date_start" type="text" size="11" class="smalltext" value="', $date_start, '"/><a href="javascript:show_calendar(\'document.treas.date_start\', document.treas.date_start.value);" title="Choose Start Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a></td>'
-		.'<td valign="top"><input name="date_end" type="text" size="11" class="smalltext" value="', $date_end, '" /><a href="javascript:show_calendar(\'document.treas.date_end\', document.treas.date_end.value);" title="Choose End Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a></td>'
+		.'<td valign="top"><input name="date_start" type="date" size="11" class="smalltext" value="', $date_start, '"/></td>'
+		.'<td valign="top"><input name="date_end" type="date" size="11" class="smalltext" value="', $date_end, '" /></td>'
 		.'</tr>';
 	echo '<tr class="windowbg">
 	<td colspan="6" align="center">
@@ -727,12 +719,12 @@ function template_config_events()
 		<input type="hidden" name="mode" value="', $mode, '" />
 		<input type="hidden" name="start" value="', $start, '" />
 		<input type="hidden" name="eid" value="', $eid, '" />
-		<input type="submit" name="update" style="width:120px;" value="Update Event" /></td>
+		<input type="submit" name="update" style="width:130px;" value="'.$txt['treas_event_update_event'].'" /></td>
 		</tr>';
 	} else {
 		echo '
 		<input type="hidden" name="sa" value="eventsadd" />
-		<input type="submit" name="save" style="width:100px;" value="Add an Event" class="button" /></td>
+		<input type="submit" name="save" style="width:130px;" value="'.$txt['treas_event_add_event'].'" class="button" /></td>
 		</tr>';
 	}
 	echo '</td></tr>';
@@ -784,7 +776,7 @@ function template_trans_log()
 		{
 		    echo '<tr>'
 			.'<td align="left"><a href="', $scripturl.$context['treas_link'], ';sa=translogdel;lid=', $log_trans['id'], ';start=', $start, ';order=', $sort_order, ';sesc=', $context['session_id'],  '">'
-			.'<img style="border:0; width:12px; height:13px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'Are you sure you want to delete this record?\n\nAre you sure you want to do this now?\')" alt="Delete" />'
+			.'<img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/drop.png" onclick="return confirm(\'' . $txt['treas_record_delete_confirm'] . '\')" alt="', $txt['treas_record_delete'], '" title="', $txt['treas_record_delete'], '" />'
 			.'</a></td>'
 			.'<td align="left">', timeformat($log_trans['log_date'], treasdate()), '</td>'
 	        .'<td align="left">', ($log_trans['payment_date'] > 0) ? timeformat($log_trans['payment_date'], treasdate()) : '-', '</td>'
