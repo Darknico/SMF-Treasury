@@ -112,14 +112,14 @@ function template_treasuryregister()
     .'<td class="titlebg2" align="center">', $txt['treas_event_descr'], '</td>'
     .'<td class="titlebg2" align="center">', $txt['treas_amount'], '</td></tr><tr>'
 	.'<td align="left" style="width:8px;"><input name="id" type="hidden" />'
-	.'<input name="Date" type="text" size="22" /></td>'
+	.'<input name="Date" type="date" size="22" /></td>'
 	.'<td align="left" style="width:8px;"><input name="Num" type="text" size="6" /></td>'
 	.'<td align="left"><input name="Name" type="text" size="15" /></td>'
 	.'<td align="left"><input name="Descr" type="text" size="30" /></td>'
 	.'<td align="right"><input name="Amount" type="text" size="8" /></td></tr>';
 	echo '<tr><td align="right" colspan="5">'
 	.'<input type="hidden" name="sc" value="', $context['session_id'], '" />'
-	.'<input type="hidden" name="sa" value="finreg" />'
+	.'<input type="hidden" name="sa" value="finregadd" />'
 	."<input name=\"\" type=\"reset\" value=\"Reset\" onclick=\""
 	."document.recedit.Submit.value = 'Add'; "
 	."document.recedit.sa.value = 'finregadd'; "
