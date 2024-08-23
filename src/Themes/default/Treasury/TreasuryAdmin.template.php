@@ -288,11 +288,7 @@ function template_treasury_totals() {
 	global $num, $total, $fees, $net, $settled, $periods, $periode;
 
 	$pagination = treasuryPages($context['treas_link'] . ';sa=donortotals;search_time=' . $search_time . ';search_event=' . $search_event . ';mode=' . $mode . ';order=' . $sort_order, $totalRows, $maxRows, $start) . '&nbsp;';
-	echo '<script type="text/javascript" src="', $settings['default_theme_url'], '/Treasury/scripts/ts_picker.js">
-	//Script by Denis Gritcyuk: tspicker@yahoo.com
-	//Submitted to JavaScript Kit (http://javascriptkit.com)
-	//Visit http://javascriptkit.com for this script
-	</script>';
+
 	echo '<form name="treas" method="post" action="', $scripturl.$context['treas_link'], ';sa=donortotals">
 	<div class="cat_bar"><h3 class="catbg">' . $txt['treas_donor_totals'] . '</h3></div>
 	<div class="windowbg noup">
@@ -343,13 +339,13 @@ function template_treasury_totals() {
 	</tr>
 	<tr class="windowbg"><td colspan="2"><span style="float:left;">', $pagination, '</span>';
 	echo '<span style="float:right;">
-	<strong>&raquo;</strong> ', $txt['treas_calendar_from'], ' <input type="text" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
-	<a href="javascript:show_calendar(\'document.treas.periods\', document.treas.periods.value);" title="', $txt['treas_calendar_choose_start_date'], '">
-		<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" />
-	</a>
-	&nbsp;', $txt['treas_calendar_to'], '&nbsp;<input type="text" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> 
-	<a href="javascript:show_calendar(\'document.treas.periode\', document.treas.periode.value);" title="', $txt['treas_calendar_choose_end_date'], '">
-	<img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a> 
+	
+    <strong>&raquo;</strong> ', $txt['treas_calendar_from'], ' 
+    <input type="date" name="periods" value="', ($periods >0 ? strftime('%Y-%m-%d', $periods) : ''), '" size="10" /> 
+
+	&nbsp;', $txt['treas_calendar_to'], '&nbsp;
+    <input type="date" name="periode" value="', ($periode > 0 ? strftime('%Y-%m-%d', $periode) : ''), '" size="10" /> 
+    
 	<strong>&laquo;</strong>&nbsp;&nbsp;&nbsp;&nbsp; 
 	<input type="hidden" name="sc" value="', $context['session_id'], '" />
 	<input type="hidden" name="start" value="', $start, '" />
@@ -565,11 +561,6 @@ function template_config_events()
 {
 	global $context, $scripturl, $txt, $tr_config, $settings;
 	global $start, $sort_order, $maxRows, $mode, $totalRows;
-	echo '<script type="text/javascript" src="', $settings['default_theme_url'], '/Treasury/scripts/ts_picker.js">
-	//Script by Denis Gritcyuk: tspicker@yahoo.com
-	//Submitted to JavaScript Kit (http://javascriptkit.com)
-	//Visit http://javascriptkit.com for this script
-	</script>';
 	
 	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_events'] . '</h3></div>
 		<div class="windowbg noup">';
@@ -716,8 +707,8 @@ function template_config_events()
 		.'<td><textarea name="description" cols="43" rows="6" class="smalltext">', $description, '</textarea></td>'
 		.'<td align="center" valign="top"><input name="target" type="text" size="9" class="smalltext" value="', $target, '" /></td>'
 		.'<td align="center" valign="top"><input name="actual" type="text" size="9" class="smalltext" value="', $actual, '" /></td>'
-		.'<td valign="top"><input name="date_start" type="text" size="11" class="smalltext" value="', $date_start, '"/><a href="javascript:show_calendar(\'document.treas.date_start\', document.treas.date_start.value);" title="Choose Start Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a></td>'
-		.'<td valign="top"><input name="date_end" type="text" size="11" class="smalltext" value="', $date_end, '" /><a href="javascript:show_calendar(\'document.treas.date_end\', document.treas.date_end.value);" title="Choose End Date"><img src="', $settings['default_images_url'], '/Treasury/cal.gif" style="margin-bottom:-2px; width:16px; height:15px;" alt="" /></a></td>'
+		.'<td valign="top"><input name="date_start" type="date" size="11" class="smalltext" value="', $date_start, '"/></td>'
+		.'<td valign="top"><input name="date_end" type="date" size="11" class="smalltext" value="', $date_end, '" /></td>'
 		.'</tr>';
 	echo '<tr class="windowbg">
 	<td colspan="6" align="center">
