@@ -249,7 +249,7 @@ function template_treasury_donations()
         .'<td align="center"><input name="Mc_gross" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Mc_fee" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Settle_amount" type="text" size="6" class="smalltext" /></td>'
-        .'<td align="center"><input name="Payment_date" type="text" size="22" class="smalltext" /></td>'
+        .'<td align="center"><input name="Payment_date" type="date" size="22" class="smalltext" /></td>'
         .'<td align="center"><input name="Exchange_rate" type="text" size="6" class="smalltext" /></td>'
         .'<td align="center"><input name="Eid" type="text" size="3" class="smalltext" /></td>'
 		.'</tr>';
