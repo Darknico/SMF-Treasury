@@ -5,7 +5,7 @@
  * @package Treasury
  * @link https://github.com/Darknico/SMF-Treasury
  * @author Darknico <info@darknico.com>
- * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
+ * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024-2025 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
  * @version 2.12.11
@@ -102,7 +102,7 @@ function treeCredits()
 	global $context;
 
 	$context['copyrights']['mods'][] = 
-	'<a href="https://github.com/Darknico/SMF-Treasury" target="_blank" rel="noopener">Treasury</a> ' .TREAS_VERSION. ' | &copy; 2024, 
+	'<a href="https://github.com/Darknico/SMF-Treasury" target="_blank" rel="noopener">Treasury</a> ' .TREAS_VERSION. ' | &copy; 2024-2025, 
 	<a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> 
 	edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> 
 	- <a href="https://www.italiansmf.net" target="_blank" rel="noopener">Italian SMF</a>
