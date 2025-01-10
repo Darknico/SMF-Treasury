@@ -551,6 +551,24 @@ function template_config_block()
 	showTextArea('dm_comments', $txt['treas_block_comment'] , '40', '2', '1');
 	echo '</dl></div>';
 
+
+	echo '<div class="cat_bar"><h3 class="catbg">' . $txt['treas_block_add'] . '</h3></div>
+	<div class="windowbg noup"><dl class="settings">';
+
+	echo '
+	<dt>
+		<span>' . $txt['treas_block_add_desc'] . '<span>
+	</dt>
+	<dd>
+		<code class="bbc_code">
+			&lt;?php 
+				include \'Sources/Treasury/DonationBlock.php\'; 
+			?&gt;
+		</code>
+	</dd>';
+	echo '</dl></div>';
+
+
 	echo '<input type="hidden" name="configger" value="', ($context['treas_smf'] == 2 ? 'action=admin;area=treasury' : 'action=treasuryadmin'), ';sa=configblock" />';
 	echo '<input type="hidden" name="sc" value="', $context['session_id'], '" />';
 	echo '<input type="submit" value="', $txt['treas_submit'], '" class="button" />';
