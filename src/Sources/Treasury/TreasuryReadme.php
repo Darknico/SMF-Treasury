@@ -29,7 +29,7 @@ echo '
 				<a href="https://www.simplemachines.org/community/index.php?action=profile;u=69956" target="_blank" rel="noopener">Resourcez</a> 
 				at resourcez.biz &copy; 2008 <br>
 				Edited by <a href="https://www.darknico.com" target="_blank" rel="noopener">Darknico</a> 
-				at <a href="https://www.italiansmf.net" target="_blank" rel="noopener">Italian SMF</a> &copy; 2024
+				at <a href="https://www.italiansmf.net" target="_blank" rel="noopener">Italian SMF</a> &copy; 2024-2025
 				<br><br>
 				', $txt['treasury_readme_info_description'],'
 			</dt>
