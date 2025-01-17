@@ -48,11 +48,11 @@ function view()
 	$context['sub_template']  = 'main';
 
 	//Set the page title
-	$context['page_title'] = 'Treasury';
+	$context['page_title'] = $txt['treasury_menu'];
 
 	//Set the linktree
 	$context['linktree'][] = [
-		'name' => 'Treasury',
+		'name' => $txt['treasury_menu'],
 		'url' => $scripturl . '?action=treasury',
 	];
 
