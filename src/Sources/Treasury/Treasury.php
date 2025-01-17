@@ -5,10 +5,10 @@
  * @package Treasury
  * @link https://github.com/Darknico/SMF-Treasury
  * @author Darknico <info@darknico.com>
- * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024 
+ * @copyright Originally NukeTreasury - Financial management for PHP-Nuke Copyright (c) 2004 - Resourcez at resourcez.biz Copyright (c) 2008 - Edited by Darknico  Copyright (c) 2024-2025 
  * @license https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
  *
- * @version 2.12.11
+ * @version 2.12.12
  */
 
 if (!defined('SMF'))
@@ -38,14 +38,23 @@ function treasuryMain()
 
 function view()
 {
-	global $smcFunc, $txt, $context, $mbname, $id_member;
+	global $smcFunc, $txt, $context, $scripturl;
 	global $tr_config, $tr_targets, $period, $is_donor, $net_registry, $row_Recordset3;
+
 	//Check if the current user can view treasury
 	isAllowedTo('view_treasury');
+
 	//Load the main index treasury template
 	$context['sub_template']  = 'main';
+
 	//Set the page title
-	$context['page_title'] = $mbname . ' - Treasury';
+	$context['page_title'] = $txt['treasury_menu'];
+
+	//Set the linktree
+	$context['linktree'][] = [
+		'name' => $txt['treasury_menu'],
+		'url' => $scripturl . '?action=treasury',
+	];
 
 	$cfgset = $smcFunc['db_query']('', 'SELECT * 
 		FROM {db_prefix}treas_config',

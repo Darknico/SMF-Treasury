@@ -15,7 +15,7 @@ then follow the setup and operational instructions.
 [hr]
 Originally NukeTreasury - Financial management for PHP-Nuke - Copyright (c) 2004 by Dave Lawrence (thrash at fragnastika dot com).
 Produced by Resourcez at http://resourcez.biz - Copyright (c) 2008 All Rights Reserved.
-Edited by Darknico at http://www.darknico.com - Copyright (c) 2024 All Rights Reserved.
+Edited by Darknico at http://www.darknico.com - Copyright (c) 2024-2025 All Rights Reserved.
 
 Issued under the terms of the GNU General Public License as published by 
 the Free Software Foundation; either version 2 of the License.
