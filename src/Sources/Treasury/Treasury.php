@@ -38,14 +38,23 @@ function treasuryMain()
 
 function view()
 {
-	global $smcFunc, $txt, $context, $mbname, $id_member;
+	global $smcFunc, $txt, $context, $scripturl;
 	global $tr_config, $tr_targets, $period, $is_donor, $net_registry, $row_Recordset3;
+
 	//Check if the current user can view treasury
 	isAllowedTo('view_treasury');
+
 	//Load the main index treasury template
 	$context['sub_template']  = 'main';
+
 	//Set the page title
-	$context['page_title'] = $mbname . ' - Treasury';
+	$context['page_title'] = 'Treasury';
+
+	//Set the linktree
+	$context['linktree'][] = [
+		'name' => 'Treasury',
+		'url' => $scripturl . '?action=treasury',
+	];
 
 	$cfgset = $smcFunc['db_query']('', 'SELECT * 
 		FROM {db_prefix}treas_config',
