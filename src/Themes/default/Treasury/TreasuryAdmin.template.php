@@ -187,7 +187,9 @@ function template_treasury_donations()
 	{
 		foreach ($context['treas_donations'] as $donations_treas)
 		{
-			$donations_treas['payment_date'] = timeformat($donations_treas['payment_date'], treasdate());
+			$donations_treas['payment_date_toEdit'] = date('Y-m-d', $donations_treas['payment_date']);
+			$donations_treas['payment_date'] = timeformat($donations_treas['payment_date'], treasdateonly());
+
 			echo '<tr class="windowbg">'
 			.'<td align="center">'
 			  ."<a href=\"javascript: void 0\" onclick=\""
@@ -200,7 +202,7 @@ function template_treasury_donations()
 			 	."document.transedit.Mc_gross.value = '$donations_treas[mc_gross]'; "
 			 	."document.transedit.Mc_fee.value = '$donations_treas[mc_fee]'; "
 			 	."document.transedit.Settle_amount.value = '$donations_treas[settle_amount]'; "
-			 	."document.transedit.Payment_date.value = '$donations_treas[payment_date]'; "
+			 	."document.transedit.Payment_date.value = '$donations_treas[payment_date_toEdit]'; "
 			 	."document.transedit.Exchange_rate.value = '$donations_treas[exchange_rate]'; "
 			 	."document.transedit.Eid.value = '$donations_treas[eid]'; "
 			 	."document.transedit.Submit.value = 'Modify'; "
@@ -671,8 +673,8 @@ function template_config_events()
 	{
 		foreach ($context['treas_events'] as $events_treas)
 		{
-			$events_treas['date_start'] = timeformat($events_treas['date_start'], '%Y-%m-%d');
-			$events_treas['date_end'] = $events_treas['date_end'] == '0' ? '' : timeformat($events_treas['date_end'], '%Y-%m-%d');
+			$events_treas['date_start'] = timeformat($events_treas['date_start'], treasdateonly());
+			$events_treas['date_end'] = $events_treas['date_end'] == '0' ? '' : timeformat($events_treas['date_end'], treasdateonly());
 			echo '<tr class="windowbg">'
 			.'<td align="center">'
 			.'<a href="', $scripturl.$context['treas_link'], ';sa=configevents;op=edit;eid=', $events_treas['eid'], ';start=', $start, ';sesc=', $context['session_id'],  '"><img style="border:0; height:20px;" src="', $settings['default_images_url'], '/Treasury/edit.png" alt="', $txt['treas_record_edit'], '" title="', $txt['treas_record_edit'], '" /></a>&nbsp;'

@@ -140,6 +140,15 @@ function treasdate() {
 	return $treas_date;
 }
 
+function treasdateonly() {
+	global $tr_config;
+	if ($tr_config['date_format'] == 0) { $treas_date = '%Y-%m-%d'; }
+	elseif ($tr_config['date_format'] == 1) { $treas_date = '%Y/%m/%d'; }
+	elseif ($tr_config['date_format'] == 2) { $treas_date = '%d-%m-%Y'; }
+	elseif ($tr_config['date_format'] == 3) { $treas_date = '%d/%m/%Y'; }
+	return $treas_date;
+}
+
 function treasuryRegister()
 {
     global $smcFunc, $scripturl, $context, $txt, $tr_config, $tr_targets, $num_ipn, $ipn_tot, $total;
